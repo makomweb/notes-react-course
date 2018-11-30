@@ -16,8 +16,7 @@ const buildControls = (props) => (
                 <BuildControl
                     key={obj.label}
                     label={obj.label}
-                    type={obj.type}
-                    added={props.ingredientAdded} />
+                    added={() => props.ingredientAdded(obj.type)} />
             ))
         }
     </div>
