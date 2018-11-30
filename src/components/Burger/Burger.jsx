@@ -12,7 +12,12 @@ const burger = (props) => {
             return [...Array(ingredients[ingredientKey])].map((_, i) => {
                 return <BurgerIngredient key={ingredientKey + i} type={ingredientKey} />
             });
-        });
+        })
+        // This is to ensure an empty array is returned if there are no ingredients.
+        .reduce((array, element) => {
+            return array.concat(element);
+        }, []);
+
 
     return (
         <div className={styles.Burger}>
