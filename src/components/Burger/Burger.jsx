@@ -7,7 +7,7 @@ const burger = (props) => {
     let ingredients = props.ingredients;
 
     // convert the composite object (key + value) into an array of ingredient components
-    const burgerIngredients = Object.keys(ingredients)
+    let burgerIngredients = Object.keys(ingredients)
         .map(ingredientKey => {
             return [...Array(ingredients[ingredientKey])].map((_, i) => {
                 return <BurgerIngredient key={ingredientKey + i} type={ingredientKey} />
@@ -18,6 +18,9 @@ const burger = (props) => {
             return array.concat(element);
         }, []);
 
+    if (burgerIngredients.length === 0) {
+        burgerIngredients = <p>Please start adding ingredients!</p>
+    }
 
     return (
         <div className={styles.Burger}>
