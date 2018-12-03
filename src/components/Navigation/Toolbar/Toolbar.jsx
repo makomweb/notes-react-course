@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './Toolbar.css';
 
 const toolbar = (props) => (
-    <header>
+    <header className={styles.Toolbar}>
         <div>
             MENU
         </div>
