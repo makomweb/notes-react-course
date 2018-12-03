@@ -25,7 +25,7 @@ class BurgerBuilder extends Component {
         orderClicked: false
     }
 
-    orderClickedHandler() {
+    orderClickedHandler = () => {
         this.setState({ orderClicked: true });
     }
 
