@@ -21,7 +21,12 @@ class BurgerBuilder extends Component {
             patty: 0
         },
         totalPrice: 3.5,
-        purchasable: false
+        purchasable: false,
+        orderClicked: false
+    }
+
+    orderClickedHandler() {
+        this.setState({ orderClicked: true });
     }
 
     updatePurchaseState(ingredients) {
@@ -102,6 +107,7 @@ class BurgerBuilder extends Component {
                     disabled={disabledInfo}
                     price={this.state.totalPrice}
                     purchasable={this.state.purchasable}
+                    ordered={this.orderClickedHandler}
                 />
             </Aux>
         );
