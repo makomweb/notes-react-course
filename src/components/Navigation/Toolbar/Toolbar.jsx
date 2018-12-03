@@ -8,7 +8,9 @@ const toolbar = (props) => (
         <div>
             MENU
         </div>
-        <Logo height="80%" />
+        <div className={styles.Logo}>
+            <Logo />
+        </div>
         <NavigationItems />
     </header>
 );
