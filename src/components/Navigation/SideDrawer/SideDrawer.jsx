@@ -17,4 +17,4 @@ const sideDrawer = (props) => {
     );
 };
 
-export default sidedrawer;
+export default sideDrawer;
