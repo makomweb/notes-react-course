@@ -25,6 +25,10 @@ class BurgerBuilder extends Component {
         orderClicked: false
     }
 
+    modalClosed = () => {
+        this.setState({ orderClicked: false });
+    }
+
     orderClickedHandler = () => {
         this.setState({ orderClicked: true });
     }
@@ -97,7 +101,7 @@ class BurgerBuilder extends Component {
         // { lettuce: true, patty: true, bacon: false ... }
         return (
             <Aux>
-                <Modal show={this.state.orderClicked}>
+                <Modal show={this.state.orderClicked} tapped={this.modalClosed}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
