@@ -97,7 +97,7 @@ class BurgerBuilder extends Component {
         // { lettuce: true, patty: true, bacon: false ... }
         return (
             <Aux>
-                <Modal>
+                <Modal show={this.state.orderClicked}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
