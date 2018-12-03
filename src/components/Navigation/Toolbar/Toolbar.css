@@ -27,3 +27,7 @@
         display: none;
     }
 }
+
+.MenuButton {
+    cursor: pointer
+}
