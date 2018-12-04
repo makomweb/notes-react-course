@@ -6,7 +6,7 @@ import Hamburger from '../../SideDrawer/Hamburger/Hamburger';
 
 const toolbar = (props) => (
     <header className={styles.Toolbar}>
-        <Hamburger clicked={props.openSideDrawer} className={styles.MenuButton} />
+        <Hamburger clicked={props.toggleSideDrawer} className={styles.MenuButton} />
         <div className={styles.Logo}>
             <Logo />
         </div>

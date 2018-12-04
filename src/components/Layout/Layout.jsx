@@ -17,10 +17,15 @@ class Layout extends Component {
         this.setState({ sideDrawerVisible: true });
     }
 
+    sideDrawerVisibilityToggle = () =>  {
+        this.setState((prevState) => {
+            return {sideDrawerVisible: !prevState.sideDrawerVisible};
+        });
+    }
     render() {
         return (
             <Aux>
-                <Toolbar openSideDrawer={this.sideDrawerOpenHandler} />
+                <Toolbar toggleSideDrawer={this.sideDrawerVisibilityToggle} />
                 <SideDrawer open={this.state.sideDrawerVisible} closed={this.sideDrawerClosedHandler} />
                 <main className={styles.Content}>
                     {this.props.children}
