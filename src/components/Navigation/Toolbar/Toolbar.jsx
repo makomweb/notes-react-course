@@ -2,12 +2,11 @@ import React from 'react';
 import styles from './Toolbar.css';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import Hamburger from '../../SideDrawer/Hamburger/Hamburger';
 
 const toolbar = (props) => (
     <header className={styles.Toolbar}>
-        <div onClick={props.openSideDrawer} className={styles.MenuButton}>
-            MENU
-        </div>
+        <Hamburger onClick={props.openSideDrawer} className={styles.MenuButton} />
         <div className={styles.Logo}>
             <Logo />
         </div>
