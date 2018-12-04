@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Auxiliary/Auxiliary';
+import Aux from '../Auxiliary/Auxiliary';
 import styles from './Layout.css';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
-import SideDrawer from '../SideDrawer/SideDrawer';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/SideDrawer/SideDrawer';
 
 class Layout extends Component {
     state = {
@@ -17,9 +17,9 @@ class Layout extends Component {
         this.setState({ sideDrawerVisible: true });
     }
 
-    sideDrawerVisibilityToggle = () =>  {
+    sideDrawerVisibilityToggle = () => {
         this.setState((prevState) => {
-            return {sideDrawerVisible: !prevState.sideDrawerVisible};
+            return { sideDrawerVisible: !prevState.sideDrawerVisible };
         });
     }
     render() {
