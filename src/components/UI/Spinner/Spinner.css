@@ -26,6 +26,7 @@
   content: '';
   position: absolute;
   top: 0;
+  background-color: white
 }
 .Loader:before {
   left: -3.5em;
