@@ -132,12 +132,31 @@ class BurgerBuilder extends Component {
             disabledInfo[ingredient] = disabledInfo[ingredient] <= 0; // true if there are ingredients of that type
         }
 
-        let summary = <OrderSummary
-            ingredients={this.state.ingredients}
-            purchaseCancelled={this.modalClosed}
-            purchaseContinued={this.purchaseContinueHandler}
-            price={this.state.totalPrice}
-        />;
+        let summary = null;
+        let burger = <Spinner />;
+
+        if (this.state.ingredients) {
+            burger = (
+                <Aux>
+                    <Burger ingredients={this.state.ingredients} />
+                    <BuildControls
+                        ingredientAdded={this.addIngredientHandler}
+                        ingredientRemoved={this.removeIngredientHandler}
+                        disabled={disabledInfo}
+                        price={this.state.totalPrice}
+                        purchasable={this.state.purchasable}
+                        ordered={this.orderClickedHandler}
+                    />
+                </Aux>
+            );
+
+            summary = <OrderSummary
+                ingredients={this.state.ingredients}
+                purchaseCancelled={this.modalClosed}
+                purchaseContinued={this.purchaseContinueHandler}
+                price={this.state.totalPrice}
+            />;
+        }
 
         if (this.state.loading) {
             summary = <Spinner />;
@@ -149,15 +168,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.orderClicked} tapped={this.modalClosed}>
                     {summary}
                 </Modal>
-                <Burger ingredients={this.state.ingredients} />
-                <BuildControls
-                    ingredientAdded={this.addIngredientHandler}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo}
-                    price={this.state.totalPrice}
-                    purchasable={this.state.purchasable}
-                    ordered={this.orderClickedHandler}
-                />
+                {burger}
             </Aux>
         );
     }
