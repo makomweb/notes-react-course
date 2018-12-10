@@ -112,7 +112,7 @@ class BurgerBuilder extends Component {
 
         this.setState({ loading: true });
 
-        AxiosInstance.post('orders.json', order)
+        AxiosInstance.post('orders', order)
             .then(_ => {
                 this.setState({ loading: false, orderClicked: false });
             })
