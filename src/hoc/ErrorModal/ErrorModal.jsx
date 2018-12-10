@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './ErrorModal.css';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../Auxiliary/Auxiliary';
 
 const showErrorModal = (WrappedComponent) => {
-    return (props) => {
-        return (
-            <Aux>
-                <Modal show>
-                    Something didn't work!
+    return class extends Component {
+        render() {
+            return (
+                <Aux>
+                    <Modal show>
+                        Something didn't work!
                 </Modal>
-                <WrappedComponent {...props} />
-            </Aux>
-        );
-    }
-};
+                    <WrappedComponent {...this.props} />
+                </Aux>
+            );
+        }
+    };
+}
 
 export default showErrorModal;
