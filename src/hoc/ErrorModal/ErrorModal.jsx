@@ -9,7 +9,7 @@ const showErrorModal = (WrappedComponent, axiosInstance) => {
             error: null
         }
 
-        componentDidMount() {
+        componentWillMount() {
             axiosInstance.interceptors.request.use(request => {
                 this.setState({ error: null });
                 return request;
