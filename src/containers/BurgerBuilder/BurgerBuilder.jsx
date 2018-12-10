@@ -5,7 +5,6 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import AxiosInstance from '../../AxiosInstance';
-//import Axios from 'Axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import ErrorModal from '../../hoc/ErrorModal/ErrorModal';
 
@@ -18,16 +17,19 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
     state = {
-        ingredients: {
-            lettuce: 0,
-            bacon: 0,
-            cheese: 0,
-            patty: 0
-        },
+        ingredients: null,
         totalPrice: 3.5,
         purchasable: false,
         orderClicked: false,
         loading: false
+    }
+
+    componentDidMount() {
+        AxiosInstance.get('ingredients.json')
+            .then(response => {
+                this.setState({ ingredients: response.data });
+            })
+            .catch(error => console.log(error));
     }
 
     modalClosed = () => {
