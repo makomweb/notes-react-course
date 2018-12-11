@@ -10,7 +10,6 @@ const showErrorModal = (WrappedComponent, axiosInstance) => {
         }
 
         componentWillMount() {
-            console.log('[ErrorModal] componentWillMount()');
             this.requestInterceptor = axiosInstance.interceptors.request.use(request => {
                 this.setState({ error: null });
                 return request;
@@ -26,7 +25,6 @@ const showErrorModal = (WrappedComponent, axiosInstance) => {
         }
 
         componentWillUnmount() {
-            console.log('[ErrorModal] componentWillUnmount()', this.requestInterceptor, this.responseInterceptor);
             axiosInstance.interceptors.request.eject(this.requestInterceptor);
             axiosInstance.interceptors.request.eject(this.responseInterceptor);
         }
