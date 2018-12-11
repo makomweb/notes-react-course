@@ -10,18 +10,25 @@ const showErrorModal = (WrappedComponent, axiosInstance) => {
         }
 
         componentWillMount() {
-            axiosInstance.interceptors.request.use(request => {
+            console.log('[ErrorModal] componentWillMount()');
+            this.requestInterceptor = axiosInstance.interceptors.request.use(request => {
                 this.setState({ error: null });
                 return request;
             });
 
-            axiosInstance.interceptors.response.use(response => response, error => {
+            this.responseInterceptor = axiosInstance.interceptors.response.use(response => response, error => {
                 this.setState({ error: error });
             });
         }
 
         errorConfirmedHandler = () => {
             this.setState({ error: null });
+        }
+
+        componentWillUnmount() {
+            console.log('[ErrorModal] componentWillUnmount()', this.requestInterceptor, this.responseInterceptor);
+            axiosInstance.interceptors.request.eject(this.requestInterceptor);
+            axiosInstance.interceptors.request.eject(this.responseInterceptor);
         }
 
         render() {
