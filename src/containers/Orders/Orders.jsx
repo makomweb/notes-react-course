@@ -38,10 +38,20 @@ class Orders extends Component {
     }
 
     render() {
-        let content = <div>dummy</div>;
+        let content = null;
 
         if (this.state.loading) {
             content = <Spinner />;
+        } else {
+            content = this.state.orders.map(order => {
+                return (
+                    <Order
+                        key={order.id}
+                        ingredients={order.ingredients}
+                        price={order.price}
+                    />
+                )
+            });
         }
 
         return (
