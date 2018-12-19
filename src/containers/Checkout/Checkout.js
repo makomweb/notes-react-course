@@ -11,6 +11,17 @@ class Checkout extends Component {
         }
     }
 
+    componentDidMount() {
+        const query = new URLSearchParams(this.props.location.search);
+        const ingredients = {};
+        for (let p of query.entries()) {
+            // ['letturce', '1']
+            ingredients[p[0]] = + p[1];
+        }
+
+        this.setState({ ingredients: ingredients });
+    }
+
     checkoutCancelled = () => {
         this.props.history.goBack();
     }
@@ -23,7 +34,7 @@ class Checkout extends Component {
         return (
             <div>
                 <CheckoutSummary
-                    ingredients={this.props.history.location.state.details.ingredients}
+                    ingredients={this.state.ingredients}
                     checkoutCancelled={this.checkoutCancelled}
                     checkoutContinued={this.checkoutContinued}
                 />
