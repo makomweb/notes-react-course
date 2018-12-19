@@ -6,7 +6,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import ErrorModal from '../../hoc/ErrorModal/WithErrorModal';
+import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 
 const INGREDIENT_PRICES = {
     lettuce: 0.5,
@@ -159,4 +159,4 @@ class BurgerBuilder extends Component {
     }
 };
 
-export default ErrorModal(BurgerBuilder, AxiosInstance);
+export default WithErrorModal(BurgerBuilder, AxiosInstance);
