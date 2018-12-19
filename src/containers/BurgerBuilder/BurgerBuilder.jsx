@@ -6,7 +6,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import ErrorModal from '../../hoc/ErrorModal/ErrorModal';
+import ErrorModal from '../../hoc/ErrorModal/WithErrorModal';
 
 const INGREDIENT_PRICES = {
     lettuce: 0.5,
