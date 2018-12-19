@@ -4,10 +4,12 @@ import Order from '../../components/Order/Order';
 
 class Orders extends Component {
     render() {
-        <div>
-            <Order />
-            <Order />
-        </div>
+        return (
+            <div>
+                <Order />
+                <Order />
+            </div>
+        );
     }
 }
 
