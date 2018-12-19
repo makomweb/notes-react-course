@@ -39,9 +39,11 @@ class ContactData extends Component {
         AxiosInstance.post('orders.json', order)
             .then(_ => {
                 this.setState({ loading: false });
+                this.props.history.push("/");
             })
             .catch(_ => {
                 this.setState({ loading: false });
+                this.props.history.push("/");
             });
 
     }
