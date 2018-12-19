@@ -20,8 +20,6 @@ class BurgerBuilder extends Component {
         ingredients: null,
         totalPrice: 3.5,
         purchasable: false,
-        orderClicked: false,
-        loading: false,
         error: false
     }
 
@@ -100,31 +98,6 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        // const order = {
-        //     ingredients: this.state.ingredients,
-        //     price: this.state.totalPrice,
-        //     customer: {
-        //         name: 'DJ Emkay',
-        //         address: {
-        //             town: 'Smalltown UK',
-        //             street: 'Bakerstreet 32',
-        //             country: 'UK'
-        //         }
-        //     },
-        //     email: 'emaky@test.org',
-        //     deliveryMethod: 'fastest'
-        // };
-
-        // this.setState({ loading: true });
-
-        // AxiosInstance.post('orders.json', order)
-        //     .then(_ => {
-        //         this.setState({ loading: false, orderClicked: false });
-        //     })
-        //     .catch(_ => {
-        //         this.setState({ loading: false, orderClicked: false });
-        //     });
-
         const queryParams = []
         for (let i in this.state.ingredients) {
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
@@ -172,10 +145,6 @@ class BurgerBuilder extends Component {
                 purchaseContinued={this.purchaseContinueHandler}
                 price={this.state.totalPrice}
             />;
-        }
-
-        if (this.state.loading) {
-            summary = <Spinner />;
         }
 
         // { lettuce: true, patty: true, bacon: false ... }
