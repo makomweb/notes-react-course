@@ -10,11 +10,13 @@ const order = (props) => {
         });
     }
 
+    const ingredientOutput = ingredients.map(ig => {
+        return <span key={ig.name}>{ig.name} ({ig.amount}) </span>;
+    })
+
     return (
         <div className={styles.Order}>
-            <ul>
-                {ingredients.map(i => <li><p>{i.name} ({i.amount})</p></li>)}
-            </ul>
+            {ingredientOutput}
             <p>Price: <strong>USD {props.price.toFixed(2)}</strong></p>
         </div>
     );
