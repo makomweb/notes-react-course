@@ -26,6 +26,8 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
+        console.log("[BurgerBuilder.js] componentDidMount()");
+        console.log(this.props);
         AxiosInstance.get('ingredients.json')
             .then(response => {
                 this.setState({ ingredients: response.data });
@@ -98,30 +100,30 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'DJ Emkay',
-                address: {
-                    town: 'Smalltown UK',
-                    street: 'Bakerstreet 32',
-                    country: 'UK'
-                }
-            },
-            email: 'emaky@test.org',
-            deliveryMethod: 'fastest'
-        };
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'DJ Emkay',
+        //         address: {
+        //             town: 'Smalltown UK',
+        //             street: 'Bakerstreet 32',
+        //             country: 'UK'
+        //         }
+        //     },
+        //     email: 'emaky@test.org',
+        //     deliveryMethod: 'fastest'
+        // };
 
-        this.setState({ loading: true });
+        // this.setState({ loading: true });
 
-        AxiosInstance.post('orders.json', order)
-            .then(_ => {
-                this.setState({ loading: false, orderClicked: false });
-            })
-            .catch(_ => {
-                this.setState({ loading: false, orderClicked: false });
-            });
+        // AxiosInstance.post('orders.json', order)
+        //     .then(_ => {
+        //         this.setState({ loading: false, orderClicked: false });
+        //     })
+        //     .catch(_ => {
+        //         this.setState({ loading: false, orderClicked: false });
+        //     });
     }
 
     render() {

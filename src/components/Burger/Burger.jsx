@@ -3,7 +3,8 @@ import styles from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
-
+    console.log("[Burger.js] burger()");
+    console.log(props);
     let ingredients = props.ingredients;
 
     // convert the composite object (key + value) into an array of ingredient components
