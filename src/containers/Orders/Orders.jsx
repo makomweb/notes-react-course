@@ -3,6 +3,7 @@ import styles from './Orders.css';
 import Order from '../../components/Order/Order';
 import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 
 class Orders extends Component {
     state = {
@@ -51,4 +52,4 @@ class Orders extends Component {
     }
 }
 
-export default Orders;
+export default WithErrorModal(Orders, AxiosInstance);
