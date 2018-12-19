@@ -124,6 +124,8 @@ class BurgerBuilder extends Component {
         //     .catch(_ => {
         //         this.setState({ loading: false, orderClicked: false });
         //     });
+
+        this.props.history.push("/checkout");
     }
 
     render() {
