@@ -8,8 +8,9 @@ class ContactData extends Component {
         email: '',
         address: {
             street: '',
-            postalCode: ''
         }
+            postalCode: '',
+            town: ''
     }
 
     orderHandler = (event) => {
@@ -22,10 +23,11 @@ class ContactData extends Component {
             <div className={styles.ContactData}>
                 <h4>Enter your contact data:</h4>
                 <form>
-                    <input className={styles.Input} type="text" name="name" placeholder="Enter your name here" />
-                    <input className={styles.Input} type="text" name="email" placeholder="Enter your email here" />
-                    <input className={styles.Input} type="text" name="street" placeholder="Enter your street here" />
-                    <input className={styles.Input} type="text" name="postal" placeholder="Enter your postalcode here" />
+                    <input className={styles.Input} type="text" name="name" placeholder="Enter your name" />
+                    <input className={styles.Input} type="text" name="email" placeholder="Enter your email" />
+                    <input className={styles.Input} type="text" name="street" placeholder="Enter your street" />
+                    <input className={styles.Input} type="text" name="postal" placeholder="Enter your postal code" />
+                    <input className={styles.Input} type="text" name="town" placeholder="Enter your town" />
                     <Button buttonType="Success" clicked={this.orderHandler} >OK</Button>
                 </form>
             </div>);
