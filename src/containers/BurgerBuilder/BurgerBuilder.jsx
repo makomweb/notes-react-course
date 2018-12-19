@@ -125,7 +125,15 @@ class BurgerBuilder extends Component {
         //         this.setState({ loading: false, orderClicked: false });
         //     });
 
-        this.props.history.push("/checkout");
+        this.props.history.push(
+            { pathname: '/checkout' },
+            {
+                details: {
+                    ingredients: this.state.ingredients,
+                    totalPrice: this.state.totalPrice
+                }
+            }
+        );
     }
 
     render() {
