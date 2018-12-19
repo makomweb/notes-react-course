@@ -12,7 +12,7 @@ class Orders extends Component {
     }
 
     componentDidMount() {
-        AxiosInstance.get('orders.json')
+        AxiosInstance.get('orders')
             .then(response => {
                 // TURN object
                 // {"-LU5MJeHRdaQwZUb_EIi":{"customer":{"address":{"country":"UK","street":"Bakerstreet 32",
