@@ -102,6 +102,10 @@ class ContactData extends Component {
             });
     }
 
+    onInputChanged = (event) => {
+        console.log(event.target.value);
+    }
+
     render() {
         const formElements = [];
 
@@ -119,7 +123,8 @@ class ContactData extends Component {
                         key={elem.id}
                         elementType={elem.config.elementType}
                         elementConfig={elem.config.elementConfig}
-                        value={elem.config.value} />
+                        value={elem.config.value}
+                        changed={this.onInputChanged} />
                 ))}
                 <Button buttonType="Success" clicked={this.orderHandler} >OK</Button>
             </form>
