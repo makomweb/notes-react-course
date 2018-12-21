@@ -108,6 +108,10 @@ class ContactData extends Component {
     }
 
     checkValidity(value, rules) {
+        if (!rules) {
+            return true;
+        }
+
         if (rules.required && value.trim() === '') {
             return false;
         }
@@ -187,6 +191,7 @@ class ContactData extends Component {
                         elementConfig={elem.config.elementConfig}
                         value={elem.config.value}
                         invalid={!elem.config.valid}
+                        shouldValidate={elem.config.validationRules}
                         changed={(event) => this.onInputChanged(event, elem.id)}
                     />
                 ))}
