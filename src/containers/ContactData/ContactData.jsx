@@ -74,19 +74,16 @@ class ContactData extends Component {
     orderHandler = (event) => {
         event.preventDefault();
 
+        const formData = {};
+
+        for (let elementId in this.state.orderForm) {
+            formData[elementId] = this.state.orderForm[elementId].value;
+        }
+
         const order = {
             ingredients: this.props.ingredients,
             price: this.props.price,
-            customer: {
-                name: 'DJ Emkay',
-                address: {
-                    town: 'Smalltown UK',
-                    street: 'Bakerstreet 32',
-                    country: 'UK'
-                }
-            },
-            email: 'emaky@test.org',
-            deliveryMethod: 'fastest'
+            orderData: formData
         };
 
         this.setState({ loading: true });
