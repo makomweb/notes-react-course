@@ -10,7 +10,7 @@ const input = (props) => {
 
     let validationError = null;
     if (props.touched && props.invalid) {
-        validationError = <p>{props.validationErrorMessage}</p>
+        validationError = <p className={styles.ValidationError}>{props.validationErrorMessage}</p>
     }
 
     switch (props.elementType) {
