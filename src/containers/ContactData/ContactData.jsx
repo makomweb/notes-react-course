@@ -19,7 +19,8 @@ class ContactData extends Component {
                 validationRules: {
                     required: true,
                     minLength: 8,
-                    maxLength: 24
+                    maxLength: 24,
+                    errorMessage: 'The name should be between 8 and 24 characters long!'
                 },
                 valid: false,
                 touched: false
@@ -31,11 +32,11 @@ class ContactData extends Component {
                     placeholder: 'Street'
                 },
                 value: '',
-                valueType: 'street',
                 validationRules: {
                     required: true,
                     minLength: 8,
-                    maxLength: 24
+                    maxLength: 24,
+                    errorMessage: 'Please enter a valid street!'
                 },
                 valid: false,
                 touched: false
@@ -47,11 +48,11 @@ class ContactData extends Component {
                     placeholder: 'Your ZIP'
                 },
                 value: '',
-                valueType: 'ZIP code',
                 validationRules: {
                     required: true,
                     minLength: 8,
-                    maxLength: 24
+                    maxLength: 24,
+                    errorMessage: 'Please enter a valid ZIP code!'
                 },
                 valid: false,
                 touched: false
@@ -63,11 +64,11 @@ class ContactData extends Component {
                     placeholder: 'Your town'
                 },
                 value: '',
-                valueType: 'town',
                 validationRules: {
                     required: true,
                     minLength: 8,
-                    maxLength: 24
+                    maxLength: 24,
+                    errorMessage: 'Please enter a valid town!'
                 },
                 valid: false,
                 touched: false
@@ -79,11 +80,11 @@ class ContactData extends Component {
                     placeholder: 'Your country'
                 },
                 value: '',
-                valueType: 'country',
                 validationRules: {
                     required: true,
                     minLength: 8,
-                    maxLength: 24
+                    maxLength: 24,
+                    errorMessage: 'Please enter a valid country!'
                 },
                 valid: false,
                 touched: false
@@ -95,11 +96,11 @@ class ContactData extends Component {
                     placeholder: 'Your email'
                 },
                 value: '',
-                valueType: 'email address',
                 validationRules: {
                     required: true,
                     minLength: 8,
-                    maxLength: 24
+                    maxLength: 24,
+                    errorMessage: 'Please enter a valid email address!'
                 },
                 valid: false,
                 touched: false
@@ -113,7 +114,11 @@ class ContactData extends Component {
                     ],
                     placeholder: 'Delivery method'
                 },
-                value: null
+                value: '',
+                validationRules: {
+                    required: true,
+                    errorMessage: 'Please select a delivery method!'
+                },
             }
         },
         loading: false
@@ -206,7 +211,7 @@ class ContactData extends Component {
                         invalid={!elem.config.valid}
                         shouldValidate={elem.config.validationRules}
                         touched={elem.config.touched}
-                        valueType={elem.config.valueType}
+                        validationErrorMessage={elem.config.validationRules.errorMessage}
                         changed={(event) => this.onInputChanged(event, elem.id)}
                     />
                 ))}
