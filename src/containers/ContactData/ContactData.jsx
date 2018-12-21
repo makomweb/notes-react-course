@@ -15,6 +15,7 @@ class ContactData extends Component {
                     placeholder: 'Your name'
                 },
                 value: '',
+                valueType: 'name',
                 validationRules: {
                     required: true,
                     minLength: 8,
@@ -30,6 +31,7 @@ class ContactData extends Component {
                     placeholder: 'Street'
                 },
                 value: '',
+                valueType: 'street',
                 validationRules: {
                     required: true,
                     minLength: 8,
@@ -45,6 +47,7 @@ class ContactData extends Component {
                     placeholder: 'Your ZIP'
                 },
                 value: '',
+                valueType: 'ZIP code',
                 validationRules: {
                     required: true,
                     minLength: 8,
@@ -57,9 +60,10 @@ class ContactData extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Your street'
+                    placeholder: 'Your town'
                 },
                 value: '',
+                valueType: 'town',
                 validationRules: {
                     required: true,
                     minLength: 8,
@@ -75,6 +79,7 @@ class ContactData extends Component {
                     placeholder: 'Your country'
                 },
                 value: '',
+                valueType: 'country',
                 validationRules: {
                     required: true,
                     minLength: 8,
@@ -90,6 +95,7 @@ class ContactData extends Component {
                     placeholder: 'Your email'
                 },
                 value: '',
+                valueType: 'email address',
                 validationRules: {
                     required: true,
                     minLength: 8,
@@ -200,6 +206,7 @@ class ContactData extends Component {
                         invalid={!elem.config.valid}
                         shouldValidate={elem.config.validationRules}
                         touched={elem.config.touched}
+                        valueType={elem.config.valueType}
                         changed={(event) => this.onInputChanged(event, elem.id)}
                     />
                 ))}
