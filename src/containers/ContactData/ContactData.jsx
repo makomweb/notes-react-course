@@ -100,7 +100,6 @@ class ContactData extends Component {
                 this.setState({ loading: false });
                 this.props.history.push("/");
             });
-
     }
 
     render() {
@@ -117,6 +116,7 @@ class ContactData extends Component {
             <form>
                 {formElements.map(elem => (
                     <Input
+                        key={elem.id}
                         elementType={elem.config.elementType}
                         elementConfig={elem.config.elementConfig}
                         value={elem.config.value} />
