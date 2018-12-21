@@ -3,6 +3,10 @@ import styles from './Input.css';
 
 const input = (props) => {
     let inputElement = null;
+    const inputStyles = [styles.InputElement];
+    if (props.invalid) {
+        inputStyles.push(styles.Invalid);
+    }
 
     switch (props.elementType) {
         case ('textarea'):
@@ -32,7 +36,7 @@ const input = (props) => {
         default:
         case ('input'):
             inputElement = <input
-                className={styles.InputElement}
+                className={inputStyles.join(' ')}
                 {...props.elementConfig}
                 value={props.value} onChange={props.changed} />;
             break;
