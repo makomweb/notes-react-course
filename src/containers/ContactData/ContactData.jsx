@@ -92,7 +92,7 @@ class ContactData extends Component {
             email: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'email',
+                    type: 'text',
                     placeholder: 'Your email'
                 },
                 value: '',
@@ -114,7 +114,8 @@ class ContactData extends Component {
                     ],
                     placeholder: 'Delivery method'
                 },
-                value: '',
+                value: 'fastest',
+                valid: true,
                 validationRules: {
                     required: true,
                     errorMessage: 'Please select a delivery method!'
