@@ -189,7 +189,7 @@ class ContactData extends Component {
         formData[inputIdentifier] = formDataElement;
 
 
-        const formIsValid = true;
+        let formIsValid = true;
         for (let id in formData) {
             formIsValid = formData[id].valid && formIsValid;
         }

@@ -4,7 +4,8 @@ import styles from './Button.css';
 const button = (props) => (
     <button
         className={[styles.Button, styles[props.buttonType]].join(' ')}
-        onClick={props.clicked}>{props.children}</button>
+        onClick={props.clicked}
+        disabled={props.disabled}>{props.children}</button>
 );
 
 export default button;

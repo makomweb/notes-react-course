@@ -34,5 +34,10 @@
 .ValidationError {
     color: red;
     margin: 5px 0;
-} 
+}
+
+.Button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
 
