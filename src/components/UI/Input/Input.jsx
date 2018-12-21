@@ -4,13 +4,20 @@ import styles from './Input.css';
 const input = (props) => {
     let inputElement = null;
 
-    switch (props.elementtype) {
+    switch (props.elementType) {
         case ('textarea'):
-            inputElement = <textarea className={styles.Label} {...props} />;
+            inputElement = <textarea
+                className={styles.Label}
+                {...props.elementConfig}
+                value={props.value} />;
             break;
+            
         default:
         case ('input'):
-            inputElement = <input className={styles.InputElement} {...props} />
+            inputElement = <input
+                className={styles.InputElement}
+                {...props.elementConfig}
+                value={props.value} />;
             break;
     }
 
