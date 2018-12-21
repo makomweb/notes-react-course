@@ -128,7 +128,7 @@ class ContactData extends Component {
         }
 
         let form = (
-            <form>
+            <form onSubmit={this.orderHandler}>
                 {formElements.map(elem => (
                     <Input
                         key={elem.id}
@@ -137,7 +137,7 @@ class ContactData extends Component {
                         value={elem.config.value}
                         changed={(event) => this.onInputChanged(event, elem.id)} />
                 ))}
-                <Button buttonType="Success" clicked={this.orderHandler} >OK</Button>
+                <Button buttonType="Success">OK</Button>
             </form>
         );
 
