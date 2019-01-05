@@ -33,11 +33,11 @@ class BurgerBuilder extends Component {
             .catch(error => console.log(error));
     }
 
-    modalClosed = () => {
+    onModalTapped = () => {
         this.setState({ orderClicked: false });
     }
 
-    orderClickedHandler = () => {
+    onOrderClicked = () => {
         this.setState({ orderClicked: true });
     }
 
@@ -134,14 +134,14 @@ class BurgerBuilder extends Component {
                         disabled={disabledInfo}
                         price={this.state.totalPrice}
                         purchasable={this.state.purchasable}
-                        ordered={this.orderClickedHandler}
+                        ordered={this.onOrderClicked}
                     />
                 </Aux>
             );
 
             summary = <OrderSummary
                 ingredients={this.state.ingredients}
-                purchaseCancelled={this.modalClosed}
+                purchaseCancelled={this.onModalTapped}
                 purchaseContinued={this.purchaseContinueHandler}
                 price={this.state.totalPrice}
             />;
@@ -150,7 +150,7 @@ class BurgerBuilder extends Component {
         // { lettuce: true, patty: true, bacon: false ... }
         return (
             <Aux>
-                <Modal show={this.state.orderClicked} tapped={this.modalClosed}>
+                <Modal show={this.state.orderClicked} tapped={this.onModalTapped}>
                     {summary}
                 </Modal>
                 {burger}
