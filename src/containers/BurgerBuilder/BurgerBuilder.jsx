@@ -10,16 +10,8 @@ import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
-const INGREDIENT_PRICES = {
-    lettuce: 0.5,
-    cheese: 0.4,
-    patty: 1.3,
-    bacon: 0.7
-};
-
 class BurgerBuilder extends Component {
     state = {
-        totalPrice: 3.5,
         purchasable: false,
         error: false
     }
@@ -54,56 +46,12 @@ class BurgerBuilder extends Component {
         this.setState({ purchasable: sum > 0 })
     }
 
-    addIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
-        const updatedCount = oldCount + 1;
-        const updatedIngredients = {
-            ...this.state.ingredients
-        }
-
-        updatedIngredients[type] = updatedCount;
-        const priceAddition = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
-        const newPrice = oldPrice + priceAddition;
-
-        this.setState({
-            ingredients: updatedIngredients,
-            totalPrice: newPrice
-        });
-
-        this.updatePurchaseState(updatedIngredients);
-    }
-
-    removeIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
-
-        // Continue removing if there is actually an ingredient of that type!
-        if (oldCount > 0) {
-            const updatedCount = oldCount - 1;
-            const updatedIngredients = {
-                ...this.state.ingredients
-            }
-
-            updatedIngredients[type] = updatedCount;
-            const priceDeduction = INGREDIENT_PRICES[type];
-            const oldPrice = this.state.totalPrice;
-            const newPrice = oldPrice - priceDeduction;
-
-            this.setState({
-                ingredients: updatedIngredients,
-                totalPrice: newPrice
-            });
-
-            this.updatePurchaseState(updatedIngredients);
-        }
-    }
-
     purchaseContinueHandler = () => {
         const queryParams = []
         for (let i in this.state.ingredients) {
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
         }
-        queryParams.push("price=" + this.state.totalPrice);
+        queryParams.push("price=" + this.state.price);
 
         const queryString = queryParams.join('&');
 
@@ -114,7 +62,7 @@ class BurgerBuilder extends Component {
     }
 
     render() {
-        const { ingredients } = this.props;
+        const { ingredients, price } = this.props;
 
         const disabledInfo = {
             ...ingredients
@@ -135,7 +83,7 @@ class BurgerBuilder extends Component {
                         ingredientAdded={this.props.onAdded}
                         ingredientRemoved={this.props.onRemoved}
                         disabled={disabledInfo}
-                        price={this.state.totalPrice}
+                        price={price}
                         purchasable={this.state.purchasable}
                         ordered={this.onOrderClicked}
                     />
@@ -146,7 +94,7 @@ class BurgerBuilder extends Component {
                 ingredients={ingredients}
                 purchaseCancelled={this.onModalTapped}
                 purchaseContinued={this.purchaseContinueHandler}
-                price={this.state.totalPrice}
+                price={price}
             />;
         }
 
@@ -165,7 +113,7 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
-        totalPrice: state.totalPrice
+        price: state.price
     }
 }
 
