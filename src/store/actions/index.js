@@ -6,4 +6,4 @@ export {
 
 export {
     createPurchaseStartAction
-} from './order'
+} from './orderActionCreators'
