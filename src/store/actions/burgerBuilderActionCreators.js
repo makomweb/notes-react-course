@@ -30,7 +30,7 @@ const createFetchIngredientsFailedAction = () => {
 
 export const createInitIngredientsCreator = () => {
     return dispatch => {
-        AxiosInstance.get('ingredients.jso')
+        AxiosInstance.get('ingredients.json')
             .then(response => {
                 dispatch(createSetIngredientsAction(response.data))
             })
