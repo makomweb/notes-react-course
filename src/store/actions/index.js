@@ -4,4 +4,6 @@ export {
     createInitIngredientsCreator
 } from './burgerBuilderActionCreators'
 
-export { } from './order'
+export {
+    createPurchaseStartAction
+} from './order'

@@ -6,6 +6,7 @@ import AxiosInstance from '../../AxiosInstance';
 import Input from '../../components/UI/Input/Input';
 import { connect } from 'react-redux';
 import WithErrorHandler from '../../hoc/WithErrorModal/WithErrorModal';
+import * as actionCreators from '../../store/actions/index'; // index can be ommitted
 
 class ContactData extends Component {
     state = {
@@ -158,12 +159,13 @@ class ContactData extends Component {
         }
 
         const { ingredients, price } = this.props;
-        const order = {
+        const data = {
             ingredients: ingredients,
             price: price,
             orderData: formData
         };
 
+        this.props.onOrder(data);
     }
 
     onInputChanged = (event, inputIdentifier) => {
@@ -235,6 +237,12 @@ const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
         price: state.price
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrder: (data) => dispatch(actionCreators.createPurchaseStartAction(data))
     }
 }
 
