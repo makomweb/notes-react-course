@@ -15,14 +15,14 @@ export const createRemoveIngredientAction = (name) => {
     }
 }
 
-export const createSetIngredientsAction = (ingredients) => {
+const createSetIngredientsAction = (ingredients) => {
     return {
         type: actionTypes.SET_INGREDIENTS,
         ingredients: ingredients
     }
 }
 
-export const createFetchIngredientsFailedAction = () => {
+const createFetchIngredientsFailedAction = () => {
     return {
         type: actionTypes.FETCH_INGREDIENTS_FAILED
     }
