@@ -4,7 +4,6 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
@@ -12,17 +11,7 @@ import * as burgerBuilderActionCreators from '../../store/actions/index'; // ind
 
 class BurgerBuilder extends Component {
     state = {
-        error: false
-    }
-
-    componentDidMount() {
-        console.log("[BurgerBuilder.js] componentDidMount()");
-        console.log(this.props);
-        // AxiosInstance.get('ingredients.json')
-        //     .then(response => {
-        //         this.setState({ ingredients: response.data });
-        //     })
-        //     .catch(error => console.log(error));
+        orderClicked: false
     }
 
     onModalTapped = () => {
@@ -112,4 +101,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithErrorModal(BurgerBuilder, AxiosInstance));
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);
