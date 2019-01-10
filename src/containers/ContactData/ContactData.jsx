@@ -246,4 +246,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps)(WithErrorHandler(ContactData, AxiosInstance));
+export default connect(mapStateToProps, mapDispatchToProps)(WithErrorHandler(ContactData, AxiosInstance));
