@@ -8,7 +8,7 @@ import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions/actions';
+import * as actionTypes from '../../store/actions/actionTypes';
 
 class BurgerBuilder extends Component {
     state = {
