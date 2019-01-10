@@ -5,6 +5,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import AxiosInstance from '../../AxiosInstance';
 import Input from '../../components/UI/Input/Input';
 import { connect } from 'react-redux';
+import WithErrorHandler from '../../hoc/WithErrorModal/WithErrorModal';
 
 class ContactData extends Component {
     state = {
@@ -163,17 +164,6 @@ class ContactData extends Component {
             orderData: formData
         };
 
-        this.setState({ loading: true });
-
-        AxiosInstance.post('orders.json', order)
-            .then(_ => {
-                this.setState({ loading: false });
-                this.props.history.push("/");
-            })
-            .catch(_ => {
-                this.setState({ loading: false });
-                this.props.history.push("/");
-            });
     }
 
     onInputChanged = (event, inputIdentifier) => {
@@ -248,4 +238,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(ContactData);
+export default connect(mapStateToProps)(WithErrorHandler(ContactData, AxiosInstance));
