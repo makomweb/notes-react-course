@@ -29,3 +29,9 @@ export const createPurchaseBurger = (order) => {
             });
     }
 }
+
+export const createPurchaseBurgerStart = () => {
+    return {
+        type: actionTypes.PURCHASE_BURGER_START
+    }
+}
