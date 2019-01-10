@@ -16,11 +16,12 @@ const createPurchaseFailedAction = (error) => {
     }
 }
 
-export const createPurchaseStartAction = (order) => {
+export const createPurchaseBurger = (order) => {
     return dispatch => {
+        dispatch(createPurchaseBurgerStart());
         AxiosInstance.post('orders.json', order)
             .then(response => {
-                console.log('[createPurchaseStartAction]', response.data);
+                console.log('[createPurchaseBurger]', response.data);
                 dispatch(createPurchaseSuccessAction(response.data, order))
             })
             .catch(error => {

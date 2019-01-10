@@ -242,7 +242,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrder: (data) => dispatch(actionCreators.createPurchaseStartAction(data))
+        onOrder: (data) => dispatch(actionCreators.createPurchaseBurger(data))
     }
 }
 
