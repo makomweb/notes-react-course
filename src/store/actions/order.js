@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import AxiosInstance from '../../AxiosInstance';
 
-export const createPurchaseSuccessAction = (id, orderData) => {
+const createPurchaseSuccessAction = (id, orderData) => {
     return {
         type: actionTypes.PURCHASE_BURGER_SUCCESS,
         orderId: id,
@@ -9,7 +9,7 @@ export const createPurchaseSuccessAction = (id, orderData) => {
     }
 }
 
-export const createPurchaseFailedAction = (error) => {
+const createPurchaseFailedAction = (error) => {
     return {
         type: actionTypes.PURCHASE_BURGER_FAILED,
         error: error
