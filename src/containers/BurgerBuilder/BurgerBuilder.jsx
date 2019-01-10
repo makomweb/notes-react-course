@@ -4,9 +4,11 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Spinner from '../../components/UI/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner'; 
+import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
 import * as burgerBuilderActionCreators from '../../store/actions/index'; // index can be ommitted
+import AxiosInstance from '../../AxiosInstance';
 
 class BurgerBuilder extends Component {
     state = {
@@ -43,6 +45,7 @@ class BurgerBuilder extends Component {
 
     render() {
         const { ingredients, price, error } = this.props;
+        console.log('[BurgerBuilder.jsx', error);
 
         const disabledInfo = {
             ...ingredients
@@ -106,4 +109,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);
+export default connect(mapStateToProps, mapDispatchToProps)(WithErrorModal(BurgerBuilder, AxiosInstance));
