@@ -5,13 +5,16 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
 import * as burgerBuilderActionCreators from '../../store/actions/index'; // index can be ommitted
 
 class BurgerBuilder extends Component {
     state = {
         orderClicked: false
+    }
+
+    componentDidMount() {
+        this.props.onInit();
     }
 
     onModalTapped = () => {
@@ -39,7 +42,7 @@ class BurgerBuilder extends Component {
     }
 
     render() {
-        const { ingredients, price } = this.props;
+        const { ingredients, price, error } = this.props;
 
         const disabledInfo = {
             ...ingredients
@@ -50,7 +53,7 @@ class BurgerBuilder extends Component {
         }
 
         let summary = null;
-        let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
+        let burger = error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 
         if (ingredients) {
             burger = (
@@ -90,14 +93,16 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
-        price: state.price
+        price: state.price,
+        error: state.error
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onAdded: (name) => dispatch(burgerBuilderActionCreators.createAddIngredientAction(name)),
-        onRemoved: (name) => dispatch(burgerBuilderActionCreators.createRemoveIngredientAction(name))
+        onRemoved: (name) => dispatch(burgerBuilderActionCreators.createRemoveIngredientAction(name)),
+        onInit: () => dispatch(burgerBuilderActionCreators.createInitIngredientsCreator())
     }
 }
 
