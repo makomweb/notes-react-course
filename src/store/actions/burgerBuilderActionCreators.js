@@ -28,7 +28,7 @@ const createFetchIngredientsFailedAction = () => {
     }
 }
 
-export const createInitIngredientsCreator = () => {
+export const createInitIngredientsAction = () => {
     return dispatch => {
         AxiosInstance.get('ingredients.json')
             .then(response => {

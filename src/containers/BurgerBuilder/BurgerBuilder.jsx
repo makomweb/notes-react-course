@@ -105,7 +105,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onAdded: (name) => dispatch(burgerBuilderActionCreators.createAddIngredientAction(name)),
         onRemoved: (name) => dispatch(burgerBuilderActionCreators.createRemoveIngredientAction(name)),
-        onInit: () => dispatch(burgerBuilderActionCreators.createInitIngredientsCreator())
+        onInit: () => dispatch(burgerBuilderActionCreators.createInitIngredientsAction())
     }
 }
 

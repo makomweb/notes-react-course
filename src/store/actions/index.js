@@ -1,7 +1,7 @@
 export {
     createAddIngredientAction,
     createRemoveIngredientAction,
-    createInitIngredientsCreator
+    createInitIngredientsAction
 } from './burgerBuilderActionCreators'
 
 export {
