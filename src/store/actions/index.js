@@ -6,5 +6,6 @@ export {
 
 export {
     createPurchaseBurger,
-    createPurchaseInit
+    createPurchaseInit,
+    createFetchOrdersAction,
 } from './orderActionCreators'

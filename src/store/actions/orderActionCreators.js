@@ -21,7 +21,6 @@ export const createPurchaseBurger = (order) => {
         dispatch(createPurchaseBurgerStart());
         AxiosInstance.post('orders.json', order)
             .then(response => {
-                console.log('[createPurchaseBurger]', response.data);
                 dispatch(createPurchaseSuccessAction(response.data.name, order))
             })
             .catch(error => {
@@ -41,3 +40,43 @@ export const createPurchaseInit = () => {
         type: actionTypes.PURCHASE_INIT
     }
 }
+
+const createFetchOrdersSuccessAction = (orders) => {
+    return {
+        type: actionTypes.FETCH_ORDERS_SUCCESS,
+        orders: orders
+    }
+}
+
+const createFetchOrdersFailedAction = (error) => {
+    return {
+        type: actionTypes.FETCH_ORDERS_FAILED,
+        error: error
+    }
+}
+
+const createFetchOrdersStartAction = () => {
+    return {
+        type: actionTypes.FETCH_ORDERS_START
+    }
+}
+
+export const createFetchOrdersAction = () => {
+    return dispatch => {
+        AxiosInstance.get('orders.json')
+            .then(response => {
+                const orders = [];
+                for (let key in response.data) {
+                    orders.push({
+                        id: key,
+                        ...response.data[key]
+                    });
+                }
+                dispatch(createFetchOrdersSuccessAction(orders));
+            })
+            .catch(error => {
+                dispatch(createFetchOrdersFailedAction(error));
+            });
+    }
+}
+

@@ -4,46 +4,23 @@ import Order from '../../components/Order/Order';
 import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
+import * as actionCreators from '../../store/actions/index';
+import { connect } from 'react-redux';
 
 class Orders extends Component {
-    state = {
-        orders: [],
-        loading: true
-    }
-
     componentDidMount() {
-        AxiosInstance.get('orders.json')
-            .then(response => {
-                // TURN object
-                // {"-LU5MJeHRdaQwZUb_EIi":{"customer":{"address":{"country":"UK","street":"Bakerstreet 32",
-                // "town":"Smalltown UK"},"name":"DJ Emkay"},"deliveryMethod":"fastest","email":"emaky@test.org",
-                // "ingredients":{"bacon":0,"cheese":2,"lettuce":0,"patty":2},"price":"6.8999999999999995"},
-                // "-LU5MLxBIe2mryYCUwQ_":{"customer":{"address":{"country":"UK","street":"Bakerstreet 32",
-                // "town":"Smalltown UK"},"name":"DJ Emkay"},"deliveryMethod":"fastest","email":"emaky@test.org",
-                // "ingredients":{"bacon":1,"cheese":1,"lettuce":0,"patty":1},"price":"5.9"}}
-                // INTO an ARRAY of ORDER components
-                const orders = [];
-                for (let key in response.data) {
-                    orders.push({
-                        id: key,
-                        ...response.data[key]
-                    });
-                }
-                this.setState({ orders: orders, loading: false });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ loading: false });
-            });
+        this.props.onFetchOrders();
     }
 
     render() {
+        const { orders, loading } = this.props;
+
         let content = null;
 
-        if (this.state.loading) {
+        if (loading) {
             content = <Spinner />;
         } else {
-            content = this.state.orders.map(order => {
+            content = orders.map(order => {
                 return (
                     <Order
                         key={order.id}
@@ -62,4 +39,17 @@ class Orders extends Component {
     }
 }
 
-export default WithErrorModal(Orders, AxiosInstance);
+const mapStateToProps = state => {
+    return {
+        orders: state.order.orders,
+        loading: state.order.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchOrders: () => dispatch(actionCreators.createFetchOrdersAction())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithErrorModal(Orders, AxiosInstance));
