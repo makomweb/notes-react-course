@@ -4,7 +4,7 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Spinner from '../../components/UI/Spinner/Spinner'; 
+import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
 import * as burgerBuilderActionCreators from '../../store/actions/index'; // index can be ommitted
@@ -95,9 +95,9 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        price: state.price,
-        error: state.error
+        ingredients: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.price,
+        error: state.order.error
     }
 }
 
