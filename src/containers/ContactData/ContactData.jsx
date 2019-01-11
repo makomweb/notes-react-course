@@ -164,6 +164,7 @@ class ContactData extends Component {
             orderData: formData
         };
 
+        console.log('[ContactData.jsx]', data);
         this.props.onOrder(data);
     }
 
@@ -234,9 +235,9 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        price: state.price,
-        loading: state.loading
+        ingredients: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.price,
+        loading: state.order.loading
     }
 }
 
