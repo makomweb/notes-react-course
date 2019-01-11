@@ -22,7 +22,7 @@ export const createPurchaseBurger = (order) => {
         AxiosInstance.post('orders.json', order)
             .then(response => {
                 console.log('[createPurchaseBurger]', response.data);
-                dispatch(createPurchaseSuccessAction(response.data, order))
+                dispatch(createPurchaseSuccessAction(response.data.name, order))
             })
             .catch(error => {
                 dispatch(createPurchaseFailedAction(error))
