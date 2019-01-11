@@ -1,8 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
 
+const initialPrice = 4.0;
+
 const initialState = {
     ingredients: null,
-    price: 4,
+    price: initialPrice,
     error: false
 }
 
@@ -47,6 +49,7 @@ const reducer = (state = initialState, action) => {
                     cheese: action.ingredients.cheese,
                     patty: action.ingredients.patty
                 },
+                price: initialPrice,
                 error: false
             }
         }
