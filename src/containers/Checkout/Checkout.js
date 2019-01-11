@@ -14,10 +14,6 @@ class Checkout extends Component {
         this.props.history.replace('/checkout/contact-data');
     }
 
-    componentDidMount() {
-        this.props.onInitPurchase();
-    }
-
     render() {
         const { ingredients } = this.props;
 
@@ -50,10 +46,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onInitPurchase: () => dispatch(actionCreators.createPurchaseInit())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps)(Checkout);

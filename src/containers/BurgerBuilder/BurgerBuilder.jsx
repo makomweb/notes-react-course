@@ -7,7 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorModal from '../../hoc/WithErrorModal/WithErrorModal';
 import { connect } from 'react-redux';
-import * as burgerBuilderActionCreators from '../../store/actions/index'; // index can be ommitted
+import * as actionCreators from '../../store/actions/index'; // index can be ommitted
 import AxiosInstance from '../../AxiosInstance';
 
 class BurgerBuilder extends Component {
@@ -16,7 +16,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        this.props.onInit();
+        this.props.onInitIngredients();
     }
 
     onModalTapped = () => {
@@ -40,6 +40,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     }
 
@@ -103,9 +104,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAdded: (name) => dispatch(burgerBuilderActionCreators.createAddIngredientAction(name)),
-        onRemoved: (name) => dispatch(burgerBuilderActionCreators.createRemoveIngredientAction(name)),
-        onInit: () => dispatch(burgerBuilderActionCreators.createInitIngredientsAction())
+        onAdded: (name) => dispatch(actionCreators.createAddIngredientAction(name)),
+        onRemoved: (name) => dispatch(actionCreators.createRemoveIngredientAction(name)),
+        onInitIngredients: () => dispatch(actionCreators.createInitIngredientsAction()),
+        onInitPurchase: () => dispatch(actionCreators.createPurchaseInit())
     }
 }
 
