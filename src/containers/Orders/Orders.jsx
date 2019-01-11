@@ -15,27 +15,19 @@ class Orders extends Component {
     render() {
         const { orders, loading } = this.props;
 
-        let content = null;
-
         if (loading) {
-            content = <Spinner />;
+            return <Spinner />;
         } else {
-            content = orders.map(order => {
-                return (
-                    <Order
-                        key={order.id}
-                        ingredients={order.ingredients}
-                        price={+order.price}
-                    />
-                )
-            });
+            return (
+                <div>
+                    {orders.map(o =>
+                        <Order
+                            key={o.id}
+                            ingredients={o.ingredients}
+                            price={+o.price} />
+                    )}
+                </div>);
         }
-
-        return (
-            <div>
-                {content}
-            </div>
-        );
     }
 }
 
