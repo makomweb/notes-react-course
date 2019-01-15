@@ -63,6 +63,7 @@ const createFetchOrdersStartAction = () => {
 
 export const createFetchOrdersAction = () => {
     return dispatch => {
+        dispatch(createFetchOrdersStartAction());
         AxiosInstance.get('orders.json')
             .then(response => {
                 const orders = [];
