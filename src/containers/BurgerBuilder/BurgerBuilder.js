@@ -98,7 +98,7 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.price,
-        error: state.order.error
+        error: state.burgerBuilder.error
     }
 }
 
