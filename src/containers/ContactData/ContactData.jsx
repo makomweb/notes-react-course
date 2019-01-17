@@ -164,7 +164,7 @@ class ContactData extends Component {
             orderData: formData
         };
 
-        console.log('[ContactData.jsx]', data);
+        //console.log('[ContactData.jsx]', data);
         this.props.onOrder(data);
     }
 

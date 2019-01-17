@@ -46,7 +46,7 @@ class BurgerBuilder extends Component {
 
     render() {
         const { ingredients, price, error } = this.props;
-        console.log('[BurgerBuilder.jsx', error);
+        //console.log('[BurgerBuilder.jsx]', error);
 
         const disabledInfo = {
             ...ingredients
