@@ -68,24 +68,24 @@ class Auth extends Component {
             });
         }
 
-        const form = formElementsArray.map(elem => (
-            <form>
-                <Input
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    invalid={!formElement.config.valid}
-                    shouldValidate={formElement.config.validation}
-                    touched={formElement.config.touched}
-                    changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-                <Button btnType="Success">Submit</Button>
-            </form>
+        const form = formElementsArray.map(formElement => (
+            <Input
+                key={formElement.id}
+                elementType={formElement.config.elementType}
+                elementConfig={formElement.config.elementConfig}
+                value={formElement.config.value}
+                invalid={!formElement.config.valid}
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ));
 
         return (
             <div>
-                {form}
+                <form>
+                    {form}
+                    <Button btnType="Success">Submit</Button>
+                </form>
             </div>
         );
     }
