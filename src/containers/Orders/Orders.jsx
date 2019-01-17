@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from './Orders.css';
 import Order from '../../components/Order/Order';
 import AxiosInstance from '../../AxiosInstance';
 import Spinner from '../../components/UI/Spinner/Spinner';
