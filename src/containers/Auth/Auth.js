@@ -58,8 +58,8 @@ class Auth extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { email, password } = this.state;
-        this.props.onAuth(email, password);
+        const { email, password } = this.state.controls;
+        this.props.onAuth(email.value, password.value);
     }
 
     checkValidity(value, rules) {
