@@ -118,11 +118,6 @@ class Auth extends Component {
         if (loading) {
             form = <Spinner />
         }
-        else if (error) {
-            errorPane = (
-                <p>{error.message}</p>
-            );
-        }
         else {
             form = formElementsArray.map(formElement => (
                 <Input
@@ -135,6 +130,12 @@ class Auth extends Component {
                     touched={formElement.config.touched}
                     changed={(event) => this.inputChangedHandler(event, formElement.id)} />
             ));
+        }
+
+        if (error) {
+            errorPane = (
+                <p>{error.message}</p>
+            );
         }
 
         const { isSignup } = this.state;

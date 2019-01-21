@@ -40,14 +40,12 @@ export const auth = (email, password, isSignup) => {
 
         axios.post(url, data)
             .then(response => {
-                console.log(response);
-                const { idToken, localId } = response.data;
-                dispatch(authSuccess(idToken, localId));
+                console.log('[auth - success]', response);
+                dispatch(authSuccess(response.data.idToken, response.data.localId));
             })
-            .catch(ex => {
-                console.log(ex);
-                const { error } = ex.response.data.error;
-                dispatch(authFail(error));
+            .catch(err => {
+                console.log('[auth - error]', err);
+                dispatch(authFail(err.response.data.error));
             });
     }
 }
