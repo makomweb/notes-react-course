@@ -111,11 +111,17 @@ class Auth extends Component {
             });
         }
 
+        let errorPane = null;
         let form = null;
 
-        const { loading } = this.props;
+        const { loading, error } = this.props;
         if (loading) {
             form = <Spinner />
+        }
+        else if (error) {
+            errorPane = (
+                <p>{error.message}</p>
+            );
         }
         else {
             form = formElementsArray.map(formElement => (
@@ -135,6 +141,7 @@ class Auth extends Component {
 
         return (
             <div className={styles.AuthData}>
+                {errorPane}
                 <form onSubmit={this.onSubmit}>
                     {form}
                     <Button btnType="Success">{isSignup ? 'Signup' : 'Login'}</Button>
@@ -149,7 +156,8 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.auth.loading
+        loading: state.auth.loading,
+        error: state.auth.error
     }
 }
 

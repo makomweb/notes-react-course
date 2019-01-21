@@ -27,8 +27,6 @@ const authFail = (error) => {
 export const auth = (email, password, isSignup) => {
     return dispatch => {
         dispatch(authStart());
-
-        console.log('[auth.js] ', email, password, isSignup)
         const data = {
             email: email,
             password: password,
@@ -42,13 +40,14 @@ export const auth = (email, password, isSignup) => {
 
         axios.post(url, data)
             .then(response => {
-                const { idToken, localId } = response.data;
                 console.log(response);
+                const { idToken, localId } = response.data;
                 dispatch(authSuccess(idToken, localId));
             })
-            .catch(error => {
-                console.log(error);
-                dispatch(authFail());
+            .catch(ex => {
+                console.log(ex);
+                const { error } = ex.response.data.error;
+                dispatch(authFail(error));
             });
     }
 }
