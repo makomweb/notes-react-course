@@ -104,15 +104,16 @@ class ContactData extends Component {
         for (let formElementIdentifier in this.state.orderForm) {
             formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
+        const { token, userId, ings, price } = this.props;
+
         const order = {
-            ingredients: this.props.ings,
-            price: this.props.price,
-            orderData: formData
+            ingredients: ings,
+            price: price,
+            orderData: formData,
+            userId: userId
         }
 
-        const { token } = this.props;
-
-        this.props.onOrderBurger(order, token);
+        this.props.orderBurger(order, token);
 
     }
 
@@ -207,13 +208,14 @@ const mapStateToProps = state => {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
         loading: state.order.loading,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurger: (orderData, accessToken) => dispatch(actions.purchaseBurger(orderData, accessToken))
+        orderBurger: (orderData, accessToken) => dispatch(actions.purchaseBurger(orderData, accessToken))
     };
 };
 
