@@ -5,10 +5,19 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Logout from './containers/Auth/Logout/Logout';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
+import AsyncComponent from './hoc/asyncComponent/asyncComponent';
 
-const Orders = React.lazy(() => import('./containers/Orders/Orders'));
-const Checkout = React.lazy(() => import('./containers/Checkout/Checkout'));
-const Auth = React.lazy(() => import('./containers/Auth/Auth'));
+const Orders = AsyncComponent(() => {
+  return import('./containers/Orders/Orders');
+});
+
+const Checkout = AsyncComponent(() => {
+  return import('./containers/Checkout/Checkout');
+});
+
+const Auth = AsyncComponent(() => {
+  return import('./containers/Auth/Auth');
+});
 
 class App extends Component {
   componentDidMount = () => {
