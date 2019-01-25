@@ -21,4 +21,10 @@ describe('<NavigationItems/>', () => {
         wrapper.setProps({ isAuthenticated: true });
         expect(wrapper.find(NavigationItem)).toHaveLength(3);
     });
+
+    it('should contain the logout button when authenticated!', () => {
+        wrapper.setProps({isAuthenticated: true});
+        const contains = wrapper.contains(<NavigationItem link="/logout">Logout</NavigationItem>);
+        expect(contains.toEqual(true));
+    });
 });
