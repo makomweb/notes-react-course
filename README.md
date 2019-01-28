@@ -1,3 +1,17 @@
+# React Burger Builder
+
+![](./src/assets/images/burger-logo.png)
+
+Demo project to learn:
+- React 16.6
+- Redux
+- Redux-Dev-Tools,
+- Thunk,
+- Jest
+- Enzyme
+- Axios
+- and many more
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
