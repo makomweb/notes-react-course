@@ -1,7 +1,6 @@
 # React Burger Builder
 
 ![](./src/assets/images/burger-logo.png)
-[https://emkay-firebase-2309.firebaseapp.com/](https://emkay-firebase-2309.firebaseapp.com/)
 
 Demo project for:
 - React 16.6
@@ -14,9 +13,14 @@ Demo project for:
 - Firebase
 - and many more
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Hosted on Firebase
+
+Visit 
+[https://emkay-firebase-2309.firebaseapp.com/](https://emkay-firebase-2309.firebaseapp.com/) for a hosted version of the app.
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
