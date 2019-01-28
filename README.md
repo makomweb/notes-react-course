@@ -1,8 +1,9 @@
 # React Burger Builder
 
 ![](./src/assets/images/burger-logo.png)
+[https://emkay-firebase-2309.firebaseapp.com/](https://emkay-firebase-2309.firebaseapp.com/)
 
-Demo project to learn:
+Demo project for:
 - React 16.6
 - Redux
 - Redux-Dev-Tools,
@@ -10,6 +11,7 @@ Demo project to learn:
 - Jest
 - Enzyme
 - Axios
+- Firebase
 - and many more
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
