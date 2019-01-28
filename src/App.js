@@ -36,24 +36,10 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
-          <Route path="/checkout" render={() => (
-            <Suspense fallback={<div>Loading...</div>}>
-              <Checkout />
-            </Suspense>
-          )}></Route>
-          <Route path="/orders" render={() => (
-            <Suspense fallback={<div>Loading...</div>}>
-              <Orders />
-            </Suspense>
-          )}>
-          </Route>
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" component={Orders} />
           <Route path="/logout" component={Logout} />
-          <Route path="/auth" render={() => (
-            <Suspense fallback={<div>Loading...</div>}>
-              <Auth />
-            </Suspense>
-          )}>
-          </Route>
+          <Route path="/auth" component={Auth} />
           <Route path="/" exact component={BurgerBuilder} />
           <Redirect to="/" />
         </Switch>
