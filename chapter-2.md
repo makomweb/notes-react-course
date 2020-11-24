@@ -2,8 +2,9 @@
 
 ## let & const
 
-"let" for variables
-"const" for constants
+- *let* for variables [Mozilla Developer Network: let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+- *const* for constants [Mozilla Developer Network: const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+
 
 ~~~js
 var myName = 'Paul';
@@ -179,6 +180,22 @@ The spread operator is used to split up array elements _OR_ object properties.
 // SPREAD operator
 const newArray = [...oldArray, 1, 2];
 const newObject = { ...oldObject, newProp: 5} // overwrites existing newProp in case it exists in the oldObject
+
+// arrays
+const numbers = [1, 2, 3];
+const newNumber = [...numbers, 4];
+console.log(newNumbers); // prints 1, 2, 3,4
+
+// objects
+const person = {
+    name: 'Peter'
+}
+
+const newPerson = {
+    ...person,
+    age: 20
+}
+console.log(newPerson); // prints name 'Peter', age: 20
 ~~~
 
 The rest operator is used to merge a list of function arguments into an array.
@@ -188,4 +205,65 @@ The rest operator is used to merge a list of function arguments into an array.
 function sortArgs(...args) {
     return args.sort();
 }
+
+// function
+const filter = (...args) => {
+    return args.filter(elem => elem === 1);
+} 
+console.log(filter(1,2,3)); // prints 1
+~~~
+
+## Destructuring
+
+~~~js
+// array destructuring
+[a, , c] = ['Hello', 'world', '!'];
+console.log(a); // prints 'Hello'
+console.log(c); // prints '!'
+
+// object destructuring
+{ name } = { name: 'Peter', age: 20 };
+console.log(name); // prints 'Peter'
+console.log(age); // ! undefined !
+~~~
+
+## Reference & Primitive Types
+
+~~~
+Primitive Types are copied by value.
+~~~
+
+~~~
+Reference Types (classes) are copied by reference.
+~~~
+
+~~~js
+const person = {
+    naem: 'Peter'
+};
+
+const secondPerson = person;
+person.name = 'Mary';
+console.log(secondPerson); // prints Mary, because secondPerson is just a reference to the original person
+
+const thirdPerson = {
+    ...person
+};
+
+person.name = 'Paul';
+console.log(thridPerson); // prints Mary, because Spread operator copies the properties
+~~~
+
+## Array Functions
+
+Many functions like *map()*, *filter()*, *reduce()* use array functions as arguments.
+
+~~~js
+const numbers = [1, 2, 3];
+const doubleNumArray = numbers.map(elem => {
+    return elem * 2;
+});
+
+console.log(numbers); // prints 1,2,3
+console.log(doubleNumArray); // prints 2,4,6
 ~~~
