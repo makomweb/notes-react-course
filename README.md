@@ -7,13 +7,7 @@ https://www.udemy.com/course/react-the-complete-guide-incl-redux
 HTML
 ~~~html
 <div id="p1"></div>
-
-<div class="person">
-  <h1>
-    Mary
-  </h1>
-  <p>Age: 19</p>
-</div>
+<div id="p2"></div>
 ~~~
 
 CSS
@@ -35,20 +29,22 @@ React needs 2 packages:
 
 JavaScript
 ~~~js
-function Person() {
+function Person(props) {
   return (
     <div className="person">
-      <h1>
-        Paul
-      </h1>
-      <p>Age: 21</p>
+      <h1>{props.name}</h1>
+      <p>Age: {props.age}</p>
     </div>
   );
 }
 
 ReactDOM.render(
-  <Person/>, 
+  <Person name="Peter" age="21"/>, 
   document.querySelector('#p1')
+);
+ReactDOM.render(
+  <Person name="Paul" age="20"/>, 
+  document.querySelector('#p2')
 );
 ~~~
 
