@@ -1,6 +1,8 @@
 # React
 
-https://www.udemy.com/course/react-the-complete-guide-incl-redux
+- https://reactjs.org/
+- https://codepen.io/
+- https://www.udemy.com/course/react-the-complete-guide-incl-redux
 
 ## Lession 1
 
