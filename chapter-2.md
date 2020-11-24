@@ -170,3 +170,22 @@ class MyClass {
     }
 }
 ~~~
+
+## Spread & Rest operator
+
+The spread operator is used to split up array elements _OR_ object properties.
+
+~~~js
+// SPREAD operator
+const newArray = [...oldArray, 1, 2];
+const newObject = { ...oldObject, newProp: 5} // overwrites existing newProp in case it exists in the oldObject
+~~~
+
+The rest operator is used to merge a list of function arguments into an array.
+
+~~~js
+// REST operator
+function sortArgs(...args) {
+    return args.sort();
+}
+~~~
