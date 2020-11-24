@@ -146,3 +146,27 @@ var p = new Person('Peter', 'male');
 p.printName();
 p.printGender();
 ~~~
+
+## Classes, properties & methods
+
+~~~js
+// ES 6
+class MyClass {
+    constructor() {
+        this.myProperty = 'value'; 
+    }
+
+    myMethod() {
+        /* ... */
+    }
+}
+
+// ES 7
+class MyClass {
+    myProperty = 'value';
+
+    myMethod = () => {
+        /* ... */
+    }
+}
+~~~
