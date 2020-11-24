@@ -8,4 +8,5 @@
 
 1. [Introduction](./chapter-1.md)
 2. [Next Generation JavaScript](./chapter-2.md)
+3. [React Basics](./chapter-3.md)
 
