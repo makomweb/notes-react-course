@@ -6,8 +6,7 @@ https://www.udemy.com/course/react-the-complete-guide-incl-redux
 
 HTML
 ~~~html
-<div id="p1"></div>
-<div id="p2"></div>
+<div id="app"></div>
 ~~~
 
 CSS
@@ -38,13 +37,15 @@ function Person(props) {
   );
 }
 
-ReactDOM.render(
-  <Person name="Peter" age="21"/>, 
-  document.querySelector('#p1')
+var app = (
+  <div>
+    <Person name="Peter" age="21"/>
+    <Person name="Paul" age="20"/>
+  </div>
 );
+
 ReactDOM.render(
-  <Person name="Paul" age="20"/>, 
-  document.querySelector('#p2')
+  app, document.querySelector('#app')
 );
 ~~~
 
