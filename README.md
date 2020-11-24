@@ -1,4 +1,4 @@
-# React
+# React Lessons
 
 - https://reactjs.org/
 - https://codepen.io/
