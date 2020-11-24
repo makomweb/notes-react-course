@@ -22,3 +22,8 @@ Use `npm start` to run the app.
 Open the browser [http://localhost:3000] to see the running app.
 
 ## Understanding the folder structure
+
+`src` contains the app source files
+`public` contains the index.html main entry into the app and public assets.
+
+## Understanding JSX
