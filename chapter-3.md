@@ -51,4 +51,10 @@ Always return a single element.
 
 ## Events
 
-The is a list of events supported by React [here](https://reactjs.org/docs/events.html#supported-events).
+The is a list of events supported by React [here](https://reactjs.org/docs/events.html#supported-events).The is a list of events supported by React [here](https://reactjs.org/docs/events.html#supported-events).
+
+## Manipulating state inside React components
+
+Before React v16.8 it was only possible to manipulate class based components.
+
+With React v16.8 state inside functional components can be manipulated through _React hooks_.
