@@ -58,3 +58,7 @@ The is a list of events supported by React [here](https://reactjs.org/docs/event
 Before React v16.8 it was only possible to manipulate class based components.
 
 With React v16.8 state inside functional components can be manipulated through _React hooks_.
+
+Attention with _React hooks_ the state can be manipulated individually. There needs to be taken care of which parts of the state should be merged and which not. You can use _useState()_ properly.
+
+With _React hooks_ we use state slices. There is no such a thing like a state blob.
