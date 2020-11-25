@@ -15,7 +15,7 @@ class App extends Component {
 
   nameChangedHandler = (event, personId) => {
 
-    const personIndex = this.state.person.findIndex(p => p.id === personId);
+    const personIndex = this.state.persons.findIndex(p => p.id === personId);
 
     // Don't mutate the original object, but make a copy with the Spread operator.
     const person = { ...this.state.persons[personIndex] };
