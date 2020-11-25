@@ -13,16 +13,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: 'Peter', age: 22 },
-        { name: 'Paul', age: 20 },
-        { name: newName, age: 21 }
-      ]
-    });
-  }
-
   nameChangedHandler = event => {
     this.setState({
       persons: [
