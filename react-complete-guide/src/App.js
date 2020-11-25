@@ -36,7 +36,6 @@ class App extends Component {
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
       </div>
     );
-    //return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Hi, I\'m a React App'));
   }
 }
 
