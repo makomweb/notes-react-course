@@ -28,6 +28,10 @@ class App extends Component {
     this.setState({ showPersons: !showPersons });
   }
 
+  deletePersonHandler = () => {
+
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -42,7 +46,12 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons
-            .map(p => <Person name={p.name} age={p.age} />)}
+            .map(p =>
+              <Person
+                name={p.name}
+                age={p.age}
+                click={this.deletePersonHandler} />
+            )}
         </div>
       );
     }
