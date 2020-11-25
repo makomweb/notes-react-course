@@ -66,3 +66,7 @@ With _React hooks_ we use state slices. There is no such a thing like a state bl
 ## Functional components
 
 Are stateless. Where class based components contain and maintains state.
+
+## Styling
+
+Hover effects are hard to implement using inline styles.
