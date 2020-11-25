@@ -27,3 +27,18 @@ Open the browser [http://localhost:3000] to see the running app.
 `public` contains the index.html main entry into the app and public assets.
 
 ## Understanding JSX
+
+~~~js
+// the following JSX syntax compiles
+return (
+      <div className="App">
+        <h1>
+          Hi, I'm a React App
+        </h1>
+      </div>
+    );
+
+// to this JS code
+return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Hi, I\'m a React App'));
+   
+~~~
