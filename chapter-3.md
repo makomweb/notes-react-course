@@ -62,3 +62,7 @@ With React v16.8 state inside functional components can be manipulated through _
 Attention with _React hooks_ the state can be manipulated individually. There needs to be taken care of which parts of the state should be merged and which not. You can use _useState()_ properly.
 
 With _React hooks_ we use state slices. There is no such a thing like a state blob.
+
+## Functional components
+
+Are stateless. Where class based components contain and maintains state.
