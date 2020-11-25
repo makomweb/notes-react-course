@@ -48,3 +48,7 @@ return React.createElement('div', { className: 'App' }, React.createElement('h1'
 HTML attribute `class` must be named `className` in order to compile correctly.
 
 Always return a single element.
+
+## Events
+
+The is a list of events supported by React [here](https://reactjs.org/docs/events.html#supported-events).
