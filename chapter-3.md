@@ -42,3 +42,9 @@ return (
 return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Hi, I\'m a React App'));
    
 ~~~
+
+## JSX restriction
+
+HTML attribute `class` must be named `className` in order to compile correctly.
+
+Always return a single element.
