@@ -33,6 +33,11 @@ class App extends Component {
     });
   }
 
+  togglePersonsHandler = () => {
+    const { showPersons } = this.state;
+    this.setState({ showPersons: !showPersons });
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -48,7 +53,7 @@ class App extends Component {
         <p>This is really working!</p>
         <button
           style={style}
-          onClick={this.switchNameHandler.bind(this, 'Martin')}>Switch Name</button>
+          onClick={this.togglePersonsHandler}>Switch Name</button>
 
         {this.state.showPersons ?
           <div>
