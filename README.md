@@ -12,13 +12,17 @@
 4. Lists & conditionals
 5. Styling React components and elements
 
+# Styling React components and elements
+
+## Approach 1: using Radium
+
 Install *Radium* (inline-styles, pseudo selectors, and media queries) 
 
 ~~~shell
 C:\Workspace\udemy\react\react-complete-guide> npm install --save radium
 ~~~
 
-Or use 
+## Approach 2: using Styled Components
 
 _Styled Components_ [Github](https://github.com/styled-components)
 
@@ -36,9 +40,7 @@ const Button = styled.button`` // <-- is a template function call! it's a "tagge
 
 _Styled Components_ provides regular CSS classes automatically managed.
 
-There is a 3rd option to scope CSS to React components.
-
-## Scoped CSS classes / CSS modules
+## Approach 3: using CSS modules (scoped CSS classes)
 
 1. run `npm run eject`
 2. adjust the _webpack.config.[dev|prod] accordingly
