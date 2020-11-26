@@ -21,7 +21,7 @@ class App extends Component {
     const person = { ...this.state.persons[personIndex] };
     // alternatively: const person = Object.assign({}, this.state.persons[personIndex]);
 
-    person.name = event.target.value;
+    person.name = event.input.value;
     const persons = [...this.state.persons];
     // alternatively: const persons = this.state.persons.splice();
     persons[personIndex] = person;
