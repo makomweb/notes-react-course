@@ -9,5 +9,6 @@
 1. [Introduction](./chapter-1.md)
 2. [Next Generation JavaScript](./chapter-2.md)
 3. [React Basics](./chapter-3.md)
-4. [Lists & conditionals](./chapter-4.md)
+4. Lists & conditionals
+5. Styling React components and elements
 
