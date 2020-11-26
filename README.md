@@ -12,3 +12,18 @@
 4. Lists & conditionals
 5. Styling React components and elements
 
+Or use 
+
+_Styled Components_ [Github](https://github.com/styled-components)
+
+~~~shell
+npm install --save styled-components
+~~~
+
+Use _Styled Components_ like this
+~~~js
+import styled from 'styled-components';
+const Button = styled.button`` // <-- is a template function call! it's a "tagged template literal"
+~~~
+
+_Styled Components_ provides regular CSS classes automatically managed.
