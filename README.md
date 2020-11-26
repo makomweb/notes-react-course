@@ -12,6 +12,12 @@
 4. Lists & conditionals
 5. Styling React components and elements
 
+Install *Radium* (inline-styles, pseudo selectors, and media queries) 
+
+~~~shell
+C:\Workspace\udemy\react\react-complete-guide> npm install --save radium
+~~~
+
 Or use 
 
 _Styled Components_ [Github](https://github.com/styled-components)
