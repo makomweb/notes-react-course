@@ -12,3 +12,13 @@
 4. Lists & conditionals
 5. Styling React components and elements
 
+# Scoped CSS classes / CSS modules
+
+1. run `npm run eject`
+2. adjust the _webpack.config.[dev|prod] accordingly
+
+The result will be something like this
+
+![image](./images/scoped_css_classes.png)
+
+This workflow is also known as _CSS modules_.
