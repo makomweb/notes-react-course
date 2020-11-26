@@ -1,0 +1,9 @@
+.wrapper {
+    display: flex;
+  }
+.first {
+      padding: 8px;
+  }
+.second {
+      padding: 8px;
+  }
