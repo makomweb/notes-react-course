@@ -11,4 +11,5 @@
 3. [React Basics](./chapter-3.md)
 4. Lists & conditionals
 5. [Styling React components and elements](./chapter-4.md)
+6. [Debugging React applications](./chapter-5.md)
 
