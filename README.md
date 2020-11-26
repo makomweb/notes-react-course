@@ -12,3 +12,11 @@
 4. Lists & conditionals
 5. Styling React components and elements
 
+Or use 
+
+_Styled Components_ [Github](https://github.com/styled-components)
+
+~~~shell
+npm install --save styled-components
+~~~
+
