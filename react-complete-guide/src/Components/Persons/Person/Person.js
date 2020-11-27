@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import classes from './Person.css';
+import WithClass from '../../../HOC/WithClass.js';
 
 class Person extends Component {
     state = {};
@@ -51,4 +52,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default WithClass(Person, classes.Person);
