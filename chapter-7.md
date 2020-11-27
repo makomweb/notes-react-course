@@ -125,3 +125,12 @@ const Function = (props) => {
 }
 
 ~~~
+
+## How React updates the DOM
+
+- *shouldComponentUpdate()* is passed *render()* is called
+- *render()* does not update the "real" DOM immediately
+- faster than the real DOM
+- the old Virtual DOM is taken and compared with the re-rendered Virtual DOM
+- if there are differences the "real" DOM is updated
+- if there are no differences the "real" DOM is kept like it is
