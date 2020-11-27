@@ -44,16 +44,16 @@ class App extends Component {
     let persons = null;
 
     if (this.state.showPersons) {
-      persons = (
-        <Persons
-          persons={this.state.persons}
-          clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler} />
-      );
+      persons = <Persons
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangedHandler} />;
     }
+
     return (
       <div className={classes.App}>
-        <Cockpit showPersons={this.state.showPersons}
+        <Cockpit
+          showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler} />
         {persons}
