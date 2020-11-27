@@ -5,9 +5,11 @@ const Cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect()')
         // Todo issue a side effect call!
-        setTimeout(
-            () => alert('Saved data to cloud!'), 500
-        );
+        const timer = setTimeout(() => alert('Saved data to cloud!'), 500);
+        return () => {
+            clearTimeout(timer);
+            console.log('[Cockpit.js] cleanup work in useEffect()')
+        }
     }, []);
 
     const { persons, showPersons } = props;
