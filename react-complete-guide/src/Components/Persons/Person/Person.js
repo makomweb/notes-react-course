@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Person.css';
+import Aux from '../../../HOC/Auxiliary.js';
 
 class Person extends Component {
     state = {};
@@ -42,11 +43,11 @@ class Person extends Component {
         console.log('[Person.js] render()');
         const { age, name, click, children, changed } = this.props;
         return (
-            <div className={classes.Person} >
+            <Aux className={classes.Person} >
                 <p onClick={click}>I'm a {name} an I am {age} years old.</p>
                 <p>{children}</p>
                 <input type="text" onChange={changed} value={name} />
-            </div>
+            </Aux>
         );
     }
 }
