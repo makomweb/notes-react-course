@@ -8,7 +8,7 @@ const Cockpit = (props) => {
         setTimeout(
             () => alert('Saved data to cloud!'), 500
         );
-    });
+    }, [props.persons]);
 
     const { persons, showPersons } = props;
     const buttonClass = showPersons ?
