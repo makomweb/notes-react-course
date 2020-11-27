@@ -12,7 +12,7 @@ const Cockpit = (props) => {
         }
     }, []);
 
-    const { persons, showPersons } = props;
+    const { persons, showPersons, title } = props;
     const buttonClass = showPersons ?
         styles.Red : '';
 
@@ -26,7 +26,7 @@ const Cockpit = (props) => {
 
     return (
         <div className={styles.Cockpit}>
-            <h1>{props.title}</h1>
+            <h1>{title}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
             <button className={buttonClass}
                 onClick={props.clicked}>Toggle persons</button>
