@@ -2,13 +2,11 @@ import React from 'react';
 import styles from './Cockpit.css';
 
 const Cockpit = (props) => {
-    const { persons } = props;
-    let buttonClass = '';
-    if (props.showPersons) {
-        buttonClass = styles.Red;
-    }
+    const { persons, showPersons } = props;
+    const buttonClass = showPersons ?
+        styles.Red : '';
 
-    let assignedClasses = [];
+    const assignedClasses = [];
     if (persons.length <= 2) {
         assignedClasses.push(styles.red);
     }
