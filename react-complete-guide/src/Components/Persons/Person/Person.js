@@ -43,7 +43,7 @@ class Person extends Component {
         console.log('[Person.js] render()');
         const { age, name, click, children, changed } = this.props;
         return (
-            <Fragment className={classes.Person} >
+            <Fragment >
                 <p onClick={click}>I'm a {name} an I am {age} years old.</p>
                 <p>{children}</p>
                 <input type="text" onChange={changed} value={name} />
