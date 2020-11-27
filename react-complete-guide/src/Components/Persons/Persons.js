@@ -22,7 +22,7 @@ class Persons extends Component {
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate()');
-        return prevState;
+        return { message: 'Payload!' };
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -30,8 +30,9 @@ class Persons extends Component {
         return true;
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[Persons.js] componentDidUpdate()');
+        console.log(snapshot);
     }
 
     render() {
