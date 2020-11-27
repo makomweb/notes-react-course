@@ -73,3 +73,17 @@ componentDidUpdate() {
     // Don't update state here (triggers rerendering!)
 }
 ~~~
+
+## What is the equivalent for life cycle hooks in functional components?
+
+~~~js
+import React, { useEffect } from 'react';
+
+const Function = (props) => {
+    useEffect(() => { 
+            console.log('[Function.js] useEffect()')
+        }
+    );
+}
+
+~~~
