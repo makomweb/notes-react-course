@@ -84,6 +84,44 @@ const Function = (props) => {
             console.log('[Function.js] useEffect()')
         }
     );
+
+    // You can have as many useEffect() configurations as you wish.
+    useEffect(() => {
+        /* ommited */
+    });
+
+    
+    useEffect(() => { 
+            console.log('[Function.js] useEffect()')
+        }, 
+        [props.state] // evaluates if state has changed and if yes --> call useEffect()
+    );
+
+    useEffect(() => { 
+            console.log('[Function.js] useEffect()')
+        }, 
+        [] // useEffect is called only once - similar to componentDidMount()
+    );
+
+    useEffect(() => { 
+            console.log('[Function.js] useEffect()')
+        }, 
+        [],
+        return (() => {
+            // this code is executed when the component is unmounted
+            // use it for cleanup work!
+        });
+    );
+
+    // having a 2nd useEffect() "subscription" can be used to cancel a pending operation! whenever the component is re-rendered
+    useEffect(() => { 
+            console.log('[Function.js] useEffect()')
+        },
+        return (() => {
+            // this code is executed when the component is unmounted
+            // use it for cleanup work!
+        });
+    );
 }
 
 ~~~
