@@ -41,22 +41,21 @@ class App extends Component {
   }
 
   render() {
-    let persons = null;
+    const { showPersons, persons } = this.state;
 
-    if (this.state.showPersons) {
-      persons = <Persons
-        persons={this.state.persons}
+    let personsComponent = showPersons ?
+      <Persons
+        persons={persons}
         clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler} />;
-    }
+        changed={this.nameChangedHandler} /> : null;
 
     return (
       <div className={classes.App}>
         <Cockpit
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
+          showPersons={showPersons}
+          persons={persons}
           clicked={this.togglePersonsHandler} />
-        {persons}
+        {personsComponent}
       </div>
     );
   }
