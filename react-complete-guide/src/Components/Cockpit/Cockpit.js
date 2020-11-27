@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import styles from './Cockpit.css';
 
 const Cockpit = (props) => {
-    useEffect(() => { console.log('[Cockpit.js] useEffect()') });
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect()')
+        // Todo issue a side effect call!
+        setTimeout(
+            () => alert('Saved data to cloud!'), 500
+        );
+    });
 
     const { persons, showPersons } = props;
     const buttonClass = showPersons ?
