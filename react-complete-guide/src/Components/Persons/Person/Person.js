@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Person.css';
 
 class Person extends Component {
+    state = {};
     constructor(props) {
         super(props);
         console.log('[Person.js] constructor()');
@@ -11,9 +12,9 @@ class Person extends Component {
         return state;
     }
 
-    componentWillMount() {
-        console.log('[Person.js] componentWillMount()');
-    }
+    // componentWillMount() {
+    //     console.log('[Person.js] componentWillMount()');
+    // }
 
     componentDidMount() {
         console.log('[Person.js] componentDidMount()');
