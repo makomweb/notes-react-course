@@ -30,9 +30,12 @@ class App extends Component {
     const persons = [...this.state.persons];
     // alternatively: const persons = this.state.persons.splice();
     persons[personIndex] = person;
-    this.setState({
-      persons: persons,
-      changeCounter: this.state.changeCounter + 1
+
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
     });
   }
 
