@@ -12,4 +12,5 @@
 4. Lists & conditionals
 5. [Styling React components and elements](./chapter-4.md)
 6. [Debugging React applications](./chapter-5.md)
+7. [Component Deep Dive](./chapter-6.md)
 
