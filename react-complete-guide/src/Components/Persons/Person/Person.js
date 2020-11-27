@@ -20,6 +20,10 @@ class Person extends Component {
         console.log('[Person.js] componentDidMount()');
     }
 
+    componentWillUnmount() {
+        console.log('[Person.js] componentWillUnmount()');
+    }
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Person.js] getSnapshotBeforeUpdate()');
         return prevState;
