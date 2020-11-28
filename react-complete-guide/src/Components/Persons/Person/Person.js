@@ -21,7 +21,7 @@ class Person extends Component {
     componentDidMount() {
         console.log('[Person.js] componentDidMount()');
 
-        document.querySelector('input').focus();
+        this.inputElement.focus();
     }
 
     componentWillUnmount() {
@@ -51,6 +51,7 @@ class Person extends Component {
                 <p>{children}</p>
                 <input
                     type="text"
+                    ref={(inputElement) => { this.inputElement = inputElement }}
                     onChange={changed}
                     value={name} />
             </Fragment>
