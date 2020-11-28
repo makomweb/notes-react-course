@@ -13,6 +13,8 @@ class Person extends Component {
         this.inputElementRef = React.createRef();
     }
 
+    static contextType = AuthContext;
+
     static getDerivedStateFromProps(props, state) {
         console.log('[Person.js] getDerivedStateFromProps()');
         return state;
@@ -26,6 +28,7 @@ class Person extends Component {
         console.log('[Person.js] componentDidMount()');
 
         this.inputElementRef.current.focus();
+        console.log(this.context);
     }
 
     componentWillUnmount() {
@@ -50,21 +53,18 @@ class Person extends Component {
         console.log('[Person.js] render()');
         const { age, name, click, children, changed } = this.props;
         return (
-            <AuthContext.Consumer>
-                {(context) =>
-                    <Fragment>
-                        {context.isAuthenticated ? <p>Authenticated</p> : <p>Please log in</p>}
-                        <p onClick={click}>I'm a {name} an I am {age} years old.</p>
-                        <p>{children}</p>
-                        <input
-                            type="text"
-                            //ref={(inputElement) => { this.inputElement = inputElement }}
-                            ref={this.inputElementRef}
-                            onChange={changed}
-                            value={name} />
-                    </Fragment>
-                }
-            </AuthContext.Consumer>);
+            <Fragment>
+                {this.context.isAuthenticated ? <p>Authenticated</p> : <p>Please log in</p>}
+                <p onClick={click}>I'm a {name} an I am {age} years old.</p>
+                <p>{children}</p>
+                <input
+                    type="text"
+                    //ref={(inputElement) => { this.inputElement = inputElement }}
+                    ref={this.inputElementRef}
+                    onChange={changed}
+                    value={name} />
+            </Fragment>
+        );
     }
 }
 
