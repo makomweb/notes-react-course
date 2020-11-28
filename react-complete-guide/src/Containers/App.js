@@ -88,13 +88,14 @@ class App extends Component {
 
   render() {
     console.log('[App.js] render()');
-    const { showPersons, persons } = this.state;
+    const { showPersons, persons, userIsAuthenticated } = this.state;
 
     let personsComponent = showPersons ?
       <Persons
         persons={persons}
         clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler} /> : null;
+        changed={this.nameChangedHandler}
+        isAuthenticated={userIsAuthenticated} /> : null;
 
     return (
       <Aux className={classes.App}>
