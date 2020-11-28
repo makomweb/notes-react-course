@@ -3,11 +3,19 @@ import Burger from '../../Components/Layout/Burger/Burger';
 import Auxiliary from '../../HOC/Auxiliary';
 
 class BurgerBuilder extends Component {
+    state = {
+        ingredients: {
+            lettuce: 1,
+            bacon: 1,
+            cheese: 2,
+            beef: 2
+        }
+    }
 
     render() {
         return (
             <Auxiliary>
-                <Burger />
+                <Burger ingredients={this.state.ingredients} />
                 <div>Build controls</div>
             </Auxiliary>
         )
