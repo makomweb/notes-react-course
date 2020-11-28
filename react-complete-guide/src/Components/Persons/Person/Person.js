@@ -20,6 +20,8 @@ class Person extends Component {
 
     componentDidMount() {
         console.log('[Person.js] componentDidMount()');
+
+        document.querySelector('input').focus();
     }
 
     componentWillUnmount() {
