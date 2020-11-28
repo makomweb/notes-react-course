@@ -15,7 +15,8 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    userIsAuthenticated: false
   }
 
   nameChangedHandler = (event, personId) => {
@@ -48,6 +49,10 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({ persons: persons });
+  }
+
+  loginHandler = () => {
+    this.setState({ userIsAuthenticated: true });
   }
 
   constructor(props) {
@@ -101,6 +106,7 @@ class App extends Component {
           title={this.props.appTitle}
           showPersons={showPersons}
           personsLength={persons.length}
+          login={this.loginHandler}
           clicked={this.togglePersonsHandler} /> : null}
         {personsComponent}
       </Aux>
