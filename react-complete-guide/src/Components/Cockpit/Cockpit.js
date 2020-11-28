@@ -4,16 +4,17 @@ import styles from './Cockpit.css';
 const Cockpit = (props) => {
     const toggleButtonRef = useRef(null);
 
-    toggleButtonRef.current.click();
-
     useEffect(() => {
         console.log('[Cockpit.js] useEffect()')
         // Todo issue a side effect call!
+        toggleButtonRef.current.click();
+        /*
         const timer = setTimeout(() => alert('Saved data to cloud!'), 500);
         return () => {
             clearTimeout(timer);
             console.log('[Cockpit.js] cleanup work in useEffect()')
         }
+        */
     }, []);
 
     const { personsLength, showPersons, title } = props;
