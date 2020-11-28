@@ -10,7 +10,7 @@
 2. [Next Generation JavaScript](./chapter-2.md)
 3. [React Basics](./chapter-3.md)
 4. Lists & conditionals
-5. [Styling React components and elements](./chapter-4.md)
-6. [Debugging React applications](./chapter-5.md)
-7. [Component Deep Dive](./chapter-6.md)
+5. [Styling React components and elements](./chapter-5.md)
+6. [Debugging React applications](./chapter-6.md)
+7. [Component Deep Dive](./chapter-7.md)
 

@@ -1,19 +1,38 @@
-# Debugging React applications
+# Styling React components and elements
 
-## Understanding error messages
+## Approach 1: using Radium
 
-Read the error message and review the code location the error message is pointing at!
+Install *Radium* (inline-styles, pseudo selectors, and media queries) 
 
-![image](./images/react_error_message.png)
+~~~shell
+C:\Workspace\udemy\react\react-complete-guide> npm install --save radium
+~~~
 
-## Understanding logic errors
+## Approach 2: using Styled Components
 
-You can use the web developer tools of your browser (Firefox, Chrome, Edge, Safari) to analyze the logic of the source code. This works certainly well when running the code on your local machine.
+_Styled Components_ [Github](https://github.com/styled-components)
 
-![image](./images/web_developer_toolbar_sources_debugger.png)
+~~~shell
+npm install --save styled-components
+~~~
 
-You should also use the _React Developer Tools_ browser extension which is available in the developer tools after it was installed.
+Use _Styled Components_ like this
 
-## Use error boundary to catch exceptions and handle them
+~~~js
+import styled from 'styled-components';
 
-Use the concept of higher order components as error boundaries.
+const Button = styled.button`` // <-- is a template function call! it's a "tagged template literal"
+~~~
+
+_Styled Components_ provides regular CSS classes automatically managed.
+
+## Approach 3: using CSS modules (scoped CSS classes)
+
+1. run `npm run eject`
+2. adjust the _webpack.config.[dev|prod] accordingly
+
+The result will be something like this
+
+![image](./images/scoped_css_classes.png)
+
+This workflow is also known as _CSS modules_.
