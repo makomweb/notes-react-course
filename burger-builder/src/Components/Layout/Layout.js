@@ -1,5 +1,6 @@
 import React from 'react';
 import Auxiliary from '../../HOC/Auxiliary';
+import classes from './Layout.css';
 
 const Layout = props => {
     return (
@@ -7,7 +8,7 @@ const Layout = props => {
             <div>
                 Toobar, Sidedrawer, Backdrop
             </div>
-            <main>
+            <main className={classes.Content}>
                 {props.children}
             </main>
         </Auxiliary>
