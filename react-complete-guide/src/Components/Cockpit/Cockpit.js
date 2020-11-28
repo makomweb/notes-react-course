@@ -15,7 +15,7 @@ const Cockpit = (props) => {
             console.log('[Cockpit.js] cleanup work in useEffect()')
         }
         */
-    }, []);
+    }, []); // empty array means this effect is only called once!
 
     const { personsLength, showPersons, title } = props;
     const buttonClass = showPersons ?
