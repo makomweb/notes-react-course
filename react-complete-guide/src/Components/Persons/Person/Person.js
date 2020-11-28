@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import classes from './Person.css';
 import WithClass from '../../../HOC/WithClass.js';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../Context/AuthContext.js';
 
 class Person extends Component {
     state = {};
@@ -47,20 +48,23 @@ class Person extends Component {
 
     render() {
         console.log('[Person.js] render()');
-        const { age, name, click, children, changed, isAuthenticated } = this.props;
+        const { age, name, click, children, changed } = this.props;
         return (
-            <Fragment >
-                { isAuthenticated ? <p>Authenticated</p> : <p>Please log in</p>}
-                <p onClick={click}>I'm a {name} an I am {age} years old.</p>
-                <p>{children}</p>
-                <input
-                    type="text"
-                    //ref={(inputElement) => { this.inputElement = inputElement }}
-                    ref={this.inputElementRef}
-                    onChange={changed}
-                    value={name} />
-            </Fragment>
-        );
+            <AuthContext.Consumer>
+                {(context) =>
+                    <Fragment>
+                        {context.isAuthenticated ? <p>Authenticated</p> : <p>Please log in</p>}
+                        <p onClick={click}>I'm a {name} an I am {age} years old.</p>
+                        <p>{children}</p>
+                        <input
+                            type="text"
+                            //ref={(inputElement) => { this.inputElement = inputElement }}
+                            ref={this.inputElementRef}
+                            onChange={changed}
+                            value={name} />
+                    </Fragment>
+                }
+            </AuthContext.Consumer>);
     }
 }
 
