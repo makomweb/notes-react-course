@@ -134,3 +134,7 @@ const Function = (props) => {
 - the old Virtual DOM is taken and compared with the re-rendered Virtual DOM
 - if there are differences the "real" DOM is updated
 - if there are no differences the "real" DOM is kept like it is
+
+## The context API
+
+The React context API is all about managing state across components. This is similar to _Redux_.
