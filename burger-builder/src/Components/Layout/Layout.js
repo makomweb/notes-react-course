@@ -1,5 +1,4 @@
 import React from 'react';
-import React from 'react';
 import Auxiliary from '../../HOC/Auxiliary';
 
 const Layout = props => {
