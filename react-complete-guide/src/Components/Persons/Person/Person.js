@@ -49,7 +49,10 @@ class Person extends Component {
             <Fragment >
                 <p onClick={click}>I'm a {name} an I am {age} years old.</p>
                 <p>{children}</p>
-                <input type="text" onChange={changed} value={name} />
+                <input
+                    type="text"
+                    onChange={changed}
+                    value={name} />
             </Fragment>
         );
     }
