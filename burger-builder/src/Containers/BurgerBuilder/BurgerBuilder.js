@@ -6,10 +6,10 @@ import Auxiliary from '../../HOC/Auxiliary';
 class BurgerBuilder extends Component {
     state = {
         ingredients: {
-            lettuce: 1,
-            bacon: 1,
-            cheese: 2,
-            beef: 2
+            lettuce: 0,
+            bacon: 0,
+            cheese: 0,
+            beef: 0
         }
     }
 
