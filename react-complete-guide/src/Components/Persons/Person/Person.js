@@ -8,7 +8,10 @@ class Person extends Component {
     constructor(props) {
         super(props);
         console.log('[Person.js] constructor()');
+
+        this.inputElementRef = React.createRef();
     }
+
     static getDerivedStateFromProps(props, state) {
         console.log('[Person.js] getDerivedStateFromProps()');
         return state;
@@ -21,7 +24,7 @@ class Person extends Component {
     componentDidMount() {
         console.log('[Person.js] componentDidMount()');
 
-        this.inputElement.focus();
+        this.inputElementRef.current.focus();
     }
 
     componentWillUnmount() {
@@ -51,7 +54,8 @@ class Person extends Component {
                 <p>{children}</p>
                 <input
                     type="text"
-                    ref={(inputElement) => { this.inputElement = inputElement }}
+                    //ref={(inputElement) => { this.inputElement = inputElement }}
+                    ref={this.inputElementRef}
                     onChange={changed}
                     value={name} />
             </Fragment>
