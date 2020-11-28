@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './Cockpit.css';
 
 const Cockpit = (props) => {
+    const toggleButtonRef = useRef(null);
+
+    toggleButtonRef.current.click();
+
     useEffect(() => {
         console.log('[Cockpit.js] useEffect()')
         // Todo issue a side effect call!
@@ -28,7 +32,9 @@ const Cockpit = (props) => {
         <div className={styles.Cockpit}>
             <h1>{title}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
-            <button className={buttonClass}
+            <button
+                ref={toggleButtonRef}
+                className={buttonClass}
                 onClick={props.clicked}>Toggle persons</button>
         </div>
     );
