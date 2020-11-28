@@ -13,4 +13,5 @@
 5. [Styling React components and elements](./chapter-5.md)
 6. [Debugging React applications](./chapter-6.md)
 7. [Component Deep Dive](./chapter-7.md)
+8. [How to plan a React app](./chapter-8.md)
 
