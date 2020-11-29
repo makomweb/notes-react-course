@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BuildControls from '../../Components/Layout/Burger/BuildControls/BuildControls';
-import Burger from '../../Components/Layout/Burger/Burger';
+import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
+import Burger from '../../Components/Burger/Burger';
 import Auxiliary from '../../HOC/Auxiliary';
 
 const INGREDIENT_PRICES = {
