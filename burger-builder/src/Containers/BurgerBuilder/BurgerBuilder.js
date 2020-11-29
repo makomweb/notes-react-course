@@ -80,6 +80,10 @@ class BurgerBuilder extends Component {
         this.setState({ purchasing: true });
     }
 
+    handleModalTapped = () => {
+        this.setState({ purchasing: false });
+    }
+
     render() {
         // { lettuce: true, patty: true, bacon: false ... }
         const disabledInfo = {
@@ -92,7 +96,7 @@ class BurgerBuilder extends Component {
 
         return (
             <Auxiliary>
-                <Modal show={this.state.purchasing} >
+                <Modal show={this.state.purchasing} tapped={this.handleModalTapped}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
