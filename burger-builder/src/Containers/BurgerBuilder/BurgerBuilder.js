@@ -80,7 +80,7 @@ class BurgerBuilder extends Component {
         this.setState({ purchasing: true });
     }
 
-    handleModalTapped = () => {
+    handlePurchaseCancelled = () => {
         this.setState({ purchasing: false });
     }
 
@@ -96,7 +96,7 @@ class BurgerBuilder extends Component {
 
         return (
             <Auxiliary>
-                <Modal show={this.state.purchasing} tapped={this.handleModalTapped}>
+                <Modal show={this.state.purchasing} tapped={this.handlePurchaseCancelled}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
