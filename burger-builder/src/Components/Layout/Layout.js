@@ -5,13 +5,21 @@ import Toolbar from '../Navigation/Toolbar/Toolbar.js';
 import classes from './Layout.css';
 
 class Layout extends Component {
+    state = {
+        sideDrawerVisible: true
+    }
+
+    sideDrawerClosedHandler = () => {
+        this.setState({ sideDrawerVisible: false });
+    }
+
     render() {
         return (
             <Auxiliary>
                 <Toolbar />
-                <SideDrawer />
+                <SideDrawer open={this.state.sideDrawerVisible} closed={this.sideDrawerClosedHandler} />
                 <main className={classes.Content}>
-                    {props.children}
+                    {this.props.children}
                 </main>
             </Auxiliary>
         );
