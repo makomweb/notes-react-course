@@ -3,11 +3,6 @@ import Auxiliary from '../../../HOC/Auxiliary.js';
 import Button from '../../UI/Button/Button.js';
 
 class OrderSummary extends Component {
-
-    componentDidUpdate = () => {
-        console.log('[OrderSummary.js] componentDidUpdate();')
-    }
-
     render() {
         const { props } = this;
         const summary = Object.keys(props.ingredients)
