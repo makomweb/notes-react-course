@@ -23,7 +23,7 @@ class Blog extends Component {
     render() {
         const posts = this.state.posts.map(p => {
             return (
-                <Post title={p.title} />
+                <Post key={p.id} title={p.title} />
             );
         });
         return (
