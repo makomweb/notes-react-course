@@ -27,7 +27,7 @@ class FullPost extends Component {
     }
 
     render() {
-        const { props, state } = this;
+        const { state } = this;
 
         let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
         if (state.loadedPost) {
