@@ -24,7 +24,7 @@ class Blog extends Component {
                 this.setState({ posts: updatedPosts });
             })
             .catch(error => {
-                console.log(error);
+                this.setState({ error: true });
             });
     }
 
@@ -33,6 +33,7 @@ class Blog extends Component {
     }
 
     render() {
+        const errorMessage = <p style={{ textAlign: 'center' }}>Something went wrong!</p>
         const posts = this.state.posts.map(p => {
             return (
                 <Post key={p.id} title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} />
@@ -41,7 +42,7 @@ class Blog extends Component {
         return (
             <div>
                 <section className="Posts">
-                    {posts}
+                    {this.state.error ? errorMessage : posts}
                 </section>
                 <section>
                     <FullPost id={this.state.selectedPostId} />
