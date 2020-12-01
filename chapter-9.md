@@ -4,3 +4,4 @@ You can use [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typi
 
 We will use [AXIOS](https://github.com/axios/axios) to make asynchronous HTTP calls.
 
+`componentDidMount()` is used for side effects - asynchronous HTTP calls are considered to be side effects.
