@@ -14,4 +14,5 @@
 6. [Debugging React applications](./chapter-6.md)
 7. [Component Deep Dive](./chapter-7.md)
 8. [How to plan a React app](./chapter-8.md)
+9. [Reaching out to the Web](./chapter-9.md)
 
