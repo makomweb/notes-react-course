@@ -20,7 +20,8 @@ class BurgerBuilder extends Component {
         purchasable: false,
         purchasing: false,
         loading: false,
-        fetchedPrices: null
+        fetchedPrices: null,
+        error: false
     }
 
     addIngredientHandler = (type) => {
@@ -110,12 +111,13 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount = () => {
-        AxiosInstance.get('/ingredients.json')
+        AxiosInstance.get('/ingredients')
             .then(response => {
                 this.setState({ fetchedPrices: response.data });
                 console.log('[Fetching ingredients]', response.data);
             })
             .catch(error => {
+                this.setState({ error: true });
                 console.log('[Fetching ingredients]', error);
             });
     }
@@ -131,7 +133,7 @@ class BurgerBuilder extends Component {
         }
 
         let orderSummary = null;
-        let burger = <Spinner />
+        let burger = this.state.error ? <p>Prices can't be loaded</p> : <Spinner />
         if (this.state.fetchedPrices) {
             burger = (
                 <Auxiliary>
