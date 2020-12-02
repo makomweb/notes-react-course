@@ -8,13 +8,6 @@ import AxiosInstance from '../../AxiosInstance.js';
 import Spinner from '../../Components/UI/Spinner/Spinner.js';
 import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
 
-const INGREDIENT_PRICES = {
-    lettuce: 0.5,
-    cheese: 0.4,
-    beef: 1.3,
-    bacon: 0.7
-}
-
 class BurgerBuilder extends Component {
     state = {
         ingredients: {
@@ -26,7 +19,8 @@ class BurgerBuilder extends Component {
         totalPrice: 4, // 4 is the base
         purchasable: false,
         purchasing: false,
-        loading: false
+        loading: false,
+        fetchedPrices: null
     }
 
     addIngredientHandler = (type) => {
@@ -37,7 +31,7 @@ class BurgerBuilder extends Component {
         }
         updatedIngredients[type] = updatedCount;
 
-        const priceAddition = INGREDIENT_PRICES[type];
+        const priceAddition = this.state.fetchedPrices[type];
         const updatedPrice = this.state.totalPrice + priceAddition;
         this.setState({ totalPrice: updatedPrice, ingredients: updatedIngredients });
 
@@ -56,7 +50,7 @@ class BurgerBuilder extends Component {
         }
 
         updatedIngredients[type] = updatedCount;
-        const priceDeduction = INGREDIENT_PRICES[type];
+        const priceDeduction = this.state.fetchedPrices[type];
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceDeduction;
 
@@ -116,7 +110,14 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount = () => {
-
+        AxiosInstance.get('/ingredients.json')
+            .then(response => {
+                this.setState({ fetchedPrices: response.data });
+                console.log('[Fetching ingredients]', response.data);
+            })
+            .catch(error => {
+                console.log('[Fetching ingredients]', error);
+            });
     }
 
     render() {
@@ -129,11 +130,27 @@ class BurgerBuilder extends Component {
             disabledInfo[ingredient] = disabledInfo[ingredient] <= 0; // true if there are ingredients of that type
         }
 
-        let orderSummary = <OrderSummary
-            ingredients={this.state.ingredients}
-            cancelled={this.handlePurchaseCancelled}
-            continue={this.handlePurchaseContinue}
-            price={this.state.totalPrice} />;
+        let orderSummary = null;
+        let burger = <Spinner />
+        if (this.state.fetchedPrices) {
+            burger = (
+                <Auxiliary>
+                    <Burger ingredients={this.state.ingredients} />
+                    <BuildControls
+                        ingredientAdded={this.addIngredientHandler}
+                        ingredientRemoved={this.removeIngredientHandler}
+                        disabled={disabledInfo}
+                        price={this.state.totalPrice}
+                        purchasable={this.state.purchasable}
+                        ordered={this.handleOrderClicked} />
+                </Auxiliary>);
+
+            orderSummary = <OrderSummary
+                ingredients={this.state.ingredients}
+                cancelled={this.handlePurchaseCancelled}
+                continue={this.handlePurchaseContinue}
+                price={this.state.totalPrice} />;
+        }
 
         if (this.state.loading) {
             orderSummary = <Spinner />
@@ -144,14 +161,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.purchasing} tapped={this.handlePurchaseCancelled}>
                     {orderSummary}
                 </Modal>
-                <Burger ingredients={this.state.ingredients} />
-                <BuildControls
-                    ingredientAdded={this.addIngredientHandler}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo}
-                    price={this.state.totalPrice}
-                    purchasable={this.state.purchasable}
-                    ordered={this.handleOrderClicked} />
+                {burger}
             </Auxiliary>
         )
     }
