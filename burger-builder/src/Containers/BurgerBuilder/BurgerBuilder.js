@@ -153,4 +153,4 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default ErrorModal(BurgerBuilder);
+export default ErrorModal(BurgerBuilder, AxiosOrders);
