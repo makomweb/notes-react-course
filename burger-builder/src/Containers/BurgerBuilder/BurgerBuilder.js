@@ -113,6 +113,16 @@ class BurgerBuilder extends Component {
     componentDidMount = () => {
         AxiosInstance.get('/ingredients.json')
             .then(response => {
+                this.setState({ ingredients: response.data });
+                console.log('[Fetching ingredients]', response.data);
+            })
+            .catch(error => {
+                this.setState({ error: true });
+                console.log('[Fetching ingredients]', error);
+            });
+
+        AxiosInstance.get('/prices.json')
+            .then(response => {
                 this.setState({ fetchedPrices: response.data });
                 console.log('[Fetching ingredients]', response.data);
             })
