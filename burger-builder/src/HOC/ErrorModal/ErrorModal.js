@@ -9,7 +9,7 @@ const ErrorModal = (WrappedComponent, AxiosInstance) => {
             error: null
         }
 
-        componentWillMount() {
+        componentDidMount() {
             this.reqInterceptor = AxiosInstance.interceptors.request.use(req => {
                 this.setState({ error: null });
                 return req;
