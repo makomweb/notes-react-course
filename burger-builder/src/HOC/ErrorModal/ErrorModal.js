@@ -24,11 +24,16 @@ const ErrorModal = (WrappedComponent, AxiosOrders) => {
             AxiosOrders.interceptors.response.eject(this.resInterceptor);
         }
 
+        onErrorModalClicked = () => {
+            this.setState({ error: null });
+        }
+
         render() {
             return (
                 <Aux>
-                    <Modal show={this.state.error}>
-                        {this.state.error}
+                    <Modal show={this.state.error}
+                        tapped={this.onErrorModalClicked}>
+                        {this.state.error ? this.state.error.message : null}
                     </Modal>
                     <WrappedComponent {...this.props} />
                 </Aux>
