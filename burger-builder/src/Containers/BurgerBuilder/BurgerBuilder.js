@@ -4,7 +4,7 @@ import Burger from '../../Components/Burger/Burger';
 import Auxiliary from '../../HOC/Auxiliary/Auxiliary';
 import Modal from '../../Components/UI/Modal/Modal.js';
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
-import AxiosOrders from '../../AxiosOrders.js';
+import AxiosInstance from '../../AxiosInstance.js';
 import Spinner from '../../Components/UI/Spinner/Spinner.js';
 import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
 
@@ -106,13 +106,17 @@ class BurgerBuilder extends Component {
             deliveryMethod: 'fast'
         }
 
-        AxiosOrders.post('/orders.json', order)
+        AxiosInstance.post('/orders.json', order)
             .then(response => {
                 this.setState({ loading: false, purchasing: false });
             })
             .catch(error => {
                 this.setState({ loading: false, purchasing: false });
             });
+    }
+
+    componentDidMount = () => {
+
     }
 
     render() {
@@ -153,4 +157,4 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default ErrorModal(BurgerBuilder, AxiosOrders);
+export default ErrorModal(BurgerBuilder, AxiosInstance);
