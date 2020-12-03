@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../../axios.js';
 import Post from '../../../components/Post/Post.js';
-import { Link } from 'react-router-dom';
+
 import './Posts.css';
 
 class Posts extends Component {
@@ -28,22 +28,20 @@ class Posts extends Component {
     }
 
     onPostClick = (id) => {
-        this.setState({ selectedPostId: id });
+        this.props.history.push({ pathname: '/' + id });
     }
 
     render() {
         const errorMessage = <p style={{ textAlign: 'center' }}>Something went wrong!</p>
         const posts = this.state.posts.map(p => {
             return (
-                <Link to={'/' + p.id} key={p.id} >
-                    <Post title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} />
-                </Link>
+                <Post key={p.id} title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} />
             );
         });
 
         return (
-            <section className="Posts">
-                {this.state.error ? errorMessage : posts}
+            <section className="Posts" >
+                { this.state.error ? errorMessage : posts}
             </section>
         );
     }
