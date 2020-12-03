@@ -50,13 +50,7 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <section className="Posts">
-                    {this.state.error ? errorMessage : posts}
-                </section>
-                <section>
-                    <FullPost id={this.state.selectedPostId} />
-                </section>
-                <section>
-                    <NewPost />
+                    {posts}
                 </section>
             </div>
         );
