@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../../axios.js';
 import Post from '../../../components/Post/Post.js';
+import { Link } from 'react-router-dom';
 import './Posts.css';
 
 class Posts extends Component {
@@ -34,7 +35,9 @@ class Posts extends Component {
         const errorMessage = <p style={{ textAlign: 'center' }}>Something went wrong!</p>
         const posts = this.state.posts.map(p => {
             return (
-                <Post key={p.id} title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} />
+                <Link to={'/' + p.id}>
+                    <Post key={p.id} title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} />
+                </Link>
             );
         });
 
