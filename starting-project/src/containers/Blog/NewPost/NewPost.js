@@ -10,6 +10,10 @@ class NewPost extends Component {
         author: 'Max'
     }
 
+    componentDidMount = () => {
+        console.log(this.props);
+    }
+
     onAddPostClicked = () => {
         const post = {
             title: this.state.title,
