@@ -17,12 +17,10 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" render={() => <h1>home</h1>}>
+                <Route path="/" exact render={() => <h1>home</h1>} />
+                <Route path="/" render={() => <h1>always visible</h1>} />
+                <Route path="/new-post" render={() => <h1>new post</h1>} />
 
-                </Route>
-                <Route path="/new-post" render={() => <h1>new post</h1>}>
-
-                </Route>
                 <Posts />
             </div>
         );
