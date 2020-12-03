@@ -34,7 +34,7 @@ class Posts extends Component {
         const errorMessage = <p style={{ textAlign: 'center' }}>Something went wrong!</p>
         const posts = this.state.posts.map(p => {
             return (
-                <Post key={p.id} title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} />
+                <Post key={p.id} title={p.title} author={p.author} clicked={() => this.onPostClick(p.id)} {...this.props} />
             );
         });
 
