@@ -30,7 +30,7 @@ class Posts extends Component {
     }
 
     onPostClick = (id) => {
-        this.props.history.push({ pathname: '/' + id });
+        this.props.history.push({ pathname: '/posts/' + id });
     }
 
     render() {
@@ -46,7 +46,7 @@ class Posts extends Component {
                 <section className="Posts" >
                     {this.state.error ? errorMessage : posts}
                 </section>
-                <Route path="/:id" exact component={FullPost} />
+                <Route path="/posts/:id" exact component={FullPost} />
             </div>
         );
     }
