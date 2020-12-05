@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import './Blog.css';
 //import NewPost from './NewPost/NewPost.js';
 import Posts from './Posts/Posts.js';
-import AsyncComponent from '../../hoc/AsyncComponent.js';
-const AsyncNewPost = AsyncComponent(() => {
-    return import('./NewPost/NewPost.js')
-});
+// import AsyncComponent from '../../hoc/AsyncComponent.js';
+// const AsyncNewPost = AsyncComponent(() => {
+//     return import('./NewPost/NewPost.js')
+// });
+
+const NewPost = React.lazy(() => import('./NewPost/NewPost.js'));
 
 class Blog extends Component {
     state = {
@@ -40,7 +42,11 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    {this.state.auth ? <Route path="/new-post" component={AsyncNewPost} /> : null}
+                    {this.state.auth ? <Route path="/new-post" render={() => (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <NewPost />
+                        </Suspense>)} /> :
+                        null}
                     <Route path="/posts" component={Posts} />
                     {/* <Route path="/" component={Posts} /> */}
                     {/* <Redirect from="/" to="/posts" /> */}
