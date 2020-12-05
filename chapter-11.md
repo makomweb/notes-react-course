@@ -14,3 +14,8 @@ There exist many options:
 
 1. redirect to the homepage
 2. use a general purpose route
+
+## Code splitting / lazy loading
+
+- only download the components you really need
+- not download components which might not be necessary
