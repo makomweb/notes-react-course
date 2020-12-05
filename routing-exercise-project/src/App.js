@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Users from './Components/Users/Users';
 import Courses from './Components/Courses/Courses';
 
@@ -20,11 +20,17 @@ class App extends Component {
         </ol>
         <h1>React router excercise</h1>
         <BrowserRouter>
-          <Switch>
-            <Route path="/users" component={Users} />
-            <Route path="/courses" component={Courses} />
-            <Route path="/" component={null} />
-          </Switch>
+          <div>
+            <nav>
+              <Link to="/users">Users</Link>&nbsp;
+              <Link to="/courses">Courses</Link>
+            </nav>
+            <Switch>
+              <Route path="/users" component={Users} />
+              <Route path="/courses" component={Courses} />
+              <Route path="/" component={null} />
+            </Switch>
+          </div>
         </BrowserRouter>
       </div>
     );
