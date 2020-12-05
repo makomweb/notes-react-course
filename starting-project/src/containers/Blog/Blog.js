@@ -3,9 +3,9 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import './Blog.css';
-import NewPost from './NewPost/NewPost';
 
-import Posts from './Posts/Posts';
+import NewPost from './NewPost/NewPost.js';
+import Posts from './Posts/Posts.js';
 
 class Blog extends Component {
     state = {
