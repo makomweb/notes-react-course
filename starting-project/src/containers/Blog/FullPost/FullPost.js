@@ -19,10 +19,10 @@ class FullPost extends Component {
     doUpdate = () => {
         console.log(this.props);
 
-        const id = this.props.match.params.id;
+        const { id } = this.props.match.params;
 
         if (id)
-            if (!this.state.loadedPost || this.state.loadedPost.id !== this.props.id) {
+            if (!this.state.loadedPost || this.state.loadedPost.id !== id) {
                 axios.get('/posts/' + id)
                     .then(response => {
                         //console.log(response);
@@ -32,7 +32,8 @@ class FullPost extends Component {
     }
 
     onDeleteClicked = () => {
-        axios.delete('/posts/' + this.props.id)
+        const { id } = this.props.match.params;
+        axios.delete('/posts/' + id)
             .then(response => {
                 console.log(response);
             });
