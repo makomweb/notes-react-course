@@ -14,7 +14,7 @@ class NewPost extends Component {
 
     componentDidMount = () => {
         // if user is not authenticated
-        this.props.history.replace('/not-found');
+        //this.props.history.replace('/not-found');
 
         console.log(this.props);
     }

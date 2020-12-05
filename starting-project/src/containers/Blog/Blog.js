@@ -9,7 +9,7 @@ import Posts from './Posts/Posts';
 
 class Blog extends Component {
     state = {
-        auth: false
+        auth: true
     }
 
     render() {
@@ -37,7 +37,7 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/new-post" component={NewPost} />
+                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
                     <Route path="/posts" component={Posts} />
                     {/* <Route path="/" component={Posts} /> */}
                     {/* <Redirect from="/" to="/posts" /> */}
