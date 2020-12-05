@@ -22,7 +22,7 @@ class FullPost extends Component {
         const { id } = this.props.match.params;
 
         if (id)
-            if (!this.state.loadedPost || this.state.loadedPost.id !== id) {
+            if (!this.state.loadedPost || this.state.loadedPost.id !== +id) {
                 axios.get('/posts/' + id)
                     .then(response => {
                         //console.log(response);
