@@ -8,10 +8,19 @@ class Course extends Component {
     }
 
     componentDidMount = () => {
+        this.updateTitle();
+    }
+
+    componentDidUpdate = () => {
+        this.updateTitle();
+    }
+
+    updateTitle() {
         const query = new URLSearchParams(this.props.location.search);
         for (let param of query.entries()) {
-            //console.log(param);
-            this.setState({ title: param[1] });
+            if (this.state.title !== param[1]) {
+                this.setState({ title: param[1] });
+            }
         }
     }
 

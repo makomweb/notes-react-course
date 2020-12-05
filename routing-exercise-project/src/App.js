@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Users from './Components/Users/Users';
 import Courses from './Components/Courses/Courses';
-import Course from './Components/Courses/Course/Course.js';
 
 class App extends Component {
   render() {
@@ -28,7 +27,6 @@ class App extends Component {
             </nav>
             <Switch>
               <Route path="/users" component={Users} />
-              <Route path="/courses/:id" component={Course} />
               <Route path="/courses" component={Courses} />
               <Route path="/" component={null} />
             </Switch>
