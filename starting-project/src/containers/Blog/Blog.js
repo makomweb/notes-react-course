@@ -40,7 +40,8 @@ class Blog extends Component {
                     <Route path="/new-post" component={NewPost} />
                     <Route path="/posts" component={Posts} />
                     {/* <Route path="/" component={Posts} /> */}
-                    <Redirect from="/" to="/posts" />
+                    {/* <Redirect from="/" to="/posts" /> */}
+                    <Route render={() => <h1>Not found</h1>} /> {/* The catch all route should always be the last route */}
                 </Switch>
             </div>
         );
