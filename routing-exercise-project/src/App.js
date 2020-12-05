@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Users from './Components/Users/Users';
 import Courses from './Components/Courses/Courses';
+import NoMatch from './Components/NoMatch/NoMatch';
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
             <Switch>
               <Route path="/users" component={Users} />
               <Route path="/courses" component={Courses} />
+              <Route render={() => <NoMatch />} />
               <Route path="/" component={null} />
             </Switch>
           </div>
