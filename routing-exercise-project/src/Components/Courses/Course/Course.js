@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
+
 import './Course.css';
 
-const course = props => {
-    console.log(props);
-    const { id } = props.match.params;
-    const { title } = props.history.location.query;
-    return (
-        <div className="my-course" >
-            <p>{id}:{title}</p>
-        </div>
-    );
+class Course extends Component {
+    state = {
+        title: ''
+    }
+
+    componentDidMount = () => {
+        const query = new URLSearchParams(this.props.location.search);
+        for (let param of query.entries()) {
+            //console.log(param);
+            this.setState({ title: param[1] });
+        }
+    }
+
+    render() {
+        const { id } = this.props.match.params;
+        const { title } = this.state;
+        return (
+            <div className="my-course" >
+                <p>{id}:{title}</p>
+            </div>
+        );
+    }
 }
 
-export default course;
+export default Course;
