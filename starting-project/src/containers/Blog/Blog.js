@@ -8,6 +8,10 @@ import NewPost from './NewPost/NewPost';
 import Posts from './Posts/Posts';
 
 class Blog extends Component {
+    state = {
+        auth: false
+    }
+
     render() {
         const path = this.props.match.url + 'new-post';
         console.log('path is: ', path);
@@ -33,7 +37,7 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/new-post" component={NewPost} />
+                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
                     <Route path="/posts" component={Posts} />
                     {/* <Route path="/" component={Posts} /> */}
                     <Redirect from="/" to="/posts" />
