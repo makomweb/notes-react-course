@@ -9,6 +9,14 @@ class FullPost extends Component {
     }
 
     componentDidMount = () => {
+        this.doUpdate();
+    }
+
+    componentDidUpdate = () => {
+        this.doUpdate();
+    }
+
+    doUpdate = () => {
         console.log(this.props);
 
         const id = this.props.match.params.id;
