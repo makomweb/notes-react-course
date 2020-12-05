@@ -1,11 +1,11 @@
 import React from 'react';
 import './Course.css';
 
-const course = (props) => {
-    const { id, title, tapped } = props;
+const course = props => {
+    const { id } = props.match.params;
     return (
         <div className="my-course" >
-            <p>Course details come here!</p>
+            <p>ID: {id}</p>
         </div>
     );
 }
