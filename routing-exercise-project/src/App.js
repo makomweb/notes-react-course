@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
-import Courses from './containers/Courses/Courses';
-import Users from './containers/Users/Users';
+import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Users from './Components/Users/Users';
+import Courses from './Components/Courses/Courses';
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <div className="App">
         <ol style={{textAlign: 'left'}}>
@@ -17,6 +18,14 @@ class App extends Component {
           <li>Add a 404 error page and render it for any unknown routes</li>
           <li>Redirect requests to /all-courses to /courses (=> Your "Courses" page)</li>
         </ol>
+        <h1>React router excercise</h1>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/users" component={Users} />
+            <Route path="/courses" component={Courses} />
+            <Route path="/" component={null} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
