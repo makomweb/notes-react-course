@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '../../../Components/UI/Button/Button.js';
 import classes from './ContactData.css';
 import AxiosInstance from '../../../AxiosInstance.js';
+import Spinner from '../../../Components/UI/Spinner/Spinner.js';
 
 class ContactData extends Component {
     state = {
@@ -42,17 +43,26 @@ class ContactData extends Component {
     }
 
     render() {
+
+        let form = (
+            <form>
+                <input className={classes.Input} type="text" name="name" placeholder="Your name" />
+                <input className={classes.Input} type="email" name="email" placeholder="Your email" />
+                <input className={classes.Input} type="text" name="street" placeholder="Your street" />
+                <input className={classes.Input} type="text" name="postal" placeholder="Your postal code" />
+                <Button buttonType="Success"
+                    clicked={this.onOrderTapped}>ORDER</Button>
+            </form>
+        );
+
+        if (this.state.loading) {
+            form = <Spinner />
+        }
+
         return (
             <div className={classes.ContactData}>
                 <h4>Enter your contact data:</h4>
-                <form>
-                    <input className={classes.Input} type="text" name="name" placeholder="Your name" />
-                    <input className={classes.Input} type="email" name="email" placeholder="Your email" />
-                    <input className={classes.Input} type="text" name="street" placeholder="Your street" />
-                    <input className={classes.Input} type="text" name="postal" placeholder="Your postal code" />
-                    <Button buttonType="Success"
-                        clicked={this.onOrderTapped}>ORDER</Button>
-                </form>
+                {form}
             </div>
         );
     }
