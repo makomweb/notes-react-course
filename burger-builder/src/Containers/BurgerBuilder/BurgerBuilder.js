@@ -84,33 +84,34 @@ class BurgerBuilder extends Component {
     }
 
     handlePurchaseContinue = () => {
-        this.setState({ loading: true });
+        // this.setState({ loading: true });
 
-        const order = {
-            ingredient: this.state.ingredients,
-            price: this.state.totalPrice.toFixed(2),
-            customer: {
-                name: 'Mary',
-                address: {
-                    street: 'Teststreet 1',
-                    zipCode: '43215',
-                    country: 'Germany'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fast'
-        }
+        // const order = {
+        //     ingredient: this.state.ingredients,
+        //     price: this.state.totalPrice.toFixed(2),
+        //     customer: {
+        //         name: 'Mary',
+        //         address: {
+        //             street: 'Teststreet 1',
+        //             zipCode: '43215',
+        //             country: 'Germany'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fast'
+        // }
 
-        AxiosInstance.post('/orders.json', order)
-            .then(response => {
-                this.setState({ loading: false, purchasing: false });
-            })
-            .catch(error => {
-                this.setState({ loading: false, purchasing: false });
-            });
+        // AxiosInstance.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({ loading: false, purchasing: false });
+        //     })
+        //     .catch(error => {
+        //         this.setState({ loading: false, purchasing: false });
+        //     });
     }
 
     componentDidMount = () => {
+        console.log('[BurgerBuilder.js]', this.props);
         AxiosInstance.get('/ingredients.json')
             .then(response => {
                 this.setState({ ingredients: response.data });
