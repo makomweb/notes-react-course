@@ -17,7 +17,8 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true
-                }
+                },
+                valid: false
             },
             street: {
                 type: 'input',
@@ -28,7 +29,8 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true
-                }
+                },
+                valid: false
             },
             zipCode: {
                 type: 'input',
@@ -38,8 +40,11 @@ class ContactData extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
-                }
+                    required: true,
+                    minLength: 5,
+                    maxLength: 5
+                },
+                valid: false
             },
             country: {
                 type: 'input',
@@ -50,7 +55,8 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true
-                }
+                },
+                valid: false
             },
             email: {
                 type: 'input',
@@ -61,7 +67,8 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true
-                }
+                },
+                valid: false
             },
             deliveryMethod: {
                 type: 'select',
@@ -112,9 +119,28 @@ class ContactData extends Component {
         };
 
         updatedFormElement.value = event.target.value;
+        updatedFormElement.valid =
+            this.isValid(updatedFormElement.value, updatedFormElement.validation);
+
         updatedForm[inputId] = updatedFormElement;
 
         this.setState({ orderForm: updatedForm });
+    }
+
+    isValid(value, rules) {
+        let isValid = false;
+        if (rules.required) {
+            isValid = value.trim() !== '';
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength;
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength;
+        }
+        return isValid;
     }
 
     render() {
