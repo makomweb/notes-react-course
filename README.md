@@ -19,4 +19,5 @@
 11. [Routing](./chapter-11.md)
 12. Routing in the Burger Builder app
 13. [Forms & Form Validation](./chapter-13.md)
+14. [Redux](./chapter-14.md)
 
