@@ -18,7 +18,8 @@ class ContactData extends Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             street: {
                 type: 'input',
@@ -30,7 +31,8 @@ class ContactData extends Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             zipCode: {
                 type: 'input',
@@ -44,7 +46,8 @@ class ContactData extends Component {
                     minLength: 5,
                     maxLength: 5
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             country: {
                 type: 'input',
@@ -56,7 +59,8 @@ class ContactData extends Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             email: {
                 type: 'input',
@@ -68,7 +72,8 @@ class ContactData extends Component {
                 validation: {
                     required: true
                 },
-                valid: false
+                valid: false,
+                touched: false
             },
             deliveryMethod: {
                 type: 'select',
@@ -121,6 +126,7 @@ class ContactData extends Component {
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid =
             this.isValid(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.touched = true;
 
         updatedForm[inputId] = updatedFormElement;
 
@@ -163,6 +169,7 @@ class ContactData extends Component {
                         value={elem.data.value}
                         invalid={!elem.data.valid}
                         shouldValidate={elem.data.validation}
+                        touched={elem.data.touched}
                         changed={(event) => this.onInputChanged(event, elem.id)} />
                 ))}
                 <Button buttonType="Success"
