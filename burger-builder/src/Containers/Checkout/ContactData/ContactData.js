@@ -65,19 +65,19 @@ class ContactData extends Component {
     onOrderTapped = event => {
         event.preventDefault();
         this.setState({ loading: true });
+
+        const formData = [];
+        for (let key in this.state.form) {
+            formData.push({
+                name: key,
+                value: this.state.form[key].value
+            })
+        }
+
         const order = {
             ingredients: this.props.ingredients,
             price: this.props.price,
-            customer: {
-                name: 'Mary',
-                address: {
-                    street: 'Teststreet 1',
-                    zipCode: '43215',
-                    country: 'Germany'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fast'
+            customer: formData
         }
 
         AxiosInstance.post('/orders.json', order)
@@ -115,7 +115,7 @@ class ContactData extends Component {
         }
 
         let form = (
-            <form>
+            <form onSubmit={this.onOrderTapped}>
                 {formElements.map(elem => (
                     <Input
                         key={elem.id}
