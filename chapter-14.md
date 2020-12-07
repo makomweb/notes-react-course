@@ -8,3 +8,11 @@
 ## Redux with node.js
 
 use `node .\redux-basics.js` to see the basics work
+
+## Types of state
+
+| type | example | should be handled by redux |
+| --- | --- | --- |
+| local UI state | show / hide backdrop | mostly handled within components |
+| persistent state | all users, all posts, ... | stored on server / relevant slices managed via Redux |
+| client state | is-authenticated, filter set by users, ... | managed via Reduy
