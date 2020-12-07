@@ -5,4 +5,6 @@
 - clear defined process of how the application state is changed
 - action, reducers, triggers, props
 
-##
+## Redux with node.js
+
+use `node .\redux-basics.js` to see the basics work
