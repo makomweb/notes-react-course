@@ -36,9 +36,10 @@ const reducer = (state = initialState, action) => {
             }
 
         case ('DELETE'):
+            const updatedArray = state.results.filter(result => result.id !== action.id);
             return {
                 ...state,
-                results: state.results.splice(action.id, 1)
+                results: updatedArray
             }
     }
     return state;
