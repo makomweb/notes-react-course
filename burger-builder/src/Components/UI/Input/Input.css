@@ -31,3 +31,7 @@
     background-color: rgb(252, 143, 130);   
 }
 
+.ValidationError {
+    color: red;
+    margin: 5px 0;
+} 

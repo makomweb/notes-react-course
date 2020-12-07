@@ -16,7 +16,8 @@ class ContactData extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    errorMessage: 'Please enter a valid name!'
                 },
                 valid: false,
                 touched: false
@@ -25,7 +26,8 @@ class ContactData extends Component {
                 type: 'input',
                 config: {
                     type: 'text',
-                    placeholder: 'Your street'
+                    placeholder: 'Your street',
+                    errorMessage: 'Please enter a valid street!'
                 },
                 value: '',
                 validation: {
@@ -44,7 +46,8 @@ class ContactData extends Component {
                 validation: {
                     required: true,
                     minLength: 5,
-                    maxLength: 5
+                    maxLength: 5,
+                    errorMessage: 'Please enter a valid ZIP code!'
                 },
                 valid: false,
                 touched: false
@@ -57,7 +60,8 @@ class ContactData extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    errorMessage: 'Please enter a valid country!'
                 },
                 valid: false,
                 touched: false
@@ -70,7 +74,8 @@ class ContactData extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    errorMessage: 'Please enter a valid email address!'
                 },
                 valid: false,
                 touched: false
@@ -168,6 +173,7 @@ class ContactData extends Component {
                         config={elem.data.config}
                         value={elem.data.value}
                         invalid={!elem.data.valid}
+                        errorMessage={elem.data.validation ? elem.data.validation.errorMessage : null}
                         shouldValidate={elem.data.validation}
                         touched={elem.data.touched}
                         changed={(event) => this.onInputChanged(event, elem.id)} />
