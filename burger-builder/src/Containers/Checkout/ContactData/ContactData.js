@@ -66,12 +66,9 @@ class ContactData extends Component {
         event.preventDefault();
         this.setState({ loading: true });
 
-        const formData = [];
+        const formData = {};
         for (let key in this.state.form) {
-            formData.push({
-                name: key,
-                value: this.state.form[key].value
-            })
+            formData[key] = this.state.form[key].value;
         }
 
         const order = {
