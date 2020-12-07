@@ -17,4 +17,6 @@
 9. [Reaching out to the Web](./chapter-9.md)
 10. Accessing a Firebase backend
 11. [Routing](./chapter-11.md)
+12. Routing in the Burger Builder app
+13. [Forms & Form Validation](./chapter-13.md)
 
