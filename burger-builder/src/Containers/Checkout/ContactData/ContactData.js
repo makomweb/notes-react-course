@@ -85,10 +85,10 @@ class ContactData extends Component {
                 config: {
                     options: [
                         { value: 'fast', displayValue: 'Fast' },
-                        { value: 'cheapest', displayValue: 'Cheapest' },
+                        { value: 'cheap', displayValue: 'Cheap' },
                     ]
                 },
-                value: '',
+                value: 'fast',
                 validation: {},
                 valid: true
             },
