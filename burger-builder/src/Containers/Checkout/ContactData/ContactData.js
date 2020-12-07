@@ -16,7 +16,7 @@ class ContactData extends Component {
                 },
                 value: ''
             },
-            stree: {
+            street: {
                 type: 'input',
                 config: {
                     type: 'text',
@@ -67,8 +67,8 @@ class ContactData extends Component {
         this.setState({ loading: true });
 
         const formData = {};
-        for (let key in this.state.form) {
-            formData[key] = this.state.form[key].value;
+        for (let key in this.state.orderForm) {
+            formData[key] = this.state.orderForm[key].value;
         }
 
         const order = {
