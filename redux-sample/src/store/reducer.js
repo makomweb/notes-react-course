@@ -38,10 +38,7 @@ const reducer = (state = initialState, action) => {
         case ('DELETE'):
             return {
                 ...state,
-                results: state.results.concat({
-                    id: new Date(),
-                    value: state.counter
-                })
+                results: state.results.splice(action.id, 1)
             }
     }
     return state;
