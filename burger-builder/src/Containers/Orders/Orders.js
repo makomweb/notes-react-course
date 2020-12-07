@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Order from '../../Components/Order/Order.js';
 import AxiosInstance from '../../AxiosInstance.js';
+import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
 
 class Orders extends Component {
     state = {
@@ -9,7 +10,7 @@ class Orders extends Component {
     }
 
     componentDidMount = () => {
-        AxiosInstance.get('/orders.json')
+        AxiosInstance.get('/orders')
             .then(resp => {
                 const fetchedOrders = [];
                 for (let key in resp.data) {
@@ -36,4 +37,4 @@ class Orders extends Component {
     }
 }
 
-export default Orders;
+export default ErrorModal(Orders, AxiosInstance);
