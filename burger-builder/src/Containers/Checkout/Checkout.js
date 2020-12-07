@@ -5,11 +5,16 @@ import ContactData from './ContactData/ContactData.js';
 
 class Checkout extends Component {
     state = {
-        ingredients: null,
+        ingredients: {
+            lettuce: 0,
+            beef: 0,
+            bacon: 0,
+            cheese: 0
+        },
         price: 0
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         const query = new URLSearchParams(this.props.location.search);
 
         const ingredients = {};
