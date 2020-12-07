@@ -10,7 +10,7 @@ class Orders extends Component {
     }
 
     componentDidMount = () => {
-        AxiosInstance.get('/orders')
+        AxiosInstance.get('/orders.json')
             .then(resp => {
                 const fetchedOrders = [];
                 for (let key in resp.data) {
@@ -30,8 +30,11 @@ class Orders extends Component {
     render() {
         return (
             <div>
-                <Order />
-                <Order />
+                {this.state.orders.map(o => {
+                    return (
+                        <Order key={o.id} />
+                    );
+                })}
             </div>
         );
     }
