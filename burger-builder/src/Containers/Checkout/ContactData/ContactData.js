@@ -9,48 +9,48 @@ class ContactData extends Component {
     state = {
         orderForm: {
             name: {
-                elementType: 'input',
-                elementConfig: {
+                type: 'input',
+                config: {
                     type: 'text',
                     placeholder: 'Your name'
                 },
                 value: ''
             },
             stree: {
-                elementType: 'input',
-                elementConfig: {
+                type: 'input',
+                config: {
                     type: 'text',
                     placeholder: 'Your street'
                 },
                 value: ''
             },
             zipCode: {
-                elementType: 'input',
-                elementConfig: {
+                type: 'input',
+                config: {
                     type: 'text',
                     placeholder: 'ZIP code'
                 },
                 value: ''
             },
             country: {
-                elementType: 'input',
-                elementConfig: {
+                type: 'input',
+                config: {
                     type: 'text',
                     placeholder: 'Your country'
                 },
                 value: ''
             },
             email: {
-                elementType: 'input',
-                elementConfig: {
+                type: 'input',
+                config: {
                     type: 'email',
                     placeholder: 'Your email'
                 },
                 value: ''
             },
             deliveryMethod: {
-                elementType: 'select',
-                elementConfig: {
+                type: 'select',
+                config: {
                     options: [
                         { value: 'fast', displayValue: 'Fast' },
                         { value: 'cheapest', displayValue: 'Cheapest' },
@@ -91,14 +91,23 @@ class ContactData extends Component {
     }
 
     render() {
+        const formElements = [];
+        for (let key in this.state.orderForm) {
+            formElements.push({
+                id: key,
+                data: this.state.orderForm[key],
+            });
+        }
 
         let form = (
             <form>
-                <Input type="..." config="..." value="..." />
-                <Input inputtype="input" type="text" name="name" placeholder="Your name" />
-                <Input inputtype="input" type="email" name="email" placeholder="Your email" />
-                <Input inputtype="input" type="text" name="street" placeholder="Your street" />
-                <Input inputtype="input" type="text" name="postal" placeholder="Your postal code" />
+                {formElements.map(elem => (
+                    <Input
+                        key={elem.id}
+                        type={elem.data.type}
+                        config={elem.data.config}
+                        value={elem.data.value} />
+                ))}
                 <Button buttonType="Success"
                     clicked={this.onOrderTapped}>ORDER</Button>
             </form>
