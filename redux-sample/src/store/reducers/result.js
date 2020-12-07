@@ -11,7 +11,7 @@ const reduceResults = (state = initialState, action) => {
                 ...state,
                 results: state.results.concat({
                     id: new Date(),
-                    value: state.counter
+                    value: action.result
                 })
             }
 
