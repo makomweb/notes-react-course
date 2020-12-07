@@ -161,6 +161,7 @@ class ContactData extends Component {
                         type={elem.data.type}
                         config={elem.data.config}
                         value={elem.data.value}
+                        invalid={!elem.data.valid}
                         changed={(event) => this.onInputChanged(event, elem.id)} />
                 ))}
                 <Button buttonType="Success"
