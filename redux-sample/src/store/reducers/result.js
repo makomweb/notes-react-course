@@ -1,4 +1,4 @@
-import * as actions from '../actions';
+import * as actions from '../../store/actions/actions';
 
 const initialState = {
     results: []
@@ -15,7 +15,7 @@ const reduceResults = (state = initialState, action) => {
                 })
             }
 
-        case (actions.DELETE):
+        case (actions.REMOVE):
             const updatedArray = state.results.filter(result => result.id !== action.id);
             return {
                 ...state,
