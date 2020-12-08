@@ -31,7 +31,15 @@ export const sub = (val) => {
     };
 }
 
-export const store = (obj) => {
+export const save = (res) => {
+    return function (dispatch) {
+        setTimeout(() => {
+            dispatch(store(res))
+        }, 2000);
+    }
+}
+
+const store = (res) => {
     return {
         type: STORE,
         result: res
