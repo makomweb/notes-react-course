@@ -12,22 +12,23 @@ import * as actions from '../../Store/actions';
 
 class BurgerBuilder extends Component {
     state = {
-        purchasable: false,
         purchasing: false,
         loading: false,
         error: false
     }
 
-    updatePurchaseState(ingredients) {
-        const sum = Object.keys(ingredients)
-            .map(ingredientKey => {
-                return ingredients[ingredientKey];
+    canContinue() {
+        const { ings } = this.props;
+        const sum = Object.keys(ings)
+            .map(key => {
+                return ings[key];
             })
             .reduce((sum, element) => {
                 return sum + element;
             }, 0);
 
-        this.setState({ purchasable: sum > 0 })
+
+        return sum > 0;
     }
 
     handleOrderClicked = () => {
@@ -123,7 +124,7 @@ class BurgerBuilder extends Component {
                         ingredientRemoved={this.props.onRemoved}
                         disabled={disabledInfo}
                         price={this.props.price}
-                        purchasable={this.state.purchasable}
+                        purchasable={this.canContinue()}
                         ordered={this.handleOrderClicked} />
                 </Auxiliary>);
 
