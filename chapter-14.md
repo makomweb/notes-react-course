@@ -16,3 +16,11 @@ use `node .\redux-basics.js` to see the basics work
 | local UI state | show / hide backdrop | mostly handled within components |
 | persistent state | all users, all posts, ... | stored on server / relevant slices managed via Redux |
 | client state | is-authenticated, filter set by users, ... | managed via Reduy
+
+## Useful links
+
+- [Docs](https://redux.js.org/)
+- [Core Concepts](https://redux.js.org/introduction/core-concepts)
+- [Actions](https://redux.js.org/basics/actions)
+- [Reducers](https://redux.js.org/basics/reducers)
+- [FAQs](https://redux.js.org/faq)
