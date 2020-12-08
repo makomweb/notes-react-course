@@ -40,30 +40,6 @@ class BurgerBuilder extends Component {
     }
 
     handlePurchaseContinue = () => {
-        // this.setState({ loading: true });
-
-        // const order = {
-        //     ingredient: this.state.ingredients,
-        //     price: this.props.price.toFixed(2),
-        //     customer: {
-        //         name: 'Mary',
-        //         address: {
-        //             street: 'Teststreet 1',
-        //             zipCode: '43215',
-        //             country: 'Germany'
-        //         },
-        //         email: 'test@test.com'
-        //     },
-        //     deliveryMethod: 'fast'
-        // }
-
-        // AxiosInstance.post('/orders.json', order)
-        //     .then(response => {
-        //         this.setState({ loading: false, purchasing: false });
-        //     })
-        //     .catch(error => {
-        //         this.setState({ loading: false, purchasing: false });
-        //     });
 
         const queryParams = [];
         for (let i in this.props.ings) {
@@ -81,17 +57,6 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount = () => {
-        console.log('[BurgerBuilder.js]', this.props);
-        //     AxiosInstance.get('/ingredients.json')
-        //         .then(response => {
-        //             this.setState({ ingredients: response.data });
-        //             console.log('[BurgerBuilder.js]: Fetched ingredients', response.data);
-        //         })
-        //         .catch(error => {
-        //             this.setState({ error: true });
-        //             console.log('[BurgerBuilder.js]: Error while fetching ingredients', error);
-        //         });
-
         AxiosInstance.get('/prices.json')
             .then(response => {
                 this.props.onPricesFetched(response.data);
