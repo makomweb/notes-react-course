@@ -1,7 +1,7 @@
 import * as actionTypes from './actions';
 
 export const save = (res) => {
-    return function (dispatch) {
+    return function (dispatch, getState) {
         setTimeout(() => {
             dispatch(store(res))
         }, 2000);
