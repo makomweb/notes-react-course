@@ -21,4 +21,5 @@
 13. [Forms & Form Validation](./chapter-13.md)
 14. [Redux](./chapter-14.md)
 15. More Redux practice
+16. Advanced Redux
 
