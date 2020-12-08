@@ -57,12 +57,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIncrementCounter: () => dispatch({ type: actions.INC }),
-        onDecrementCounter: () => dispatch({ type: actions.DEC }),
-        onAddCounter: () => dispatch({ type: actions.ADD, value: 5 }),
-        onSubCounter: () => dispatch({ type: actions.SUB, value: 5 }),
-        onStoreResult: (obj) => dispatch({ type: actions.STORE, result: obj }),
-        onDeleteResult: (resultId) => dispatch({ type: actions.DELETE, id: resultId }),
+        onIncrementCounter: () => dispatch(actions.increment()),
+        onDecrementCounter: () => dispatch(actions.decrement()),
+        onAddCounter: () => dispatch(actions.add(5)),
+        onSubCounter: () => dispatch(actions.sub(5)),
+        onStoreResult: (obj) => dispatch(actions.store(obj)),
+        onDeleteResult: (id) => dispatch(actions.remove(id)),
     };
 };
 
