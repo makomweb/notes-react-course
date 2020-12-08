@@ -7,6 +7,7 @@ import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 import AxiosInstance from '../../AxiosInstance.js';
 import Spinner from '../../Components/UI/Spinner/Spinner.js';
 import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
+import { connect } from 'react-redux';
 
 class BurgerBuilder extends Component {
     state = {
@@ -194,4 +195,14 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default ErrorModal(BurgerBuilder, AxiosInstance);
+const mapStateToProps = state => {
+    return {
+    }
+}
+
+const mapActionsToDispatch = dispatch => {
+    return {
+    }
+}
+
+export default connect(mapStateToProps, mapActionsToDispatch)(ErrorModal(BurgerBuilder, AxiosInstance));
