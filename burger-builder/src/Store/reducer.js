@@ -7,8 +7,9 @@ const initialState = {
         cheese: 0,
         beef: 0
     },
-    totalPrice: 4
-}
+    totalPrice: 4,
+    prices: null
+};
 
 const reducer = (state = initialState, action) => {
 
@@ -30,6 +31,12 @@ const reducer = (state = initialState, action) => {
                     ...state.ingredients,
                     [ingredientName]: state.ingredients[ingredientName] - 1
                 }
+            };
+        case actions.UPDATE_PRICES:
+            console.log('[reducer.js]', action.prices);
+            return {
+                ...state,
+                prices: action.prices
             };
         default:
             return state;

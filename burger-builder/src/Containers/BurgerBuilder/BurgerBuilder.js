@@ -132,15 +132,15 @@ class BurgerBuilder extends Component {
         //             console.log('[BurgerBuilder.js]: Error while fetching ingredients', error);
         //         });
 
-        //     AxiosInstance.get('/prices.json')
-        //         .then(response => {
-        //             this.setState({ fetchedPrices: response.data });
-        //             console.log('[BurgerBuilder.js]: Fetched prices', response.data);
-        //         })
-        //         .catch(error => {
-        //             this.setState({ error: true });
-        //             console.log('[BurgerBuilder.js]: Error while fetching prices', error);
-        //         });
+        AxiosInstance.get('/prices.json')
+            .then(response => {
+                this.props.onPricesFetched(response.data);
+                console.log('[BurgerBuilder.js]: Fetched prices', response.data);
+            })
+            .catch(error => {
+                this.setState({ error: true });
+                console.log('[BurgerBuilder.js]: Error while fetching prices', error);
+            });
     }
 
     render() {
@@ -200,6 +200,7 @@ const mapActionsToDispatch = dispatch => {
     return {
         onAdded: (ingName) => dispatch({ type: actions.ADD_INGREDIENT, ingredientName: ingName }),
         onRemoved: (ingName) => dispatch({ type: actions.REMOVE_INGREDIENT, ingredientName: ingName }),
+        onPricesFetched: (prices) => dispatch({ type: actions.UPDATE_PRICES, prices: prices }),
     }
 }
 
