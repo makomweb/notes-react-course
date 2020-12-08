@@ -155,7 +155,7 @@ class BurgerBuilder extends Component {
 
         let orderSummary = null;
         let burger = this.state.error ? <p>Prices can't be loaded</p> : <Spinner />
-        if (this.state.fetchedPrices) {
+        if (this.props.ings) {
             burger = (
                 <Auxiliary>
                     <Burger ingredients={this.props.ings} />
