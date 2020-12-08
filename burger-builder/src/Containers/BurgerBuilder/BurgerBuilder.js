@@ -12,12 +12,6 @@ import * as actions from '../../Store/actions';
 
 class BurgerBuilder extends Component {
     state = {
-        ingredients: {
-            lettuce: 0,
-            bacon: 0,
-            cheese: 0,
-            beef: 0
-        },
         totalPrice: 4, // 4 is the base
         purchasable: false,
         purchasing: false,
@@ -27,10 +21,10 @@ class BurgerBuilder extends Component {
     }
 
     addIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
+        const oldCount = this.props.ings[type];
         const updatedCount = oldCount + 1;
         const updatedIngredients = {
-            ...this.state.ingredients
+            ...this.props.ings
         }
         updatedIngredients[type] = updatedCount;
 
@@ -42,14 +36,14 @@ class BurgerBuilder extends Component {
     }
 
     removeIngredientHandler = (type) => {
-        const oldCount = this.state.ingredients[type];
+        const oldCount = this.props.ings[type];
         if (oldCount <= 0) {
             return;
         }
 
         const updatedCount = oldCount - 1;
         const updatedIngredients = {
-            ...this.state.ingredients
+            ...this.props.ings
         }
 
         updatedIngredients[type] = updatedCount;
@@ -112,8 +106,8 @@ class BurgerBuilder extends Component {
         //     });
 
         const queryParams = [];
-        for (let i in this.state.ingredients) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        for (let i in this.props.ings) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ings[i]));
         }
 
         queryParams.push('price=' + this.state.totalPrice);
@@ -164,7 +158,7 @@ class BurgerBuilder extends Component {
         if (this.state.fetchedPrices) {
             burger = (
                 <Auxiliary>
-                    <Burger ingredients={this.state.ingredients} />
+                    <Burger ingredients={this.props.ings} />
                     <BuildControls
                         ingredientAdded={this.addIngredientHandler}
                         ingredientRemoved={this.removeIngredientHandler}
@@ -175,7 +169,7 @@ class BurgerBuilder extends Component {
                 </Auxiliary>);
 
             orderSummary = <OrderSummary
-                ingredients={this.state.ingredients}
+                ingredients={this.props.ings}
                 cancelled={this.handlePurchaseCancelled}
                 continue={this.handlePurchaseContinue}
                 price={this.state.totalPrice} />;
