@@ -5,12 +5,17 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 
 import Reducer from './Store/reducer';
 
-const store = createStore(Reducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+    Reducer,
+    composeEnhancers()
+);
 
 const MyApp = (
     <Provider store={store}>
