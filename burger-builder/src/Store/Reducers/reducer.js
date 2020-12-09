@@ -8,7 +8,8 @@ const initialState = {
         beef: 0
     },
     totalPrice: 4,
-    prices: null
+    prices: null,
+    error: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,10 +36,15 @@ const reducer = (state = initialState, action) => {
                 totalPrice: state.totalPrice - state.prices[ingredientName]
             };
         case actions.UPDATE_PRICES:
-            console.log('[reducer.js]', action.prices);
             return {
                 ...state,
-                prices: action.prices
+                prices: action.prices,
+                error: false
+            };
+        case actions.FETCH_PRICES_FAILED:
+            return {
+                ...state,
+                error: true
             };
         default:
             return state;

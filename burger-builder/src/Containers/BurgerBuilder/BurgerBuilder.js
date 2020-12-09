@@ -12,9 +12,7 @@ import * as actions from '../../Store/Actions';
 
 class BurgerBuilder extends Component {
     state = {
-        purchasing: false,
-        loading: false,
-        error: false
+        purchasing: false
     }
 
     canContinue() {
@@ -44,21 +42,13 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount = () => {
-        AxiosInstance.get('/prices.json')
-            .then(response => {
-                this.props.onPricesFetched(response.data);
-                console.log('[BurgerBuilder.js]: Fetched prices', response.data);
-            })
-            .catch(error => {
-                this.setState({ error: true });
-                console.log('[BurgerBuilder.js]: Error while fetching prices', error);
-            });
+        this.props.onFetchPrices();
     }
 
     render() {
         // { lettuce: true, patty: true, bacon: false ... }
         const disabledInfo = {
-            ...this.state.ingredients
+            ...this.props.ings
         };
 
         for (let ingredient in disabledInfo) {
@@ -66,7 +56,7 @@ class BurgerBuilder extends Component {
         }
 
         let orderSummary = null;
-        let burger = this.state.error ? <p>Prices can't be loaded</p> : <Spinner />
+        let burger = this.props.error ? <p>Prices can't be loaded</p> : <Spinner />
         if (this.props.ings) {
             burger = (
                 <Auxiliary>
@@ -87,10 +77,6 @@ class BurgerBuilder extends Component {
                 price={this.props.price} />;
         }
 
-        if (this.state.loading) {
-            orderSummary = <Spinner />
-        }
-
         return (
             <Auxiliary>
                 <Modal show={this.state.purchasing} tapped={this.handlePurchaseCancelled}>
@@ -105,7 +91,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ings: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        error: state.error
     }
 }
 
@@ -113,7 +100,7 @@ const mapActionsToDispatch = dispatch => {
     return {
         onAdded: (name) => dispatch(actions.addIngredient(name)),
         onRemoved: (name) => dispatch(actions.removeIngredient(name)),
-        onPricesFetched: (prices) => dispatch(actions.updatePrices(prices)),
+        onFetchPrices: () => dispatch(actions.fetchPrices())
     }
 }
 

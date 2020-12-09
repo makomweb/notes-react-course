@@ -1,5 +1,5 @@
 export {
     addIngredient,
     removeIngredient,
-    updatePrices
+    fetchPrices
 } from './BurgerBuilder';
