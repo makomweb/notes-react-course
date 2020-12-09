@@ -171,6 +171,33 @@ class ContactData extends Component {
         return isValid;
     }
 
+    componentDidMount = () => {
+        const prefilled = {
+            name: 'Martin',
+            street: 'Teststreet',
+            zip: '12345',
+            country: 'Germany',
+            email: 'foo@bar.com'
+        }
+
+        this.setState((prevState) => {
+            const obj = {
+                ...prevState,
+            };
+
+            const { orderForm } = obj;
+            orderForm.name.value = prefilled.name;
+            orderForm.street.value = prefilled.street;
+            orderForm.email.value = prefilled.email;
+            orderForm.zipCode.value = prefilled.zip;
+            orderForm.country.value = prefilled.country;
+
+            obj.formIsValid = true;
+
+            return obj;
+        });
+    }
+
     render() {
         const formElements = [];
         for (let key in this.state.orderForm) {
