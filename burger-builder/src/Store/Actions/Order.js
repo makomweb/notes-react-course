@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import AxiosInstance from '../../AxiosInstance';
 
 export const purchasBurgerSuccess = (id, orderData) => {
     return {
@@ -17,7 +18,7 @@ export const purchasBurgerFail = (error) => {
 
 export const purchaseBurgerStart = (orderData) => {
     return dispatch => {
-        AxiosInstance.post('/orders.json', order)
+        AxiosInstance.post('/orders.json', orderData)
             .then(response => {
                 const { data } = response;
                 console.log(data);

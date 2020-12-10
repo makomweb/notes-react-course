@@ -5,6 +5,8 @@ import AxiosInstance from '../../../AxiosInstance.js';
 import Spinner from '../../../Components/UI/Spinner/Spinner.js';
 import Input from '../../../Components/UI/Input/Input.js';
 import { connect } from 'react-redux';
+import ErrorModal from '../../../HOC/ErrorModal/ErrorModal';
+import * as actions from '../../../Store/Actions';
 
 class ContactData extends Component {
     state = {
@@ -113,14 +115,7 @@ class ContactData extends Component {
             customer: formData
         }
 
-        AxiosInstance.post('/orders.json', order)
-            .then(response => {
-                this.setState({ loading: false });
-                this.props.history.push('/');
-            })
-            .catch(error => {
-                this.setState({ loading: false });
-            });
+        this.props.submitOrder(order);
     }
 
     onInputChanged = (event, inputId) => {
@@ -247,4 +242,9 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(ContactData);
+const dispatchToProps = dispatch => {
+    return {
+        submitOrder: (order) => dispatch(actions.purchaseBurgerStart(order))
+    }
+}
+export default connect(mapStateToProps, dispatchToProps)(ErrorModal(ContactData, AxiosInstance));
