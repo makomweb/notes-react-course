@@ -26,6 +26,7 @@ const reducer = (state = initialState, action) => {
                 },
                 totalPrice: state.totalPrice + state.prices[ingredientName]
             };
+
         case actions.REMOVE_INGREDIENT:
             return {
                 ...state,
@@ -35,19 +36,21 @@ const reducer = (state = initialState, action) => {
                 },
                 totalPrice: state.totalPrice - state.prices[ingredientName]
             };
+
         case actions.UPDATE_PRICES:
             return {
                 ...state,
                 prices: action.prices,
                 error: false
             };
+
         case actions.FETCH_PRICES_FAILED:
             return {
                 ...state,
                 error: true
             };
 
-        case actions.PURCHASE_BURGER_SUCCESS: {
+        case actions.PURCHASE_BURGER_SUCCESS:
             return {
                 ingredients: {
                     lettuce: 0,
@@ -57,7 +60,7 @@ const reducer = (state = initialState, action) => {
                 },
                 totalPrice: 4
             }
-        }
+
         default:
             return state;
     }
