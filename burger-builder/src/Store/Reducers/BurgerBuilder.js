@@ -46,6 +46,18 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: true
             };
+
+        case actions.PURCHASE_BURGER_SUCCESS: {
+            return {
+                ingredients: {
+                    lettuce: 0,
+                    bacon: 0,
+                    cheese: 0,
+                    beef: 0
+                },
+                totalPrice: 4
+            }
+        }
         default:
             return state;
     }
