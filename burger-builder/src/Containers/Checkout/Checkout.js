@@ -19,6 +19,10 @@ class Checkout extends Component {
     }
 
     canCheckout() {
+        if (this.props.purchased) {
+            return false;
+        }
+
         const { ingr } = this.props;
 
         if (ingr) {
@@ -57,7 +61,8 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingr: state.burgerBuilder.ingredients
+        ingr: state.burgerBuilder.ingredients,
+        purchased: state.order.purchased
     };
 }
 
