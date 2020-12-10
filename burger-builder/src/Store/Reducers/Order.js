@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                orders: this.state.orders.concat(order)
+                orders: state.orders.concat(order)
             }
         }
 
