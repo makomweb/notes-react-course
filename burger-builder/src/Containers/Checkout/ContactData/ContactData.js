@@ -243,7 +243,7 @@ const mapStateToProps = state => {
 
 const dispatchToProps = dispatch => {
     return {
-        submitOrder: (order) => dispatch(actions.purchaseBurgerStart(order))
+        submitOrder: (order) => dispatch(actions.purchaseBurger(order))
     }
 }
 export default connect(mapStateToProps, dispatchToProps)(ErrorModal(ContactData, AxiosInstance));
