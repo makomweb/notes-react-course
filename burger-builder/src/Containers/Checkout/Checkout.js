@@ -3,8 +3,12 @@ import CheckoutSummary from '../../Components/Order/CheckoutSummary/CheckoutSumm
 import { Route, Redirect } from 'react-router-dom';
 import ContactData from './ContactData/ContactData.js';
 import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions';
 
 class Checkout extends Component {
+    componentWillMount() {
+        this.props.initPurchase();
+    }
 
     onCheckoutCancelled = () => {
         this.props.history.goBack();
@@ -54,7 +58,13 @@ class Checkout extends Component {
 const mapStateToProps = state => {
     return {
         ingr: state.burgerBuilder.ingredients
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        initPurchase: () => dispatch(actions.purchaseInit())
     }
 }
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
