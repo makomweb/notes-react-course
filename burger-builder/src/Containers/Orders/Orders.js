@@ -4,6 +4,7 @@ import AxiosInstance from '../../AxiosInstance.js';
 import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 
 class Orders extends Component {
 
@@ -12,17 +13,15 @@ class Orders extends Component {
     }
 
     render() {
-        return (
+
+        return this.props.loading ? <Spinner /> :
             <div>
-                {this.props.orders.map(o => {
-                    return (
-                        <Order key={o.id}
-                            ingredients={o.ingredients}
-                            price={o.price} />
-                    );
-                })}
+                {this.props.orders.map(o =>
+                    <Order key={o.id}
+                        ingredients={o.ingredients}
+                        price={o.price} />
+                )}
             </div>
-        );
     }
 }
 
