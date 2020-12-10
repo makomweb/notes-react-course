@@ -2,35 +2,19 @@ import React, { Component } from 'react';
 import Order from '../../Components/Order/Order.js';
 import AxiosInstance from '../../AxiosInstance.js';
 import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions';
 
 class Orders extends Component {
-    state = {
-        orders: [],
-        loading: true
-    }
 
     componentDidMount = () => {
-        AxiosInstance.get('/orders.json')
-            .then(resp => {
-                const fetchedOrders = [];
-                for (let key in resp.data) {
-                    fetchedOrders.push({
-                        ...resp.data[key],
-                        id: key
-                    });
-                }
-
-                this.setState({ loading: false, orders: fetchedOrders });
-            })
-            .catch(err => {
-                this.setState({ loading: false });
-            });
+        this.props.fetchOrders();
     }
 
     render() {
         return (
             <div>
-                {this.state.orders.map(o => {
+                {this.props.orders.map(o => {
                     return (
                         <Order key={o.id}
                             ingredients={o.ingredients}
@@ -42,4 +26,17 @@ class Orders extends Component {
     }
 }
 
-export default ErrorModal(Orders, AxiosInstance);
+const mapStateToProps = state => {
+    return {
+        orders: state.order.orders,
+        loading: state.order.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchOrders: () => dispatch(actions.fetchOrders())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorModal(Orders, AxiosInstance));
