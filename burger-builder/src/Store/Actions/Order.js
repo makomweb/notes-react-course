@@ -16,7 +16,7 @@ export const purchasBurgerFail = (error) => {
     }
 }
 
-export const purchaseBurgerStart = (orderData) => {
+export const purchaseBurger = (orderData) => {
     return dispatch => {
         AxiosInstance.post('/orders.json', orderData)
             .then(response => {
@@ -27,5 +27,12 @@ export const purchaseBurgerStart = (orderData) => {
             .catch(error => {
                 dispatch(purchasBurgerFail(error));
             });
+    }
+}
+
+export const purchaseBurgerStart = (orderData) => {
+    return {
+        type: actionTypes.PURCHASE_BURGER_START
+
     }
 }

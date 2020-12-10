@@ -96,13 +96,11 @@ class ContactData extends Component {
                 valid: true
             },
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
 
     onOrderTapped = event => {
         event.preventDefault();
-        this.setState({ loading: true });
 
         const formData = {};
         for (let key in this.state.orderForm) {
@@ -222,7 +220,7 @@ class ContactData extends Component {
             </form>
         );
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />
         }
 
@@ -238,7 +236,8 @@ class ContactData extends Component {
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        loading: state.loading
     }
 }
 
