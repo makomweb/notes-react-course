@@ -22,4 +22,5 @@
 14. [Redux](./chapter-14.md)
 15. More Redux practice
 16. [Advanced Redux](./chapter-16.md)
+17. [Authentication](./chapter-17.md)
 
