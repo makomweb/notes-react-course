@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Input from '../../Components/UI/Input/Input';
 import Button from '../../Components/UI/Button/Button';
 import styles from './Auth.css';
+import * as actions from '../../Store/Actions';
+import { connect } from 'react-redux';
 
 class Auth extends Component {
 
@@ -55,9 +57,7 @@ class Auth extends Component {
             }
         };
 
-        this.setState({
-            controls: updatedForm
-        });
+        this.setState({ controls: updatedForm });
     }
 
     isValid(value, rules) {
@@ -91,9 +91,15 @@ class Auth extends Component {
         return isValid;
     }
 
+    onSubmitted = event => {
+        event.preventDefault();
+        const { email, password } = this.state.controls;
+        this.props.submit(email.value, password.value);
+    }
+
     render() {
-        const formElements = [];
         const { controls } = this.state;
+        const formElements = [];
         for (let key in controls) {
             formElements.push({
                 id: key,
@@ -114,22 +120,22 @@ class Auth extends Component {
                 changed={(event) => this.onInputChanged(event, elem.id)} />
         ));
 
-        // if (this.props.loading) {
-        //     form = <Spinner />
-        // }
-
         return (
             <div className={styles.Auth}>
-                <form onSubmit={this.onOrderTapped}>
+                <form onSubmit={this.onSubmitted}>
                     {form}
-                    {/* <Button buttonType="Success"
-                        disabled={!this.state.formIsValid}
-                        clicked={this.onOrderTapped}>SUBMIT</Button> */}
-                    <Button buttonType="Success">SUBMIT</Button>
+                    <Button buttonType="Success"
+                        clicked={this.onSubmitted}>SUBMIT</Button>
                 </form>
             </div>
         );
     }
 }
 
-export default Auth;
+const mapDispatchToProps = dispatch => {
+    return {
+        submit: (email, password) => dispatch(actions.authenticate(email, password))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
