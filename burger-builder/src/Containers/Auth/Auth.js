@@ -23,7 +23,7 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false,
-                value: ''
+                value: 'foo@bar.com'
             },
 
             password: {
@@ -39,7 +39,7 @@ class Auth extends Component {
                 },
                 valid: false,
                 touched: false,
-                value: ''
+                value: '123456'
             }
         },
         formIsValid: false,
