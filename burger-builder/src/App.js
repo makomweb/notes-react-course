@@ -4,6 +4,7 @@ import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder';
 import Checkout from './Containers/Checkout/Checkout.js';
 import { Route } from 'react-router-dom';
 import Orders from './Containers/Orders/Orders.js';
+import Auth from './Containers/Auth/Auth';
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
       <Layout>
         <Route path="/checkout" component={Checkout} />
         <Route path="/orders" component={Orders} />
+        <Route path="/auth" component={Auth} />
         <Route path="/" exact component={BurgerBuilder} />
       </Layout>
     );
