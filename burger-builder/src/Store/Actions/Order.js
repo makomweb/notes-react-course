@@ -22,10 +22,10 @@ const purchaseBurgerFail = (error) => {
     }
 }
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (token, orderData) => {
     return dispatch => {
         dispatch(purchaseBurgerStart());
-        AxiosInstance.post('/orders.json', orderData)
+        AxiosInstance.post(`/orders.json?auth=${token}`, orderData)
             .then(response => {
                 const { data } = response;
                 console.log('[Order.js] purchaseBurger', data);
@@ -64,10 +64,10 @@ const fetchOrdersStart = () => {
     }
 }
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
     return dispatch => {
         dispatch(fetchOrdersStart());
-        AxiosInstance.get('/orders.json')
+        AxiosInstance.get(`/orders.json?auth=${token}`)
             .then(resp => {
                 const fetchedOrders = [];
                 for (let key in resp.data) {

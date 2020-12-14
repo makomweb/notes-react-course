@@ -107,13 +107,14 @@ class ContactData extends Component {
             formData[key] = this.state.orderForm[key].value;
         }
 
+        const { ingredients, price, token } = this.props;
         const order = {
-            ingredients: this.props.ingredients,
-            price: this.props.price,
+            ingredients: ingredients,
+            price: price,
             customer: formData
         }
 
-        this.props.submitOrder(order);
+        this.props.submitOrder(token, order);
     }
 
     onInputChanged = (event, inputId) => {
@@ -237,13 +238,14 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.token
     }
 }
 
 const dispatchToProps = dispatch => {
     return {
-        submitOrder: (order) => dispatch(actions.purchaseBurger(order))
+        submitOrder: (token, order) => dispatch(actions.purchaseBurger(token, order))
     }
 }
 export default connect(mapStateToProps, dispatchToProps)(ErrorModal(ContactData, AxiosInstance));
