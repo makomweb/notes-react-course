@@ -7,9 +7,9 @@ class Auth extends Component {
 
     state = {
         controls: {
-            name: {
-                elementType: 'input',
-                elementConfig: {
+            email: {
+                type: 'input',
+                config: {
                     type: 'email',
                     placeholder: 'Mail Address'
                 },
@@ -24,8 +24,8 @@ class Auth extends Component {
             },
 
             password: {
-                elementType: 'input',
-                elementConfig: {
+                type: 'input',
+                config: {
                     type: 'password',
                     placeholder: 'Password'
                 },
@@ -38,15 +38,66 @@ class Auth extends Component {
                 touched: false,
                 value: ''
             }
+        },
+        formIsValid: false
+    }
+
+    onInputChanged = (event, controlName) => {
+        const { value } = event.target;
+
+        const updatedForm = {
+            ...this.state.controls,
+            [controlName]: {
+                ...this.state.controls[controlName],
+                value: value,
+                valid: this.isValid(value, this.state.controls[controlName].validation),
+                touched: true
+            }
+        };
+
+        this.setState({
+            controls: updatedForm
+        });
+    }
+
+    isValid(value, rules) {
+        if (!rules) {
+            return true;
         }
+
+        let isValid = true;
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+
+        if (rules.isNumeric) {
+            const pattern = /^\d+$/;
+            isValid = pattern.test(value) && isValid;
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid;
+        }
+
+        if (rules.isEmail) {
+            const pattern = /^\S+@\S+\.\S+$/;
+            isValid = pattern.test(value) && isValid;
+        }
+
+        return isValid;
     }
 
     render() {
         const formElements = [];
-        for (let key in this.state.orderForm) {
+        const { controls } = this.state;
+        for (let key in controls) {
             formElements.push({
                 id: key,
-                data: this.state.orderForm[key],
+                data: controls[key],
             });
         }
 
