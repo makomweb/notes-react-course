@@ -133,8 +133,14 @@ class Auth extends Component {
             form = <Spinner />
         }
 
+        const errorMessage =
+            this.props.error ?
+                <p>{this.props.error.message}</p> :
+                null;
+
         return (
             <div className={styles.Auth}>
+                {errorMessage}
                 <form onSubmit={this.onSubmitted}>
                     {form}
                     <Button buttonType="Success"
