@@ -33,12 +33,17 @@ const authFailed = (state, action) => {
     });
 }
 
+const authLogout = (state, action) => {
+    return updateObject(state, initialState);
+}
+
 export const reduce = (state = initialState, action) => {
     const { type } = action;
     switch (type) {
         case actions.AUTH_START: return authStart(state, action);
         case actions.AUTH_SUCCESS: return authSuccess(state, action);
         case actions.AUTH_FAILED: return authFailed(state, action);
+        case actions.AUTH_LOGOUT: return authLogout(state, action);
         default: return state;
     }
 }
