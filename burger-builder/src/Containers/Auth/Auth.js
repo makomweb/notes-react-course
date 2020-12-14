@@ -4,6 +4,7 @@ import Button from '../../Components/UI/Button/Button';
 import styles from './Auth.css';
 import * as actions from '../../Store/Actions';
 import { connect } from 'react-redux';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 
 class Auth extends Component {
 
@@ -115,7 +116,7 @@ class Auth extends Component {
             });
         }
 
-        const form = formElements.map(elem => (
+        let form = formElements.map(elem => (
             <Input
                 key={elem.id}
                 type={elem.data.type}
@@ -127,6 +128,10 @@ class Auth extends Component {
                 touched={elem.data.touched}
                 changed={(event) => this.onInputChanged(event, elem.id)} />
         ));
+
+        if (this.props.loading) {
+            form = <Spinner />
+        }
 
         return (
             <div className={styles.Auth}>
@@ -143,10 +148,17 @@ class Auth extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         submit: (email, password, isSignup) => dispatch(actions.authenticate(email, password, isSignup))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
