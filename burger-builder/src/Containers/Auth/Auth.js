@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../Components/UI/Input/Input';
 import Button from '../../Components/UI/Button/Button';
+import styles from './Auth.css';
 
 class Auth extends Component {
 
@@ -67,7 +68,7 @@ class Auth extends Component {
         // }
 
         return (
-            <div>
+            <div className={styles.Auth}>
                 <form onSubmit={this.onOrderTapped}>
                     {form}
                     {/* <Button buttonType="Success"
