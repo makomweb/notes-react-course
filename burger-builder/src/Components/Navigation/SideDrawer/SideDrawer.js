@@ -3,6 +3,7 @@ import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../../UI/Backdrop/Backdrop.js';
 import classes from './SideDrawer.css';
+import { connect } from 'react-redux';
 
 const SideDrawer = props => {
     const attachedClasses = [classes.SideDrawer];
@@ -23,4 +24,10 @@ const SideDrawer = props => {
     );
 };
 
-export default SideDrawer;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
+
+export default connect(mapStateToProps)(SideDrawer);
