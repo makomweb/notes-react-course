@@ -6,8 +6,14 @@ import { Route } from 'react-router-dom';
 import Orders from './Containers/Orders/Orders.js';
 import Auth from './Containers/Auth/Auth';
 import Logout from './Containers/Auth/Logout/Logout';
+import { connect } from 'react-redux';
+import * as actions from './Store/Actions';
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.tryAutoSignup();
+  }
+
   render() {
     return (
       <Layout>
@@ -21,4 +27,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    tryAutoSignup: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
