@@ -3,7 +3,6 @@ import CheckoutSummary from '../../Components/Order/CheckoutSummary/CheckoutSumm
 import { Route, Redirect } from 'react-router-dom';
 import ContactData from './ContactData/ContactData.js';
 import { connect } from 'react-redux';
-import * as actions from '../../Store/Actions';
 
 class Checkout extends Component {
     onCheckoutCancelled = () => {
