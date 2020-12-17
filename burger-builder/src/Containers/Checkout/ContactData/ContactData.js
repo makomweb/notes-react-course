@@ -7,7 +7,7 @@ import Input from '../../../Components/UI/Input/Input.js';
 import { connect } from 'react-redux';
 import ErrorModal from '../../../HOC/ErrorModal/ErrorModal';
 import * as actions from '../../../Store/Actions';
-import { updateObject } from '../../../Shared/Utility';
+import { updateObject, isValid } from '../../../Shared/Utility';
 
 class ContactData extends Component {
     state = {
@@ -79,6 +79,7 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    isEmail: true,
                     errormessage: 'Please enter a valid email address!'
                 },
                 valid: false,
@@ -124,7 +125,7 @@ class ContactData extends Component {
         const control = orderForm[inputId];
         const updatedFormElement = updateObject(control, {
             value: event.target.value,
-            valid: this.isValid(event.target.value, control.validation),
+            valid: isValid(event.target.value, control.validation),
             touched: true
         });
 
@@ -142,27 +143,6 @@ class ContactData extends Component {
             orderForm: updatedForm,
             formIsValid: formIsValid
         });
-    }
-
-    isValid(value, rules) {
-        if (!rules) {
-            return true;
-        }
-
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        return isValid;
     }
 
     componentDidMount = () => {
