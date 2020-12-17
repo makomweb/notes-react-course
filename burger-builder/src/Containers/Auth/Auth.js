@@ -6,6 +6,7 @@ import * as actions from '../../Store/Actions';
 import { connect } from 'react-redux';
 import Spinner from '../../Components/UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
+import { updateObject } from '../../Shared/Utility';
 
 class Auth extends Component {
 
@@ -49,16 +50,13 @@ class Auth extends Component {
 
     onInputChanged = (event, controlName) => {
         const { value } = event.target;
-
-        const updatedForm = {
-            ...this.state.controls,
-            [controlName]: {
-                ...this.state.controls[controlName],
+        const updatedForm = updateObject(this.state.controls, {
+            [controlName]: updateObject(this.state.controls[controlName], {
                 value: value,
                 valid: this.isValid(value, this.state.controls[controlName].validation),
                 touched: true
-            }
-        };
+            })
+        });
 
         this.setState({ controls: updatedForm });
     }

@@ -7,6 +7,7 @@ import Input from '../../../Components/UI/Input/Input.js';
 import { connect } from 'react-redux';
 import ErrorModal from '../../../HOC/ErrorModal/ErrorModal';
 import * as actions from '../../../Store/Actions';
+import { updateObject } from '../../../Shared/Utility';
 
 class ContactData extends Component {
     state = {
@@ -119,20 +120,18 @@ class ContactData extends Component {
     }
 
     onInputChanged = (event, inputId) => {
-        const updatedForm = {
-            ...this.state.orderForm
-        };
+        const { orderForm } = this.state;
+        const control = orderForm[inputId];
+        const updatedFormElement = updateObject(control, {
+            value: event.target.value,
+            valid: this.isValid(event.target.value, control.validation),
+            touched: true
+        });
 
-        const updatedFormElement = {
-            ...updatedForm[inputId]
-        };
 
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid =
-            this.isValid(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-
-        updatedForm[inputId] = updatedFormElement;
+        const updatedForm = updateObject(orderForm, {
+            [inputId]: updatedFormElement
+        });
 
         let formIsValid = true;
         for (let inputId in updatedForm) {
