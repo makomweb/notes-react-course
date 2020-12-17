@@ -69,27 +69,14 @@ const fetchPricesFailed = (state) => {
 }
 
 const reducer = (state = initialState, action) => {
-
     const { type } = action;
-
     switch (type) {
-        case actions.ADD_INGREDIENT:
-            return addIngredient(state, action);
-
-        case actions.REMOVE_INGREDIENT:
-            return removeIngredient(state, action);
-
-        case actions.UPDATE_PRICES:
-            return updatePrices(state, action);
-
-        case actions.FETCH_PRICES_FAILED:
-            return fetchPricesFailed(state);
-
-        case actions.PURCHASE_BURGER_SUCCESS:
-            return storeBurgerPurchaseSuccess(state);
-
-        default:
-            return state;
+        case actions.ADD_INGREDIENT: return addIngredient(state, action);
+        case actions.REMOVE_INGREDIENT: return removeIngredient(state, action);
+        case actions.UPDATE_PRICES: return updatePrices(state, action);
+        case actions.FETCH_PRICES_FAILED: return fetchPricesFailed(state);
+        case actions.PURCHASE_BURGER_SUCCESS: return storeBurgerPurchaseSuccess(state);
+        default: return state;
     }
 }
 
