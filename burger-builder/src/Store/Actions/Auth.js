@@ -66,7 +66,6 @@ export const authenticate = (email, password, isSignup) => {
                 dispatch(checkAuthTimeout(expiresIn))
             })
             .catch(error => {
-                console.log(error);
                 dispatch(authFailed(error.response.data.error));
             });
     }

@@ -28,11 +28,9 @@ export const purchaseBurger = (token, orderData) => {
         AxiosInstance.post(`/orders.json?auth=${token}`, orderData)
             .then(response => {
                 const { data } = response;
-                console.log('[Order.js] purchaseBurger', data);
                 dispatch(purchaseBurgerSuccess(data.name, orderData));
             })
             .catch(error => {
-                console.log('[Order.js] purchaseBurger', error);
                 dispatch(purchaseBurgerFail(error));
             });
     }
