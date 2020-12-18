@@ -25,4 +25,6 @@
 17. [Advanced Redux](./chapter-17.md)
 18. [Authentication](./chapter-18.md)
 19. Improvements 
+20. Testing
+
 
