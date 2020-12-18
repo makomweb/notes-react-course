@@ -1,0 +1,5 @@
+# Testing
+
+Install _enzyme_
+
+`npm install --save enzyme react-test-renderer enzyme-adapter-react-16`
