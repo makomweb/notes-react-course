@@ -50,3 +50,12 @@ npm ERR! Test failed.  See above for more details.
 ~~~
 
 I was able to fix it by removing the _node_modules_ folder with `rm -rf ./node_modules` an running `npm install`.
+
+## Links
+
+- [Jest](https://jestjs.io/)
+- [Enzyme API Reference](https://enzymejs.github.io/enzyme/docs/api/)
+
+## Testing components connected to the store
+
+_Enzyme_ provides functions to manipulate state for testing components
