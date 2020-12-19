@@ -11,12 +11,12 @@ describe(
         let wrapper;
 
         beforeEach(() => {
-            wrapper = shallow(<BurgerBuilder />);
+            wrapper = shallow(<BurgerBuilder onFetchPrices={() => { }} />);
         });
 
         it('should render <BuildControls /> when receiving ingredients!',
             () => {
-                wrapper.setProps({ ingredients: { lettuce: 0 } });
+                wrapper.setProps({ ings: { lettuce: 0 } });
                 expect(wrapper.find(BuildControls)).toHaveLength(1);
             });
 
