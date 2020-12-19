@@ -8,10 +8,16 @@ configure({ adapter: new Adapter() });
 describe(
     '<NavigationItems />',
     () => {
-        it('should render 2 <NavigationItem/> elements if not authenticated!',
+        it('should render 2 <NavigationItem/> elements if NOT authenticated!',
             () => {
                 const wrapper = shallow(<NavigationItems />);
                 expect(wrapper.find(NavigationItem)).toHaveLength(2);
+            });
+
+        it('should render 3 <NavigationItem/> elements if authenticated!',
+            () => {
+                const wrapper = shallow(<NavigationItems isAuthenticated />);
+                expect(wrapper.find(NavigationItem)).toHaveLength(3);
             });
     }
 );
