@@ -58,4 +58,4 @@ I was able to fix it by removing the _node_modules_ folder with `rm -rf ./node_m
 
 ## Testing components connected to the store
 
-_Enzyme_ provides functions to manipulate state for testing components
+_Enzyme_ provides functions to manipulate state for testing components.
