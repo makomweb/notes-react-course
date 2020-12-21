@@ -40,3 +40,8 @@ Install additional dependencies to enable React:
 [Babel](https://babeljs.io/)
 
 run `npm install --save-dev @babel/core @babel/preset-env @babel/preset-react @babel/preset-stage-2 babel-loader @babel/plugin-proposal-class-properties`
+
+Install additional dependencies to take care of CSS:
+
+`npm install --save-dev style-loader css-loader`
+
