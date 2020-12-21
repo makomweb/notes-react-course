@@ -70,3 +70,7 @@ webpack-dev-server
 
 `npm install --save-dev style-loader url-loader webpack webpack-cli webpack-dev-server`
 
+Install more CSS dependencies:
+
+`npm install --save-dev postcss-loader autoprefixer`
+
