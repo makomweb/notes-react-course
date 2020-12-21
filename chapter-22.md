@@ -19,3 +19,19 @@
 ## install dependencies
 
 `npm install --save react react-dom react-router-dom`
+
+When facing an error:
+
+~~~bash
+Please install 'webpack-cli' in addition to webpack itself to use the CLI
+-> When using npm: npm i -D webpack-cli
+-> When using yarn: yarn add -D webpack-cli
+internal/modules/cjs/loader.js:960
+~~~
+
+run `npm install --save-dev webpack-cli`
+
+Still getting an error:
+
+Create a file `webpack.config.js` next to the `package.json`.
+
