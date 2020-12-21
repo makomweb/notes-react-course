@@ -16,3 +16,6 @@
 - support image imports
 - optimize code (minify)
 
+## install dependencies
+
+`npm install --save react react-dom react-router-dom`
