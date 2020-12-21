@@ -52,3 +52,7 @@ Install more CSS dependencies:
 Install dependency to load image assets:
 
 `npm install --save-dev url-loader`
+
+Add a missing dependency:
+
+`npm install --save-dev file-loader`
