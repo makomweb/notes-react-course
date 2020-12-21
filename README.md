@@ -26,5 +26,6 @@
 18. [Authentication](./chapter-18.md)
 19. Improvements 
 20. Testing
+21. Deployment
 
 
