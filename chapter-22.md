@@ -45,3 +45,7 @@ Install additional dependencies to take care of CSS:
 
 `npm install --save-dev style-loader css-loader`
 
+Install more CSS dependencies:
+
+`npm install --save-dev postcss-loader autoprefixer`
+
