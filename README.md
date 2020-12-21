@@ -28,5 +28,7 @@
 20. Testing
 21. Deployment
 22. Webpack
+23. NextJS
+
 
 
