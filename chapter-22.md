@@ -35,3 +35,8 @@ Still getting an error:
 
 Create a file `webpack.config.js` next to the `package.json`.
 
+Install additional dependencies to enable React:
+
+[Babel](https://babeljs.io/)
+
+run `npm install --save-dev @babel/core @babel/preset-env @babel/preset-react @babel/preset-stage-2 babel-loader @babel/plugin-proposal-class-properties`
