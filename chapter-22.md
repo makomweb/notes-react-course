@@ -49,3 +49,6 @@ Install more CSS dependencies:
 
 `npm install --save-dev postcss-loader autoprefixer`
 
+Install dependency to load image assets:
+
+`npm install --save-dev url-loader`
