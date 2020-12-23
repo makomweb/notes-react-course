@@ -10,7 +10,6 @@
     top: 30%;
     left: 25%;
     width: 50%;
-    transition: all 300ms ease-out;
 }
 
 .ModalOpen {
@@ -28,11 +27,11 @@
     }
     50% {
         opacity: 1;
-        transform: translateY(20%);
+        transform: translateY(90%);
     }
     100% {
         opacity: 1;
-        transform: translateY(0%);
+        transform: translateY(0);
     }
 }
 
