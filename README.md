@@ -29,6 +29,6 @@
 21. Deployment
 22. Webpack
 23. NextJS
-
+24. Transitions and animations
 
 
