@@ -35,6 +35,7 @@ class App extends Component {
             width: 100,
             height: 100,
             margin: 'auto',
+            transition: 'opacity 1s ease-out',
             opacity: state === 'exited' ? 0 : 1
           }} />)}
         </Transition>
