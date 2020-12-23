@@ -40,7 +40,7 @@ class App extends Component {
             height: 100,
             margin: 'auto',
             transition: 'opacity 1s ease-out',
-            opacity: state === 'exited' ? 0 : 1
+            opacity: state === 'entering' ? 0 : 1
           }} />)}
         </Transition>
         {this.state.modalIsOpen ? <Modal closed={this.closeModal} show /> : null}
