@@ -30,7 +30,13 @@ class App extends Component {
         <button className="Button" onClick={this.handleToggle}>Toggle</button>
         <br></br>
         <Transition in={this.state.showBlock} duration={1000} >
-          {state => <p>{state}</p>}
+          {state => (<div style={{
+            backgroundColor: 'red',
+            width: 100,
+            height: 100,
+            margin: 'auto',
+            opacity: state === 'exited' ? 0 : 1
+          }} />)}
         </Transition>
         {this.state.modalIsOpen ? <Modal closed={this.closeModal} show /> : null}
         {this.state.modalIsOpen ? <Backdrop show /> : null}
