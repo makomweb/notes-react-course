@@ -30,5 +30,6 @@
 22. Webpack
 23. NextJS
 24. Transitions and animations
+25. Redux Saga
 
 
