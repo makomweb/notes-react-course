@@ -33,7 +33,7 @@ const store = createStore(
     )
 );
 
-//sagaMiddleware.run(logoutSaga);
+sagaMiddleware.run(logoutSaga);
 
 const MyApp = (
     <Provider store={store}>
