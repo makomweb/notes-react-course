@@ -36,18 +36,16 @@ function purchaseFailed(state) {
 }
 
 function purchaseSuccess(action, state) {
-    {
-        const order = {
-            ...action.orderData,
-            id: action.orderId
-        };
-        return {
-            ...state,
-            loading: false,
-            orders: state.orders.concat(order),
-            purchased: true
-        };
-    }
+    const order = {
+        ...action.orderData,
+        id: action.orderId
+    };
+    return {
+        ...state,
+        loading: false,
+        orders: state.orders.concat(order),
+        purchased: true
+    };
 }
 
 function purchaseStart(state) {
