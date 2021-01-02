@@ -35,10 +35,9 @@ export const logoutSuccess = () => {
 }
 
 const checkAuthTimeout = (expirationTime) => {
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(logout());
-        }, expirationTime * 1000) // seconds
+    return {
+        type: AUTH_CHECK_TIMEOUT,
+        expirationTime: 10 //expirationTime
     }
 }
 
