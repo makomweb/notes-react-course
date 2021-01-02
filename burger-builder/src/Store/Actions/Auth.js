@@ -1,13 +1,13 @@
 import * as actionTypes from '../Actions/actionTypes';
 import axios from 'axios';
 
-const authStart = () => {
+export const authStart = () => {
     return {
         type: actionTypes.AUTH_START
     }
 }
 
-const authSuccess = (token, userId) => {
+export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
@@ -15,7 +15,7 @@ const authSuccess = (token, userId) => {
     }
 }
 
-const authFailed = (error) => {
+export const authFailed = (error) => {
     return {
         type: actionTypes.AUTH_FAILED,
         error: error
@@ -34,7 +34,7 @@ export const logoutSuccess = () => {
     }
 }
 
-const checkAuthTimeout = (expirationTime) => {
+export const checkAuthTimeout = (expirationTime) => {
     return {
         type: actionTypes.AUTH_CHECK_TIMEOUT,
         expirationTime: expirationTime
