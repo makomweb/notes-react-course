@@ -2,7 +2,7 @@ import { takeEvery } from 'redux-saga/effects';
 import * as actionTypes from '../Actions/actionTypes';
 import { logoutSaga, checkoutAuthTimeoutSaga, authUserSaga, authCheckStateSaga } from './Auth'
 import { fetchPricesSaga } from './BurgerBuilder';
-import { purchaseBurgerSaga } from './Orders';
+import { purchaseBurgerSaga, fetchOrdersSaga } from './Orders';
 
 export function* watchAll() {
     yield takeEvery(actionTypes.AUTH_CHECK_TIMEOUT, checkoutAuthTimeoutSaga);
@@ -17,4 +17,5 @@ export function* watchBurgerBuilder() {
 
 export function* watchOrder() {
     yield takeEvery(actionTypes.PURCHASE_BURGER, purchaseBurgerSaga);
+    yield takeEvery(actionTypes.FETCH_ORDERS, fetchOrdersSaga);
 }
