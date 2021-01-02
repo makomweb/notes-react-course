@@ -13,3 +13,7 @@ function* doIt(action) {
 
 }
 ~~~
+
+## API docs
+
+[https://redux-saga.js.org/](https://redux-saga.js.org/)
