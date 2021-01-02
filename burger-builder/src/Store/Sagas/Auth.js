@@ -10,7 +10,7 @@ export function* logoutSaga(action) {
 }
 
 export function* checkoutAuthTimeoutSaga(action) {
-    yield delay(action.expirationTime * 1000);
+    yield delay(action.expirationTime * 1000); // s
     yield put(actions.logout());
 }
 
