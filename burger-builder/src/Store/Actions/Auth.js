@@ -37,7 +37,7 @@ export const logoutSuccess = () => {
 const checkAuthTimeout = (expirationTime) => {
     return {
         type: actionTypes.AUTH_CHECK_TIMEOUT,
-        expirationTime: 0.5 //expirationTime
+        expirationTime: expirationTime
     }
 }
 
