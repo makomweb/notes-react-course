@@ -16,7 +16,7 @@ export const removeIngredient = (name) => {
 
 export const updatePrices = (prices) => {
     return {
-        type: actionTypes.UPDATE_PRICES,
+        type: actionTypes.FETCH_PRICES_SUCCESS,
         prices: prices
     };
 }

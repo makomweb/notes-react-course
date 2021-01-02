@@ -1,10 +1,13 @@
 export {
     addIngredient,
     removeIngredient,
-    fetchPrices,
-    updatePrices,
-    fetchPricesFailed,
 } from './BurgerBuilder';
+
+export {
+    fetchPrices,
+    fetchPricesSuccess,
+    fetchPricesFailed,
+} from './FetchPrices';
 
 export {
     purchaseBurger,

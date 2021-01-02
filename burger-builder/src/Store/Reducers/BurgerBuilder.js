@@ -42,7 +42,7 @@ const removeIngredient = (state, action) => {
     return updateObject(state, updatedState);
 }
 
-const updatePrices = (state, action) => {
+const fetchPricesSuccess = (state, action) => {
     return updateObject(state, {
         prices: action.prices,
         error: false,
@@ -73,7 +73,7 @@ const reducer = (state = initialState, action) => {
     switch (type) {
         case actions.ADD_INGREDIENT: return addIngredient(state, action);
         case actions.REMOVE_INGREDIENT: return removeIngredient(state, action);
-        case actions.UPDATE_PRICES: return updatePrices(state, action);
+        case actions.FETCH_PRICES_SUCCESS: return fetchPricesSuccess(state, action);
         case actions.FETCH_PRICES_FAILED: return fetchPricesFailed(state);
         case actions.PURCHASE_BURGER_SUCCESS: return storeBurgerPurchaseSuccess(state);
         default: return state;
