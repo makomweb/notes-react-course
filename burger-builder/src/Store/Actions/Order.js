@@ -35,6 +35,20 @@ export const purchaseInit = () => {
     }
 }
 
+export const fetchOrders = (token, userId) => {
+    return {
+        type: actionTypes.FETCH_ORDERS,
+        token: token,
+        userId: userId
+    }
+}
+
+export const fetchOrdersStart = () => {
+    return {
+        type: actionTypes.FETCH_ORDERS_START
+    }
+}
+
 export const fetchOrdersSuccess = (orders) => {
     return {
         type: actionTypes.FETCH_ORDERS_SUCCESS,
@@ -46,19 +60,5 @@ export const fetchOrdersFailed = (error) => {
     return {
         type: actionTypes.FETCH_ORDERS_FAILED,
         error: error
-    }
-}
-
-export const fetchOrdersStart = () => {
-    return {
-        type: actionTypes.FETCH_ORDERS_START
-    }
-}
-
-export const fetchOrders = (token, userId) => {
-    return {
-        type: actionTypes.FETCH_ORDERS,
-        token: token,
-        userId: userId
     }
 }
