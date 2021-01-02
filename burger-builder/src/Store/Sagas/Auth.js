@@ -2,7 +2,7 @@ import { delay, put, call } from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../Actions/index';
 
-export function* logoutSaga(action) {
+export function* logoutSaga() {
     yield call([localStorage, 'removeItem'], "token");
     yield call([localStorage, 'removeItem'], "token-expires");
     yield call([localStorage, 'removeItem'], "user-id");
@@ -44,7 +44,7 @@ export function* authUserSaga(action) {
     }
 }
 
-export function* authCheckStateSaga(action) {
+export function* authCheckStateSaga() {
     const token = localStorage.getItem('token');
     if (!token) {
         yield put(actions.logout());
