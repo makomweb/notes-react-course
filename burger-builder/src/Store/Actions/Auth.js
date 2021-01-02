@@ -42,33 +42,11 @@ export const checkAuthTimeout = (expirationTime) => {
 }
 
 export const authenticate = (email, password, isSignup) => {
-    return dispatch => {
-        dispatch(authStart());
-
-        const apiKey = 'AIzaSyDA02EJ4cRq6kXJeEAcX2EbJXi56-Fqt1A';
-        const address = isSignup ?
-            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}` :
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
-
-        const payload = {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        }
-
-        axios.post(address, payload)
-            .then(response => {
-                const { idToken, localId, expiresIn } = response.data;
-                const expiresAt = new Date(new Date().getTime() + expiresIn /* ms */ * 1000);
-                localStorage.setItem('token', idToken);
-                localStorage.setItem('token-expires', expiresAt);
-                localStorage.setItem('user-id', localId);
-                dispatch(authSuccess(idToken, localId));
-                dispatch(checkAuthTimeout(expiresIn))
-            })
-            .catch(error => {
-                dispatch(authFailed(error.response.data.error));
-            });
+    return {
+        type: actionTypes.AUTH_USER,
+        email: email,
+        password: password,
+        isSignup: isSignup
     }
 }
 

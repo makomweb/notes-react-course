@@ -1,6 +1,5 @@
 import { delay, put } from 'redux-saga/effects';
 import axios from 'axios';
-import * as actionTypes from '../Actions/actionTypes';
 import * as actions from '../Actions/index';
 
 export function* logoutSaga(action) {
@@ -29,16 +28,18 @@ export function* authUserSaga(action) {
         returnSecureToken: true
     }
 
-    const response = yield axios.post(address, payload);
+    try {
+        const response = yield axios.post(address, payload);
+        const { idToken, localId, expiresIn } = response.data;
+        const expiresAt = new Date(new Date().getTime() + expiresIn /* ms */ * 1000);
+        localStorage.setItem('token', idToken);
+        localStorage.setItem('token-expires', expiresAt);
+        localStorage.setItem('user-id', localId);
 
-    const { idToken, localId, expiresIn } = response.data;
-    const expiresAt = new Date(new Date().getTime() + expiresIn /* ms */ * 1000);
-    localStorage.setItem('token', idToken);
-    localStorage.setItem('token-expires', expiresAt);
-    localStorage.setItem('user-id', localId);
-
-    yield put(actions.authSuccess(idToken, localId));
-    yield put(actions.checkAuthTimeout(expiresIn));
-
-    yield put(actions.authFailed(error.response.data.error));
+        yield put(actions.authSuccess(idToken, localId));
+        yield put(actions.checkAuthTimeout(expiresIn));
+    }
+    catch (error) {
+        yield put(actions.authFailed(error.response.data.error));
+    }
 }
