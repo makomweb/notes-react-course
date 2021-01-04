@@ -22,12 +22,13 @@ function Ingredients() {
             amount: data[key].amount
           });
         }
-        //setUserIngredients(ingredients);
+        setUserIngredients(ingredients);
       })
       .catch(error => {
         console.log('fetching ingredients has failed! ', error);
       });
-  });
+  }, []);
+  // ^ with the empty array as the second argument useEffect() acts like componentDidMount() in class-based components
 
   const onIngredientAdded = ingredient => {
     // browser-API
