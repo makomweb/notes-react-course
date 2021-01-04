@@ -30,6 +30,8 @@ function Ingredients() {
   }, []);
   // ^ with the empty array as the second argument useEffect() acts like componentDidMount() in class-based components
 
+  useEffect(() => console.log('rendering ingredients'));
+
   const onIngredientAdded = ingredient => {
     // browser-API
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
