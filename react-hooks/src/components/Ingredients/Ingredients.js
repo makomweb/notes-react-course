@@ -9,7 +9,7 @@ function Ingredients() {
     //{ id: Math.random().toString(), title: 'Apples', amount: '3' }
   ]);
 
-  useEffect(() => {
+  useEffect(() => { // useEffect() acts like componentDidUpdate() in class-based components
     /* runs after the component was rendered! */
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json')
       .then(response => response.json())
