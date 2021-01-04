@@ -5,15 +5,24 @@ import IngredientList from './IngredientList';
 import Search from './Search';
 
 function Ingredients() {
-  const [ingredients, setIngredients] = useState([]);
+  const [userIngredients, setUserIngredients] = useState([
+    //{ id: Math.random().toString(), title: 'Apples', amount: '3' }
+  ]);
+
+  const onIngredientAdded = ingredient => {
+    setUserIngredients(prevIngredients => [...prevIngredients, {
+      id: Math.random().toString(),
+      ...ingredient // spread operator adds all key-value-pairs to this object
+    }]);
+  }
 
   return (
     <div className="App">
-      <IngredientForm />
+      <IngredientForm addIngredient={onIngredientAdded} />
       <section>
         <Search />
         {/* Need to add list here! */}
-        <IngredientList ingredients={ingredients} />
+        <IngredientList ingredients={userIngredients} onRemoveItem={() => { }} />
       </section>
     </div>
   );
