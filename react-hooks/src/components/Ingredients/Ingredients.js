@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -8,6 +8,27 @@ function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([
     //{ id: Math.random().toString(), title: 'Apples', amount: '3' }
   ]);
+
+  useEffect(() => {
+    /* runs after the component was rendered! */
+    fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json')
+      .then(response => response.json())
+      .then(data => {
+        const ingredients = [];
+        for (const key in data) {
+          ingredients.push({
+            id: key,
+            title: data[key].title,
+            amount: data[key].amount
+          });
+        }
+        //setUserIngredients(ingredients);
+      })
+      .catch(error => {
+        console.log('fetching ingredients has failed! ', error);
+      });
+
+  });
 
   const onIngredientAdded = ingredient => {
     // browser-API
@@ -27,7 +48,7 @@ function Ingredients() {
         }]);
       })
       .catch(error => {
-        console.log('REQUEST failed! ', error);
+        console.log('storing ingredient has failed! ', error);
       });
   }
 
