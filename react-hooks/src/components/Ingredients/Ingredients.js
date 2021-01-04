@@ -10,10 +10,25 @@ function Ingredients() {
   ]);
 
   const onIngredientAdded = ingredient => {
-    setUserIngredients(prevIngredients => [...prevIngredients, {
-      id: Math.random().toString(),
-      ...ingredient // spread operator adds all key-value-pairs to this object
-    }]);
+    // browser-API
+    fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(ingredient),
+        header: { 'Content-Type': 'application/json' }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseData => {
+        setUserIngredients(prevIngredients => [...prevIngredients, {
+          id: responseData.name,
+          ...ingredient
+        }]);
+      })
+      .catch(error => {
+        console.log('REQUEST failed! ', error);
+      });
   }
 
   const onIngredientRemoved = id => {
