@@ -27,7 +27,6 @@ function Ingredients() {
       .catch(error => {
         console.log('fetching ingredients has failed! ', error);
       });
-
   });
 
   const onIngredientAdded = ingredient => {
