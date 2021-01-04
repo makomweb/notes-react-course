@@ -5,12 +5,9 @@ import IngredientList from './IngredientList';
 import Search from './Search';
 
 function Ingredients() {
-  const [userIngredients, setUserIngredients] = useState([
-    //{ id: Math.random().toString(), title: 'Apples', amount: '3' }
-  ]);
+  const [userIngredients, setUserIngredients] = useState([]);
 
-  useEffect(() => { // useEffect() acts like componentDidUpdate() in class-based components
-    /* runs after the component was rendered! */
+  useEffect(() => {
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json')
       .then(response => response.json())
       .then(data => {
@@ -28,12 +25,12 @@ function Ingredients() {
         console.log('fetching ingredients has failed! ', error);
       });
   }, []);
-  // ^ with the empty array as the second argument useEffect() acts like componentDidMount() in class-based components
 
-  useEffect(() => console.log('rendering ingredients'));
+  useEffect(() => {
+    console.log('rendering ingredients ', userIngredients)
+  }, [userIngredients]);
 
   const onIngredientAdded = ingredient => {
-    // browser-API
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
       {
         method: 'POST',
@@ -64,7 +61,6 @@ function Ingredients() {
       <IngredientForm addIngredient={onIngredientAdded} />
       <section>
         <Search />
-        {/* Need to add list here! */}
         <IngredientList ingredients={userIngredients} onRemoveItem={onIngredientRemoved} />
       </section>
     </div>
