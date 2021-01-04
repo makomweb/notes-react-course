@@ -20,20 +20,22 @@ const IngredientForm = React.memo(props => {
             <input type="text" id="title"
               value={inputState[0].title}
               onChange={event =>
-                inputState[1]({
+                inputState[1](prevInputState =>
+                ({
                   title: event.target.value,
-                  amount: inputState[0].amount
-                })} />
+                  amount: prevInputState.amount
+                }))} />
           </div>
           <div className="form-control">
             <label htmlFor="amount">Amount</label>
             <input type="number" id="amount"
               value={inputState[0].amount}
               onChange={event =>
-                inputState[1]({
+                inputState[1](prevInputState =>
+                ({
                   amount: event.target.value,
-                  title: inputState[0].title
-                })} />
+                  title: prevInputState.title
+                }))} />
           </div>
           <div className="ingredient-form__actions">
             <button type="submit">Add Ingredient</button>
