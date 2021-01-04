@@ -16,13 +16,18 @@ function Ingredients() {
     }]);
   }
 
+  const onIngredientRemoved = id => {
+    const newIngredients = userIngredients.filter(obj => obj.id !== id);
+    setUserIngredients(newIngredients);
+  }
+
   return (
     <div className="App">
       <IngredientForm addIngredient={onIngredientAdded} />
       <section>
         <Search />
         {/* Need to add list here! */}
-        <IngredientList ingredients={userIngredients} onRemoveItem={() => { }} />
+        <IngredientList ingredients={userIngredients} onRemoveItem={onIngredientRemoved} />
       </section>
     </div>
   );
