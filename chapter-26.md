@@ -85,3 +85,13 @@ const IngredientForm = React.memo(props => {
 
 export default IngredientForm;
 ~~~
+
+## Understanding _useState()_
+
+- function component `const MyComp = props => ...` calls `useState(initialState)`
+- returns with 2 elements
+    - state pointer
+    - state update functions
+- create state
+- managed by React behind the scenes
+- must be used on the root level of a functional React component
