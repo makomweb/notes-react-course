@@ -3,10 +3,12 @@ import React, { useState, useCallback } from 'react';
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import Search from './Search';
+import ErrorModal from '../UI/ErrorModal';
 
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
   const onIngredientAdded = ingredient => {
     setIsLoading(true);
@@ -27,7 +29,7 @@ function Ingredients() {
         }]);
       })
       .catch(error => {
-        console.log('adding ingredient has failed! ', error);
+        setError('Adding ingredient has failed! ', error);
       })
       .finally(() => setIsLoading(false));
   }
@@ -44,7 +46,7 @@ function Ingredients() {
         setUserIngredients(newIngredients);
       })
       .catch(error => {
-        console.log('removing ingredient has failed! ', error);
+        setError('Removing ingredient has failed! ', error);
       })
       .finally(() => setIsLoading(false));
   }
@@ -53,8 +55,14 @@ function Ingredients() {
     setUserIngredients(ingredients);
   }, []);
 
+  const onErrorClose = () => {
+    setError(null);
+    setIsLoading(false);
+  }
+
   return (
     <div className="App">
+      {error ? <ErrorModal onClose={onErrorClose}>{error}</ErrorModal> : null}
       <IngredientForm addIngredient={onIngredientAdded} isLoading={isLoading} />
       <section>
         <Search loadIngredients={onLoadIngredients} />
