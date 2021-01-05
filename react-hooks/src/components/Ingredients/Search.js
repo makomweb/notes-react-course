@@ -18,13 +18,13 @@ const Search = React.memo(props => {
             amount: data[key].amount
           });
         }
-        props.loadIngredients(ingredients);
+        //props.loadIngredients(ingredients);
       })
       .catch(error => {
         console.log('fetching ingredients has failed! ', error);
       });
-  }, [enteredFilter]);
-  
+  }, [enteredFilter, props]);
+
   return (
     <section className="search">
       <Card>
