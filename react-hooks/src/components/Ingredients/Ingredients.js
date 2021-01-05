@@ -52,8 +52,17 @@ function Ingredients() {
   }
 
   const onIngredientRemoved = id => {
+    /*
     const newIngredients = userIngredients.filter(obj => obj.id !== id);
     setUserIngredients(newIngredients);
+    */
+
+    const index = userIngredients.findIndex(obj => obj.id === id);
+
+    if (index !== -1) {
+      const newIngredients = userIngredients.splice(index, 1);
+      setUserIngredients(newIngredients);
+    }
   }
 
   return (
