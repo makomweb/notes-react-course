@@ -9,7 +9,7 @@ const Search = React.memo(props => {
   const inputRef = useRef();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       // if previous value is the same like current value (note: it changes when typing!)
       if (enteredFilter === inputRef.current.value) {
         const query = enteredFilter.length === 0
@@ -34,6 +34,11 @@ const Search = React.memo(props => {
           });
       }
     }, 500);
+
+    return () => {
+      /* Cleanup comes here! */
+      clearTimeout(timer);
+    };
   }, [enteredFilter, loadIngredients, inputRef]);
 
   return (
