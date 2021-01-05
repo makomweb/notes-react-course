@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -6,29 +6,6 @@ import Search from './Search';
 
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
-
-  useEffect(() => {
-    fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json')
-      .then(response => response.json())
-      .then(data => {
-        const ingredients = [];
-        for (const key in data) {
-          ingredients.push({
-            id: key,
-            title: data[key].title,
-            amount: data[key].amount
-          });
-        }
-        setUserIngredients(ingredients);
-      })
-      .catch(error => {
-        console.log('fetching ingredients has failed! ', error);
-      });
-  }, []);
-
-  useEffect(() => {
-    console.log('rendering ingredients ', userIngredients)
-  }, [userIngredients]);
 
   const onIngredientAdded = ingredient => {
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
