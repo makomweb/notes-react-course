@@ -27,7 +27,7 @@ function Ingredients() {
         }]);
       })
       .catch(error => {
-        console.log('storing ingredient has failed! ', error);
+        console.log('adding ingredient has failed! ', error);
       })
       .finally(() => setIsLoading(false));
   }
@@ -44,7 +44,7 @@ function Ingredients() {
         setUserIngredients(newIngredients);
       })
       .catch(error => {
-        console.log('storing ingredient has failed! ', error);
+        console.log('removing ingredient has failed! ', error);
       })
       .finally(() => setIsLoading(false));
   }
