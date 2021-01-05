@@ -65,11 +65,15 @@ function Ingredients() {
     }
   }
 
+  const onLoadIngredients = ingredients => {
+    console.log('load!', [ingredients]);
+  }
+
   return (
     <div className="App">
       <IngredientForm addIngredient={onIngredientAdded} />
       <section>
-        <Search />
+        <Search loadIngredients={onLoadIngredients} />
         <IngredientList ingredients={userIngredients} onRemoveItem={onIngredientRemoved} />
       </section>
     </div>
