@@ -29,11 +29,17 @@ function Ingredients() {
   }
 
   const onIngredientRemoved = id => {
-    const index = userIngredients.findIndex(obj => obj.id === id);
-    if (index !== -1) {
-      const newIngredients = userIngredients.splice(index, 1);
-      setUserIngredients(newIngredients);
-    }
+    fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
+      {
+        method: 'DELETE'
+      })
+      .then(response => {
+        const newIngredients = userIngredients.filter(obj => obj.id !== id);
+        setUserIngredients(newIngredients);
+      })
+      .catch(error => {
+        console.log('storing ingredient has failed! ', error);
+      });
   }
 
   const onLoadIngredients = useCallback(ingredients => {
