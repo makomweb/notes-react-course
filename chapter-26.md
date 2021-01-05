@@ -95,3 +95,19 @@ export default IngredientForm;
 - create state
 - managed by React behind the scenes
 - must be used on the root level of a functional React component
+
+## Activate indexing on a Firebase property
+
+Add the following to your rules in Firebase!
+
+~~~js
+{
+  "rules": {
+    ".read": "now < 1612306800000",  // 2021-2-3
+    ".write": "now < 1612306800000",  // 2021-2-3
+      "ingredients": {
+        ".indexOn": ["title"]
+      }
+  }
+}
+~~~
