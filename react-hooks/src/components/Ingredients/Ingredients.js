@@ -58,6 +58,8 @@ function Ingredients() {
   const onErrorClose = () => {
     setError(null);
     setIsLoading(false);
+
+    // Note: both updates are batched together which causes a single render cycle of the component!
   }
 
   return (

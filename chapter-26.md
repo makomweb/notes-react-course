@@ -111,3 +111,10 @@ Add the following to your rules in Firebase!
   }
 }
 ~~~
+
+## setState / state update batching
+
+- setNewState(oldState + 1) versus setNewState(prevState => prevState + 1)
+- React batches state updates!
+- all state updates form one and the same synchronous event handler are batched together
+- after setNewState() you can't immediately use the new state when NOT using the function form
