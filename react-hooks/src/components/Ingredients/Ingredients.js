@@ -6,8 +6,11 @@ import Search from './Search';
 
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onIngredientAdded = ingredient => {
+    setIsLoading(true);
+
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
       {
         method: 'POST',
@@ -25,10 +28,13 @@ function Ingredients() {
       })
       .catch(error => {
         console.log('storing ingredient has failed! ', error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   const onIngredientRemoved = id => {
+    setIsLoading(true);
+
     fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
       {
         method: 'DELETE'
@@ -39,7 +45,8 @@ function Ingredients() {
       })
       .catch(error => {
         console.log('storing ingredient has failed! ', error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   const onLoadIngredients = useCallback(ingredients => {
@@ -48,7 +55,7 @@ function Ingredients() {
 
   return (
     <div className="App">
-      <IngredientForm addIngredient={onIngredientAdded} />
+      <IngredientForm addIngredient={onIngredientAdded} isLoading={isLoading} />
       <section>
         <Search loadIngredients={onLoadIngredients} />
         <IngredientList ingredients={userIngredients} onRemoveItem={onIngredientRemoved} />
