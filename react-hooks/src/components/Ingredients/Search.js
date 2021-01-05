@@ -8,25 +8,28 @@ const Search = React.memo(props => {
   const [enteredFilter, setEnteredFilter] = useState('');
 
   useEffect(() => {
-    const query = enteredFilter.length === 0
-      ? ''
-      : `?orderBy="title"&equalTo="${enteredFilter}"`;
-    fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json' + query)
-      .then(response => response.json())
-      .then(data => {
-        const ingredients = [];
-        for (const key in data) {
-          ingredients.push({
-            id: key,
-            title: data[key].title,
-            amount: data[key].amount
-          });
-        }
-        loadIngredients(ingredients);
-      })
-      .catch(error => {
-        console.log('fetching ingredients has failed! ', error);
-      });
+    setTimeout(() => {
+      const query = enteredFilter.length === 0
+        ? ''
+        : `?orderBy="title"&equalTo="${enteredFilter}"`;
+
+      fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json' + query)
+        .then(response => response.json())
+        .then(data => {
+          const ingredients = [];
+          for (const key in data) {
+            ingredients.push({
+              id: key,
+              title: data[key].title,
+              amount: data[key].amount
+            });
+          }
+          loadIngredients(ingredients);
+        })
+        .catch(error => {
+          console.log('fetching ingredients has failed! ', error);
+        });
+    }, 500);
   }, [enteredFilter, loadIngredients]);
 
   return (
