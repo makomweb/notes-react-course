@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -59,9 +59,9 @@ function Ingredients() {
     }
   }
 
-  const onLoadIngredients = ingredients => {
-    //setUserIngredients(ingredients);
-  }
+  const onLoadIngredients = useCallback(ingredients => {
+    setUserIngredients(ingredients);
+  }, []);
 
   return (
     <div className="App">
