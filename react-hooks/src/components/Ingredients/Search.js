@@ -36,7 +36,6 @@ const Search = React.memo(props => {
     }, 500);
 
     return () => {
-      /* Cleanup comes here! */
       clearTimeout(timer);
     };
   }, [enteredFilter, loadIngredients, inputRef]);
