@@ -4,6 +4,7 @@ import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import Search from './Search';
 import ErrorModal from '../UI/ErrorModal';
+import { useHttp } from '../../hooks/http';
 
 const ingredientReducer = (state, action) => {
   const { type } = action;
@@ -18,6 +19,7 @@ const ingredientReducer = (state, action) => {
 
 function Ingredients() {
   const [userIngredients, reduceIngredients] = useReducer(ingredientReducer, []);
+  useHttp();
   
   const onIngredientAdded = useCallback(ingredient => {
     reduceHttpState({ type: 'REQUEST' });

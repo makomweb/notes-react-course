@@ -43,6 +43,12 @@ const useHttp = () => {
                 reduceHttpState({ type: 'FINISHED' });
             });
     }
+
+    return {
+        loading: httpState.loading,
+        data: httpState.data,
+        error: httpState.error
+    };
 }
 
 export default useHttp;
