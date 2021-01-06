@@ -28,16 +28,10 @@ const httpReducer = (state, action) => {
 }
 
 function Ingredients() {
-  //const [userIngredients, setUserIngredients] = useState([]);
   const [userIngredients, reduceIngredients] = useReducer(ingredientReducer, []);
-  /*
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-  */
   const [httpState, reduceHttpState] = useReducer(httpReducer, { loading: false, error: null });
 
   const onIngredientAdded = ingredient => {
-    //setIsLoading(true);
     reduceHttpState({ type: 'REQUEST' });
 
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
@@ -50,12 +44,6 @@ function Ingredients() {
         return response.json();
       })
       .then(responseData => {
-        /*
-        setUserIngredients(prevIngredients => [...prevIngredients, {
-          id: responseData.name,
-          ...ingredient
-        }]);
-        */
         reduceIngredients({
           type: 'ADD', ingredient: {
             id: responseData.name,
@@ -64,7 +52,6 @@ function Ingredients() {
         });
       })
       .catch(error => {
-        //setError('Adding ingredient has failed! ', error);
         reduceHttpState({ type: 'FAILED', error: 'Adding ingredient has failed!' });
       })
       .finally(() => {
@@ -73,22 +60,16 @@ function Ingredients() {
   }
 
   const onIngredientRemoved = id => {
-    //setIsLoading(true);
     reduceHttpState({ type: 'REQUEST' });
 
-    fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
+    fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.jon`,
       {
         method: 'DELETE'
       })
       .then(response => {
-        /*
-        const newIngredients = userIngredients.filter(obj => obj.id !== id);
-        setUserIngredients(newIngredients);
-        */
         reduceIngredients({ type: 'REMOVE', id: id });
       })
       .catch(error => {
-        //setError('Removing ingredient has failed! ', error);
         reduceHttpState({ type: 'FAILED', error: 'Removing ingredient has failed!' });
       })
       .finally(() => {
@@ -97,25 +78,18 @@ function Ingredients() {
   }
 
   const onLoadIngredients = useCallback(ingredients => {
-    //setUserIngredients(ingredients);
     reduceIngredients({ type: 'SET', ingredients: ingredients });
   }, []);
 
   const onErrorClose = () => {
-    /*
-    setError(null);
-    setIsLoading(false);
-    */
     reduceHttpState({ type: 'CLEAR' });
-
-    // Note: both updates are batched together which causes a single render cycle of the component!
   }
 
-  //const { error, loading } = httpState;
+  const { error, loading } = httpState;
   return (
     <div className="App">
-      {httpState.error ? <ErrorModal onClose={onErrorClose}>{httpState.error}</ErrorModal> : null}
-      <IngredientForm addIngredient={onIngredientAdded} isLoading={httpState.loading} />
+      {error ? <ErrorModal onClose={onErrorClose}>{error}</ErrorModal> : null}
+      <IngredientForm addIngredient={onIngredientAdded} isLoading={loading} />
       <section>
         <Search loadIngredients={onLoadIngredients} />
         <IngredientList ingredients={userIngredients} onRemoveItem={onIngredientRemoved} />
