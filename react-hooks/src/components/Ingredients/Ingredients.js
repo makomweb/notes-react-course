@@ -31,7 +31,7 @@ function Ingredients() {
   const [userIngredients, reduceIngredients] = useReducer(ingredientReducer, []);
   const [httpState, reduceHttpState] = useReducer(httpReducer, { loading: false, error: null });
 
-  const onIngredientAdded = ingredient => {
+  const onIngredientAdded = useCallback(ingredient => {
     reduceHttpState({ type: 'REQUEST' });
 
     fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
@@ -57,9 +57,9 @@ function Ingredients() {
       .finally(() => {
         reduceHttpState({ type: 'FINISHED' });
       });
-  }
+  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
-  const onIngredientRemoved = id => {
+  const onIngredientRemoved = useCallback(id => {
     reduceHttpState({ type: 'REQUEST' });
 
     fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.jon`,
@@ -75,11 +75,12 @@ function Ingredients() {
       .finally(() => {
         reduceHttpState({ type: 'FINISHED' });
       });
-  }
+  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
+
 
   const onLoadIngredients = useCallback(ingredients => {
     reduceIngredients({ type: 'SET', ingredients: ingredients });
-  }, []);
+  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
   const onErrorClose = () => {
     reduceHttpState({ type: 'CLEAR' });
