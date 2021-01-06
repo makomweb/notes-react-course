@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useFetchIngredients } from '../../hooks/http';
 
 import Card from '../UI/Card';
 import './Search.css';
@@ -7,38 +8,31 @@ const Search = React.memo(props => {
   const { loadIngredients } = props;
   const [enteredFilter, setEnteredFilter] = useState('');
   const inputRef = useRef();
+  const fetch = useFetchIngredients();
 
+  /*
+  useEffect(() => {
+    loadIngredients(fetch.ingredients);
+  }, [fetch.ingredients]);
+
+  useEffect(() => {
+    fetch.sendRequest('');
+  }, []);
+  */
+  /*
   useEffect(() => {
     const timer = setTimeout(() => {
       // if previous value is the same like current value (note: it changes when typing!)
-      if (enteredFilter === inputRef.current.value) {
-        const query = enteredFilter.length === 0
-          ? ''
-          : `?orderBy="title"&equalTo="${enteredFilter}"`;
-
-        fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json' + query)
-          .then(response => response.json())
-          .then(data => {
-            const ingredients = [];
-            for (const key in data) {
-              ingredients.push({
-                id: key,
-                title: data[key].title,
-                amount: data[key].amount
-              });
-            }
-            loadIngredients(ingredients);
-          })
-          .catch(error => {
-            console.log('fetching ingredients has failed! ', error);
-          });
+      if (enteredFilter === inputRef.current.value) {      
+        fetch.sendRequest(enteredFilter);
       }
     }, 500);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [enteredFilter, loadIngredients, inputRef]);
+  }, [enteredFilter, loadIngredients, inputRef, fetch]);
+  */
 
   return (
     <section className="search">

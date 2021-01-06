@@ -4,7 +4,7 @@ import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import Search from './Search';
 import ErrorModal from '../UI/ErrorModal';
-import { useCreateIngredient, useRemoveIngredient } from '../../hooks/http';
+import { useCreateIngredient, useFetchIngredients, useRemoveIngredient } from '../../hooks/http';
 
 const ingredientReducer = (state, action) => {
   const { type } = action;
@@ -12,8 +12,7 @@ const ingredientReducer = (state, action) => {
     case 'SET': return action.ingredients;
     case 'ADD': return [...state, action.ingredient];
     case 'REMOVE': return state.filter(i => i.id !== action.id);
-    default:
-      throw new Error('Should not get here!');
+    default: throw new Error('Should not get here!');
   }
 }
 
@@ -22,6 +21,17 @@ function Ingredients() {
   const [error, setError] = useState();
   const remove = useRemoveIngredient();
   const create = useCreateIngredient();
+  const fetch = useFetchIngredients();
+
+  useEffect(() => {
+    fetch.sendRequest('');
+  }, []);
+
+  useEffect(() => {
+    if (fetch.ingredients) {
+      reduceIngredients({ type: 'SET', ingredients: fetch.ingredients });
+    }
+  }, [fetch.ingredients]);
 
   useEffect(() => {
     if (remove.id) {
@@ -45,14 +55,15 @@ function Ingredients() {
     remove.sendRequest(id);
   }, [remove]);
 
-
-  const onIngredientsLoaded = useCallback(ingredients => {
-    reduceIngredients({ type: 'SET', ingredients: ingredients });
+  const onIngredientsLoaded = useCallback(loaded => {
+    reduceIngredients({ type: 'SET', ingredients: loaded });
   }, []);
 
   const onModalClosed = useCallback(() => {
     setError(null);
   }, []);
+
+  console.log('rendering ingredients: ', ingredients);
 
   const ingredientList = useMemo(() => {
     return (
