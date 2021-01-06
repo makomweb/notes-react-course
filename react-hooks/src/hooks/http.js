@@ -36,7 +36,7 @@ export const useCreateIngredient = () => {
                 reduce({ type: 'CREATION_FINISHED', ingredient: { id: data.name, ...ingredient } });
             })
             .catch(error => {
-                reduce({ type: 'FAILED', error: 'Request has failed!' });
+                reduce({ type: 'FAILED', error: 'Creation has failed!' });
             });
     }, []);
 
@@ -63,7 +63,7 @@ export const useRemoveIngredient = () => {
                 reduce({ type: 'REMOVAL_FINISHED', id: id });
             })
             .catch(error => {
-                reduce({ type: 'FAILED', error: 'Request has failed!' });
+                reduce({ type: 'FAILED', error: 'Removal has failed!' });
             });
     }, []);
 
