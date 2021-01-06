@@ -19,6 +19,7 @@ const ingredientReducer = (state, action) => {
 
 function Ingredients() {
   const [ingredients, reduceIngredients] = useReducer(ingredientReducer, []);
+  const [error, setError] = useState();
   const remove = useRemoveIngredient();
   const create = useCreateIngredient();
 
@@ -26,13 +27,15 @@ function Ingredients() {
     if (remove.id) {
       reduceIngredients({ type: 'REMOVE', id: remove.id });
     }
-  }, [remove.id]);
+    setError(remove.error);
+  }, [remove.id, remove.error]);
 
   useEffect(() => {
     if (create.ingredient) {
       reduceIngredients({ type: 'ADD', ingredient: create.ingredient });
     }
-  }, [create.ingredient]);
+    setError(create.error);
+  }, [create.ingredient, create.error]);
 
   const onIngredientAdded = useCallback(ingredient => {
     create.sendRequest(ingredient);
@@ -48,6 +51,7 @@ function Ingredients() {
   }, []);
 
   const onErrorClose = useCallback(() => {
+    setError(null);
   }, []);
 
   const ingredientList = useMemo(() => {
@@ -58,7 +62,6 @@ function Ingredients() {
     );
   }, [ingredients, onIngredientRemoved]);
 
-  const error = false;
   const loading = remove.loading || create.loading;
   return (
     <div className="App">
