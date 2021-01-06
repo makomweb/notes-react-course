@@ -19,53 +19,56 @@ const ingredientReducer = (state, action) => {
 
 function Ingredients() {
   const [userIngredients, reduceIngredients] = useReducer(ingredientReducer, []);
-  useHttp();
-  
-  const onIngredientAdded = useCallback(ingredient => {
-    reduceHttpState({ type: 'REQUEST' });
+  const { loading, data, error, sendRequest } = useHttp();
 
-    fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
-      {
-        method: 'POST',
-        body: JSON.stringify(ingredient),
-        header: { 'Content-Type': 'application/json' }
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then(responseData => {
-        reduceIngredients({
-          type: 'ADD', ingredient: {
-            id: responseData.name,
-            ...ingredient
-          }
-        });
-      })
-      .catch(error => {
-        reduceHttpState({ type: 'FAILED', error: 'Adding ingredient has failed!' });
-      })
-      .finally(() => {
-        reduceHttpState({ type: 'FINISHED' });
-      });
+  const onIngredientAdded = useCallback(ingredient => {
+    // reduceHttpState({ type: 'REQUEST' });
+
+    // fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
+    //   {
+    //     method: 'POST',
+    //     body: JSON.stringify(ingredient),
+    //     header: { 'Content-Type': 'application/json' }
+    //   })
+    //   .then(response => {
+    //     return response.json();
+    //   })
+    //   .then(responseData => {
+    //     reduceIngredients({
+    //       type: 'ADD', ingredient: {
+    //         id: responseData.name,
+    //         ...ingredient
+    //       }
+    //     });
+    //   })
+    //   .catch(error => {
+    //     reduceHttpState({ type: 'FAILED', error: 'Adding ingredient has failed!' });
+    //   })
+    //   .finally(() => {
+    //     reduceHttpState({ type: 'FINISHED' });
+    //   });
   }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
   const onIngredientRemoved = useCallback(id => {
-    reduceHttpState({ type: 'REQUEST' });
+    // reduceHttpState({ type: 'REQUEST' });
 
-    fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
-      {
-        method: 'DELETE'
-      })
-      .then(response => {
-        reduceIngredients({ type: 'REMOVE', id: id });
-      })
-      .catch(error => {
-        reduceHttpState({ type: 'FAILED', error: 'Removing ingredient has failed!' });
-      })
-      .finally(() => {
-        reduceHttpState({ type: 'FINISHED' });
-      });
-  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
+    // fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
+    //   {
+    //     method: 'DELETE'
+    //   })
+    //   .then(response => {
+    //     reduceIngredients({ type: 'REMOVE', id: id });
+    //   })
+    //   .catch(error => {
+    //     reduceHttpState({ type: 'FAILED', error: 'Removing ingredient has failed!' });
+    //   })
+    //   .finally(() => {
+    //     reduceHttpState({ type: 'FINISHED' });
+    //   });
+    sendRequest(
+      `https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
+      'DELETE');
+  }, [sendRequest]);
 
 
   const onLoadIngredients = useCallback(ingredients => {
@@ -73,7 +76,7 @@ function Ingredients() {
   }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
   const onErrorClose = useCallback(() => {
-    reduceHttpState({ type: 'CLEAR' });
+    //reduceHttpState({ type: 'CLEAR' });
   }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
   const ingredientList = useMemo(() => {
@@ -84,7 +87,7 @@ function Ingredients() {
     );
   }, [userIngredients, onIngredientRemoved]); // dependencies which indicate when to re-render
 
-  const { error, loading } = httpState;
+  //const { error, loading } = httpState;
   return (
     <div className="App">
       {error ? <ErrorModal onClose={onErrorClose}>{error}</ErrorModal> : null}
