@@ -1,9 +1,20 @@
-import React, { useState, useCallback } from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import Search from './Search';
 import ErrorModal from '../UI/ErrorModal';
+
+const ingredientReducer = (ingredients, action) => {
+  const { type } = action;
+  switch (type) {
+    case 'SET': return action.ingredients;
+    case 'ADD': return [...ingredients, action.ingredient];
+    case 'REMOVE': return ingredients.filter(i => i.id !== action.id);
+    default:
+      throw new Error('Should not get here!');
+  }
+}
 
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
