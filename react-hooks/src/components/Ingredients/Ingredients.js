@@ -46,11 +46,11 @@ function Ingredients() {
   }, [remove]);
 
 
-  const onLoadIngredients = useCallback(ingredients => {
+  const onIngredientsLoaded = useCallback(ingredients => {
     reduceIngredients({ type: 'SET', ingredients: ingredients });
   }, []);
 
-  const onErrorClose = useCallback(() => {
+  const onModalClosed = useCallback(() => {
     setError(null);
   }, []);
 
@@ -65,10 +65,10 @@ function Ingredients() {
   const loading = remove.loading || create.loading;
   return (
     <div className="App">
-      {error ? <ErrorModal onClose={onErrorClose}>{error}</ErrorModal> : null}
+      {error ? <ErrorModal onClose={onModalClosed}>{error}</ErrorModal> : null}
       <IngredientForm addIngredient={onIngredientAdded} isLoading={loading} />
       <section>
-        <Search loadIngredients={onLoadIngredients} />
+        <Search loadIngredients={onIngredientsLoaded} />
         {ingredientList}
       </section>
     </div>
