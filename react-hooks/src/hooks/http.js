@@ -3,10 +3,10 @@ import { useReducer } from 'react';
 const httpReducer = (state, action) => {
     const { type } = action;
     switch (type) {
-        case 'REQUEST': return { loading: true, error: null }
-        case 'FINISHED': return { ...state, loading: false }
-        case 'FAILED': return { loading: false, error: action.error }
-        case 'CLEAR': return { ...state, error: null }
+        case 'REQUEST': return { loading: true, error: null, data: null }
+        case 'FINISHED': return { ...state, loading: false, data: action.data }
+        case 'FAILED': return { loading: false, error: action.error, data: null }
+        case 'CLEAR': return { ...state, error: null, data: null }
         default: throw new Error('Should not get here!');
     }
 }
@@ -31,7 +31,10 @@ const useHttp = () => {
                 }
             })
             .then(response => {
-                // TODO reduceIngredients({ type: 'REMOVE', id: id });
+                return response.json();
+            })
+            .then(data => {
+                reduceHttpState({ type: 'FINISHED', data: data });
             })
             .catch(error => {
                 reduceHttpState({ type: 'FAILED', error: 'Removing ingredient has failed!' });
