@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback, useMemo } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -86,6 +86,14 @@ function Ingredients() {
     reduceHttpState({ type: 'CLEAR' });
   }
 
+  const ingredientList = useMemo(() => {
+    return (
+      <IngredientList
+        ingredients={userIngredients}
+        onRemoveItem={onIngredientRemoved} />
+    );
+  }, [userIngredients, onIngredientRemoved]); // dependencies which indicate when to re-render
+
   const { error, loading } = httpState;
   return (
     <div className="App">
@@ -93,7 +101,7 @@ function Ingredients() {
       <IngredientForm addIngredient={onIngredientAdded} isLoading={loading} />
       <section>
         <Search loadIngredients={onLoadIngredients} />
-        <IngredientList ingredients={userIngredients} onRemoveItem={onIngredientRemoved} />
+        {ingredientList}
       </section>
     </div>
   );
