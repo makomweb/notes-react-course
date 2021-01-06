@@ -82,9 +82,9 @@ function Ingredients() {
     reduceIngredients({ type: 'SET', ingredients: ingredients });
   }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
-  const onErrorClose = () => {
+  const onErrorClose = useCallback(() => {
     reduceHttpState({ type: 'CLEAR' });
-  }
+  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
 
   const ingredientList = useMemo(() => {
     return (
