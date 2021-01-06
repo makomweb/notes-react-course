@@ -16,21 +16,9 @@ const ingredientReducer = (state, action) => {
   }
 }
 
-const httpReducer = (state, action) => {
-  const { type } = action;
-  switch (type) {
-    case 'REQUEST': return { loading: true, error: null }
-    case 'FINISHED': return { ...state, loading: false }
-    case 'FAILED': return { loading: false, error: action.error }
-    case 'CLEAR': return { ...state, error: null }
-    default: throw new Error('Should not get here!');
-  }
-}
-
 function Ingredients() {
   const [userIngredients, reduceIngredients] = useReducer(ingredientReducer, []);
-  const [httpState, reduceHttpState] = useReducer(httpReducer, { loading: false, error: null });
-
+  
   const onIngredientAdded = useCallback(ingredient => {
     reduceHttpState({ type: 'REQUEST' });
 
