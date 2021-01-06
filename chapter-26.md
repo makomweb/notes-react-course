@@ -118,3 +118,8 @@ Add the following to your rules in Firebase!
 - React batches state updates!
 - all state updates form one and the same synchronous event handler are batched together
 - after setNewState() you can't immediately use the new state when NOT using the function form
+
+## Re-rendering
+
+- can be optimized with `useCallback()` and `useMemo()`
+- hooks will get called with every re-rendering-cycle (re-executed)
