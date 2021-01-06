@@ -62,7 +62,7 @@ function Ingredients() {
   const onIngredientRemoved = useCallback(id => {
     reduceHttpState({ type: 'REQUEST' });
 
-    fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.jon`,
+    fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
       {
         method: 'DELETE'
       })
