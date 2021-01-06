@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 
 const httpReducer = (state, action) => {
     const { type } = action;
@@ -20,7 +20,7 @@ const useHttp = () => {
         data: null
     });
 
-    const sendRequest = (url, method, body) => {
+    const sendRequest = useCallback((url, method, body) => {
         reduceHttpState({ type: 'REQUEST' });
         fetch(url,
             {
@@ -42,7 +42,7 @@ const useHttp = () => {
             .finally(() => {
                 reduceHttpState({ type: 'FINISHED' });
             });
-    }
+    }, []);
 
     return {
         loading: httpState.loading,
