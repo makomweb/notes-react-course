@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useState, useReducer, useCallback } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -17,7 +17,8 @@ const ingredientReducer = (ingredients, action) => {
 }
 
 function Ingredients() {
-  const [userIngredients, setUserIngredients] = useState([]);
+  //const [userIngredients, setUserIngredients] = useState([]);
+  const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -34,10 +35,18 @@ function Ingredients() {
         return response.json();
       })
       .then(responseData => {
+        /*
         setUserIngredients(prevIngredients => [...prevIngredients, {
           id: responseData.name,
           ...ingredient
         }]);
+        */
+        dispatch({
+          type: 'ADD', ingredient: {
+            id: responseData.name,
+            ...ingredient
+          }
+        });
       })
       .catch(error => {
         setError('Adding ingredient has failed! ', error);
@@ -53,8 +62,11 @@ function Ingredients() {
         method: 'DELETE'
       })
       .then(response => {
+        /*
         const newIngredients = userIngredients.filter(obj => obj.id !== id);
         setUserIngredients(newIngredients);
+        */
+        dispatch({ type: 'REMOVE', id: id });
       })
       .catch(error => {
         setError('Removing ingredient has failed! ', error);
@@ -63,7 +75,8 @@ function Ingredients() {
   }
 
   const onLoadIngredients = useCallback(ingredients => {
-    setUserIngredients(ingredients);
+    //setUserIngredients(ingredients);
+    dispatch({ type: 'SET', ingredients: ingredients });
   }, []);
 
   const onErrorClose = () => {
