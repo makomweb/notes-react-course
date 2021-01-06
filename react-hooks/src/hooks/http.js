@@ -14,7 +14,11 @@ const httpReducer = (state, action) => {
 // `https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`
 
 const useHttp = () => {
-    const [httpState, reduceHttpState] = useReducer(httpReducer, { loading: false, error: null });
+    const [httpState, reduceHttpState] = useReducer(httpReducer, {
+        loading: false,
+        error: null,
+        data: null
+    });
 
     const sendRequest = (url, method, body) => {
         reduceHttpState({ type: 'REQUEST' });
