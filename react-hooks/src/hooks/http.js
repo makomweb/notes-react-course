@@ -4,10 +4,7 @@ const createReducer = (state, action) => {
     const { type } = action;
     switch (type) {
         case 'REQUEST': return { loading: true }
-        case 'FINISHED': {
-            console.log('creation: ', action.ingredient);
-            return { loading: false, ingredient: action.ingredient }
-        }
+        case 'FINISHED': return { loading: false, ingredient: action.ingredient }
         case 'FAILED': return { loading: false, error: action.error }
         default: throw new Error('Should not get here!');
     }

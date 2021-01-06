@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useMemo, useEffect } from 'react';
+import React, { useReducer, useState, useCallback, useMemo, useEffect } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
@@ -11,10 +11,7 @@ const ingredientReducer = (state, action) => {
   switch (type) {
     case 'SET': return action.ingredients;
     case 'ADD': return [...state, action.ingredient];
-    case 'REMOVE': {
-      console.log('going to remove ', action.id);
-      return state.filter(i => i.id !== action.id);
-    }
+    case 'REMOVE': return state.filter(i => i.id !== action.id);
     default:
       throw new Error('Should not get here!');
   }
@@ -38,61 +35,20 @@ function Ingredients() {
   }, [create.ingredient]);
 
   const onIngredientAdded = useCallback(ingredient => {
-    // reduceHttpState({ type: 'REQUEST' });
-
-    // fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
-    //   {
-    //     method: 'POST',
-    //     body: JSON.stringify(ingredient),
-    //     header: { 'Content-Type': 'application/json' }
-    //   })
-    //   .then(response => {
-    //     return response.json();
-    //   })
-    //   .then(responseData => {
-    //     reduceIngredients({
-    //       type: 'ADD', ingredient: {
-    //         id: responseData.name,
-    //         ...ingredient
-    //       }
-    //     });
-    //   })
-    //   .catch(error => {
-    //     reduceHttpState({ type: 'FAILED', error: 'Adding ingredient has failed!' });
-    //   })
-    //   .finally(() => {
-    //     reduceHttpState({ type: 'FINISHED' });
-    //   });
     create.sendRequest(ingredient);
   }, [create]);
 
   const onIngredientRemoved = useCallback(id => {
-    // reduceHttpState({ type: 'REQUEST' });
-
-    // fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
-    //   {
-    //     method: 'DELETE'
-    //   })
-    //   .then(response => {
-    //     reduceIngredients({ type: 'REMOVE', id: id });
-    //   })
-    //   .catch(error => {
-    //     reduceHttpState({ type: 'FAILED', error: 'Removing ingredient has failed!' });
-    //   })
-    //   .finally(() => {
-    //     reduceHttpState({ type: 'FINISHED' });
-    //   });
     remove.sendRequest(id);
   }, [remove]);
 
 
   const onLoadIngredients = useCallback(ingredients => {
     reduceIngredients({ type: 'SET', ingredients: ingredients });
-  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
+  }, []);
 
   const onErrorClose = useCallback(() => {
-    //reduceHttpState({ type: 'CLEAR' });
-  }, []); // '[]' ... no external dependencies (React ensures reducers do not change when re-rendering a component!)
+  }, []);
 
   const ingredientList = useMemo(() => {
     return (
@@ -100,9 +56,7 @@ function Ingredients() {
         ingredients={ingredients}
         onRemoveItem={onIngredientRemoved} />
     );
-  }, [ingredients, onIngredientRemoved]); // dependencies which indicate when to re-render
-
-  //const { error, loading } = httpState;
+  }, [ingredients, onIngredientRemoved]);
 
   const error = false;
   const loading = remove.loading || create.loading;
