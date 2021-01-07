@@ -3,11 +3,12 @@ import { useCallback, useReducer } from 'react';
 const reducer = (state, action) => {
     const { type } = action;
     switch (type) {
-        case 'ISSUED': return { loading: true }
-        case 'CREATION_FINISHED': return { loading: false, ingredient: action.ingredient }
-        case 'REMOVAL_FINISHED': return { loading: false, id: action.id }
-        case 'FILTER_FINISHED': return { loading: false, ingredients: action.ingredients }
-        case 'FAILED': return { loading: false, error: action.error }
+        case 'ISSUED': return { ...state, loading: true }
+        case 'CREATION_FINISHED': return { ...state, loading: false, ingredient: action.ingredient }
+        case 'REMOVAL_FINISHED': return { ...state, loading: false, id: action.id }
+        case 'FILTER_FINISHED': return { ...state, loading: false, ingredients: action.ingredients }
+        case 'FAILED': return { ...state, loading: false, error: action.error }
+        case 'CLEAR': return { ...state, error: null }
         default: throw new Error('Should not get here!');
     }
 }
@@ -19,7 +20,7 @@ export const useCreateIngredient = () => {
         error: null,
     });
 
-    const sendRequest = useCallback(ingredient => {
+    const issue = useCallback(ingredient => {
         reduce({ type: 'ISSUED' });
         fetch('https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients.json',
             {
@@ -42,7 +43,7 @@ export const useCreateIngredient = () => {
 
     return {
         ...state,
-        sendRequest: sendRequest
+        issue: issue
     };
 }
 
@@ -53,7 +54,7 @@ export const useRemoveIngredient = () => {
         error: null,
     });
 
-    const sendRequest = useCallback(id => {
+    const issue = useCallback(id => {
         reduce({ type: 'ISSUED' });
         fetch(`https://react-hooks-update-29adc-default-rtdb.firebaseio.com/ingredients/${id}.json`,
             {
@@ -69,7 +70,7 @@ export const useRemoveIngredient = () => {
 
     return {
         ...state,
-        sendRequest: sendRequest
+        issue: issue
     };
 }
 
@@ -80,7 +81,7 @@ export const useFetchIngredients = () => {
         error: null,
     });
 
-    const sendRequest = useCallback(filter => {
+    const issue = useCallback(filter => {
         reduce({ type: 'ISSUED' });
         const query = filter.length === 0
             ? ''
@@ -104,12 +105,17 @@ export const useFetchIngredients = () => {
                 reduce({ type: 'FILTER_FINISHED', ingredients: items });
             })
             .catch(error => {
-                reduce({ type: 'FAILED', error: 'Removal has failed!' });
+                reduce({ type: 'FAILED', error: 'Fetching has failed!' });
             });
+    }, []);
+
+    const clear = useCallback(() => {
+        reduce({ type: 'CLEAR' });
     }, []);
 
     return {
         ...state,
-        sendRequest: sendRequest
+        issue: issue,
+        clear: clear
     };
 }

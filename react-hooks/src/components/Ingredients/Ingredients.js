@@ -4,7 +4,7 @@ import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import Search from './Search';
 import ErrorModal from '../UI/ErrorModal';
-import { useCreateIngredient, useFetchIngredients, useRemoveIngredient } from '../../hooks/http';
+import { useCreateIngredient, useRemoveIngredient } from '../../hooks/http';
 
 const ingredientReducer = (state, action) => {
   const { type } = action;
@@ -21,38 +21,37 @@ function Ingredients() {
   const [error, setError] = useState();
   const remove = useRemoveIngredient();
   const create = useCreateIngredient();
-  const fetch = useFetchIngredients();
 
   useEffect(() => {
-    fetch.sendRequest('');
-  }, []);
-
-  useEffect(() => {
-    if (fetch.ingredients) {
-      reduceIngredients({ type: 'SET', ingredients: fetch.ingredients });
-    }
-  }, [fetch.ingredients]);
-
-  useEffect(() => {
+    console.log('useEffect() on remove.id');
     if (remove.id) {
       reduceIngredients({ type: 'REMOVE', id: remove.id });
     }
-    setError(remove.error);
-  }, [remove.id, remove.error]);
+  }, [remove.id]);
 
   useEffect(() => {
+    console.log('useEffect() on create.ingredient');
     if (create.ingredient) {
       reduceIngredients({ type: 'ADD', ingredient: create.ingredient });
     }
+  }, [create.ingredient]);
+
+  useEffect(() => {
+    console.log('useEffect() on create.error');
     setError(create.error);
-  }, [create.ingredient, create.error]);
+  }, [create.error]);
+
+  useEffect(() => {
+    console.log('useEffect() on remove.error');
+    setError(remove.error);
+  }, [remove.error]);
 
   const onIngredientAdded = useCallback(ingredient => {
-    create.sendRequest(ingredient);
+    create.issue(ingredient);
   }, [create]);
 
   const onIngredientRemoved = useCallback(id => {
-    remove.sendRequest(id);
+    remove.issue(id);
   }, [remove]);
 
   const onIngredientsLoaded = useCallback(loaded => {
@@ -74,12 +73,13 @@ function Ingredients() {
   }, [ingredients, onIngredientRemoved]);
 
   const loading = remove.loading || create.loading;
+
   return (
     <div className="App">
       {error ? <ErrorModal onClose={onModalClosed}>{error}</ErrorModal> : null}
       <IngredientForm addIngredient={onIngredientAdded} isLoading={loading} />
       <section>
-        <Search loadIngredients={onIngredientsLoaded} />
+        <Search provideIngredients={onIngredientsLoaded} />
         {ingredientList}
       </section>
     </div>
