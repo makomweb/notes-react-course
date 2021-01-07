@@ -123,3 +123,7 @@ Add the following to your rules in Firebase!
 
 - can be optimized with `useCallback()` and `useMemo()`
 - hooks will get called with every re-rendering-cycle (re-executed)
+
+## Idea of custom hooks
+
+Share stateful logic across components!
