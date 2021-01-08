@@ -1,40 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './Ingredient.css';
 
-class Ingredient extends Component {
-
-    render() {
-        let ingredient = null;
-
-        switch (this.props.type) {
-            case ('bread-bottom'):
-                ingredient = <div className={classes.BreadBottom}></div>;
-                break;
-            case ('bread-top'):
-                ingredient = (
-                    <div className={classes.BreadTop}>
-                        <div className={classes.Seeds1}></div>
-                        <div className={classes.Seeds2}></div>
-                    </div>);
-                break;
-            case ('beef'):
-                ingredient = <div className={classes.Beef}></div>;
-                break;
-            case ('cheese'):
-                ingredient = <div className={classes.Cheese}></div>;
-                break;
-            case ('bacon'):
-                ingredient = <div className={classes.Bacon}></div>;
-                break;
-            case ('lettuce'):
-                ingredient = <div className={classes.Lettuce}></div>;
-                break;
-            default:
-                break;
-        }
-
-        return ingredient;
+const Ingredient = props => {
+    const { type } = props;
+    switch (type) {
+        case ('bread-bottom'): return <div className={classes.BreadBottom}></div>;
+        case ('bread-top'): return (
+            <div className={classes.BreadTop}>
+                <div className={classes.Seeds1}></div>
+                <div className={classes.Seeds2}></div>
+            </div>);
+        case ('beef'): return <div className={classes.Beef}></div>;
+        case ('cheese'): return <div className={classes.Cheese}></div>;
+        case ('bacon'): return <div className={classes.Bacon}></div>;
+        case ('lettuce'): return <div className={classes.Lettuce}></div>;
+        default: return null;
     }
 }
 
