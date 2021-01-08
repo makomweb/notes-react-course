@@ -46,9 +46,8 @@ const BurgerBuilder = props => {
         props.history.push('/checkout');
     }
 
-    useEffect(() => {
-        props.onFetchPrices();
-    }, []);
+    const { onFetchPrices } = props;
+    useEffect(() => onFetchPrices(), [onFetchPrices]);
 
     // { lettuce: true, patty: true, bacon: false ... }
     const disabledInfo = {

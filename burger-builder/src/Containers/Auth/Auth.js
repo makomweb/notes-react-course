@@ -69,12 +69,13 @@ const Auth = props => {
         setIsSignup(!isSignup);
     }
 
+    const { isBuilding, authRedirectPath, resetAuthRedirectPath } = props;
     useEffect(() => {
         // trying to go to checkout even though not building a burger
-        if (!props.isBuilding && props.authRedirectPath !== '/') {
-            props.resetAuthRedirectPath();
+        if (!isBuilding && authRedirectPath !== '/') {
+            resetAuthRedirectPath();
         }
-    }, []);
+    }, [isBuilding, authRedirectPath, resetAuthRedirectPath]);
 
     const { controls } = state;
     const formElements = [];

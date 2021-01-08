@@ -22,9 +22,8 @@ const AsyncLogout = React.lazy(() => {
 });
 
 const App = props => {
-  useEffect(() => {
-    props.tryAutoSignup();
-  }, []);
+  const { tryAutoSignup } = props;
+  useEffect(() => tryAutoSignup(), [tryAutoSignup]);
 
   let routes = (
     <Switch>
