@@ -3,10 +3,10 @@ import Auxiliary from '../../../HOC/Auxiliary/Auxiliary.js';
 import Backdrop from '../Backdrop/Backdrop.js';
 import classes from './Modal.css';
 
-// const shouldComponentUpdate = (currentProps, nextProps) => {
-//     return nextProps.show !== currentProps.show ||
-//         nextProps.children !== currentProps.children;
-// }
+const shouldComponentUpdate = (currentProps, nextProps) => {
+    return nextProps.show !== currentProps.show ||
+        nextProps.children !== currentProps.children;
+}
 
 const Modal = (props) => {
     return (
@@ -24,4 +24,4 @@ const Modal = (props) => {
     );
 }
 
-export default React.memo(Modal);
+export default React.memo(Modal, (previousProps, nextProps) => shouldComponentUpdate(previousProps, nextProps));
