@@ -10,7 +10,7 @@ class Layout extends Component {
         sideDrawerVisible: false
     }
 
-    sideDrawerToggleHandler = () => {
+    onSideDrawerToggle = () => {
         this.setState((prevState) => {
             this.setState({ sideDrawerVisible: !prevState.sideDrawerVisible });
         });
@@ -20,9 +20,9 @@ class Layout extends Component {
         return (
             <Auxiliary>
                 <Toolbar
-                    toggleDrawer={this.sideDrawerToggleHandler}
+                    toggleDrawer={this.onSideDrawerToggle}
                     isAuthenticated={this.props.isAuthenticated} />
-                <SideDrawer open={this.state.sideDrawerVisible} closed={this.sideDrawerToggleHandler} />
+                <SideDrawer open={this.state.sideDrawerVisible} closed={this.onSideDrawerToggle} />
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>
