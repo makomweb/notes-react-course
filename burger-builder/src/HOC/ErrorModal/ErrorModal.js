@@ -1,44 +1,40 @@
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Modal from '../../Components/UI/Modal/Modal.js'
 import Aux from '../Auxiliary/Auxiliary.js';
 
 const ErrorModal = (WrappedComponent, AxiosInstance) => {
-    return class extends Component {
-        state = {
-            error: null
-        }
+    return props => {
+        const [error, setError] = useState(null);
 
-        constructor() {
-            super();
-            this.reqInterceptor = AxiosInstance.interceptors.request.use(req => {
-                this.setState({ error: null });
-                return req;
-            });
-            this.resInterceptor = AxiosInstance.interceptors.response.use(res => res, error => {
-                this.setState({ error: error });
-            });
-        }
+        const reqInterceptor = AxiosInstance.interceptors.request.use(req => {
+            setError(null);
+            return req;
+        });
 
-        componentWillUnmount() {
-            AxiosInstance.interceptors.request.eject(this.reqInterceptor);
-            AxiosInstance.interceptors.response.eject(this.resInterceptor);
-        }
+        const resInterceptor = AxiosInstance.interceptors.response.use(res => res, err => {
+            setError(err);
+        });
 
-        onErrorModalClicked = () => {
-            this.setState({ error: null });
-        }
+        useEffect(() => {
+            return () => {
+                AxiosInstance.interceptors.request.eject(reqInterceptor);
+                AxiosInstance.interceptors.response.eject(resInterceptor);
+            };
+        }, [reqInterceptor, resInterceptor]);
 
-        render() {
-            return (
-                <Aux>
-                    <Modal show={this.state.error}
-                        tapped={this.onErrorModalClicked}>
-                        {this.state.error ? this.state.error.message : null}
-                    </Modal>
-                    <WrappedComponent {...this.props} />
-                </Aux>
-            );
-        }
+        const onErrorModalClicked = useCallback(() => {
+            setError(null);
+        }, []);
+
+        return (
+            <Aux>
+                <Modal show={error}
+                    tapped={onErrorModalClicked}>
+                    {error ? error.message : null}
+                </Modal>
+                <WrappedComponent {...props} />
+            </Aux>
+        );
     }
 }
 
