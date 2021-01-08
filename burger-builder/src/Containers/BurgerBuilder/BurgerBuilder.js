@@ -7,11 +7,18 @@ import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 import AxiosInstance from '../../AxiosInstance.js';
 import Spinner from '../../Components/UI/Spinner/Spinner.js';
 import ErrorModal from '../../HOC/ErrorModal/ErrorModal.js';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../Store/Actions';
 
 const BurgerBuilder = props => {
     const [purchasing, setPurchasing] = useState(false);
+
+    const dispatch = useDispatch();
+    const onAdded = name => dispatch(actions.addIngredient(name));
+    const onRemoved = name => dispatch(actions.removeIngredient(name));
+    const onFetchPrices = () => dispatch(actions.fetchPrices());
+    const initPurchase = () => dispatch(actions.purchaseInit());
+    const setRedirectPath = path => dispatch(actions.setAuthRedirectPath(path));
 
     const canContinue = () => {
         const { ings } = props;
@@ -32,7 +39,7 @@ const BurgerBuilder = props => {
             setPurchasing(true);
         }
         else {
-            props.setRedirectPath('/checkout');
+            setRedirectPath('/checkout');
             props.history.push('/auth');
         }
     }
@@ -42,11 +49,10 @@ const BurgerBuilder = props => {
     }
 
     const onPurchaseContinue = () => {
-        props.initPurchase();
+        initPurchase();
         props.history.push('/checkout');
     }
 
-    const { onFetchPrices } = props;
     useEffect(() => onFetchPrices(), [onFetchPrices]);
 
     // { lettuce: true, patty: true, bacon: false ... }
@@ -65,8 +71,8 @@ const BurgerBuilder = props => {
             <Auxiliary>
                 <Burger ingredients={props.ings} />
                 <BuildControls
-                    ingredientAdded={props.onAdded}
-                    ingredientRemoved={props.onRemoved}
+                    ingredientAdded={onAdded}
+                    ingredientRemoved={onRemoved}
                     disabled={disabledInfo}
                     price={props.price}
                     purchasable={canContinue()}
@@ -100,14 +106,14 @@ const mapStateToProps = state => {
     }
 }
 
-const mapActionsToDispatch = dispatch => {
-    return {
-        onAdded: (name) => dispatch(actions.addIngredient(name)),
-        onRemoved: (name) => dispatch(actions.removeIngredient(name)),
-        onFetchPrices: () => dispatch(actions.fetchPrices()),
-        initPurchase: () => dispatch(actions.purchaseInit()),
-        setRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
-    }
-}
+// const mapActionsToDispatch = dispatch => {
+//     return {
+//         onAdded: (name) => dispatch(actions.addIngredient(name)),
+//         onRemoved: (name) => dispatch(actions.removeIngredient(name)),
+//         onFetchPrices: () => dispatch(actions.fetchPrices()),
+//         initPurchase: () => dispatch(actions.purchaseInit()),
+//         setRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
+//     }
+// }
 
-export default connect(mapStateToProps, mapActionsToDispatch)(ErrorModal(BurgerBuilder, AxiosInstance));
+export default connect(mapStateToProps, null)(ErrorModal(BurgerBuilder, AxiosInstance));
