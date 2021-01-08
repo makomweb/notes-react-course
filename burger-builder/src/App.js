@@ -28,7 +28,7 @@ const App = props => {
 
   let routes = (
     <Switch>
-      <Route path="/auth" component={AsyncAuth} />
+      <Route path="/auth" render={(props) => <AsyncAuth {...props} />} />
       <Route path="/" exact component={BurgerBuilder} />
       <Redirect to="/" />
     </Switch>
@@ -37,11 +37,11 @@ const App = props => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
-        <Route path="/checkout" component={AsyncCheckout} />
-        <Route path="/orders" component={AsyncOrders} />
-        <Route path="/logout" component={AsyncLogout} />
-        <Route path="/auth" component={AsyncAuth} />
-        <Route path="/" exact component={BurgerBuilder} />
+        <Route path="/checkout" render={(props) => <AsyncCheckout {...props} />} />
+        <Route path="/orders" render={(props) => <AsyncOrders {...props} />} />
+        <Route path="/logout" render={(props) => <AsyncLogout {...props} />} />
+        <Route path="/auth" render={(props) => <AsyncAuth {...props} />} />
+        <Route path="/" exact render={(props) => <BurgerBuilder {...props} />} />
         <Redirect to="/" />
       </Switch>
     );
