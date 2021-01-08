@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import Layout from './HOC/Layout/Layout';
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './Store/Actions';
-import AsyncComponent from './HOC/Async/AsyncComponent';
 
-const AsyncAuth = AsyncComponent(() => {
+const AsyncAuth = React.lazy(() => {
   return import('./Containers/Auth/Auth');
 });
 
-const AsyncCheckout = AsyncComponent(() => {
+const AsyncCheckout = React.lazy(() => {
   return import('./Containers/Checkout/Checkout');
 });
 
-const AsyncOrders = AsyncComponent(() => {
+const AsyncOrders = React.lazy(() => {
   return import('./Containers/Orders/Orders');
 });
 
-const AsyncLogout = AsyncComponent(() => {
+const AsyncLogout = React.lazy(() => {
   return import('./Containers/Auth/Logout/Logout');
 });
 
@@ -50,7 +49,9 @@ const App = props => {
 
   return (
     <Layout>
-      {routes}
+      <Suspense fallback={<p>Loading...</p>}>
+        {routes}
+      </Suspense>
     </Layout>
   );
 }
