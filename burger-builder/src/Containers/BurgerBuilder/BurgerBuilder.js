@@ -27,7 +27,7 @@ const BurgerBuilder = props => {
         return sum > 0;
     }
 
-    const handleOrderClicked = () => {
+    const onOrderClicked = () => {
         if (props.isAuthenticated) {
             setPurchasing(true);
         }
@@ -37,11 +37,11 @@ const BurgerBuilder = props => {
         }
     }
 
-    const handlePurchaseCancelled = () => {
+    const onPurchaseCancelled = () => {
         setPurchasing(false);
     }
 
-    const handlePurchaseContinue = () => {
+    const onPurchaseContinue = () => {
         props.initPurchase();
         props.history.push('/checkout');
     }
@@ -71,20 +71,20 @@ const BurgerBuilder = props => {
                     disabled={disabledInfo}
                     price={props.price}
                     purchasable={canContinue()}
-                    ordered={handleOrderClicked}
+                    ordered={onOrderClicked}
                     isAuthenticated={props.isAuthenticated} />
             </Auxiliary>);
 
         orderSummary = <OrderSummary
             ingredients={props.ings}
-            cancelled={handlePurchaseCancelled}
-            continue={handlePurchaseContinue}
+            cancelled={onPurchaseCancelled}
+            continue={onPurchaseContinue}
             price={props.price} />;
     }
 
     return (
         <Auxiliary>
-            <Modal show={purchasing} tapped={handlePurchaseCancelled}>
+            <Modal show={purchasing} tapped={onPurchaseCancelled}>
                 {orderSummary}
             </Modal>
             {burger}
