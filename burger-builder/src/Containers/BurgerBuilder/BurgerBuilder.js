@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls';
 import Burger from '../../Components/Burger/Burger';
 import Auxiliary from '../../HOC/Auxiliary/Auxiliary';
@@ -23,7 +23,7 @@ const BurgerBuilder = props => {
     const dispatch = useDispatch();
     const onAdded = name => dispatch(actions.addIngredient(name));
     const onRemoved = name => dispatch(actions.removeIngredient(name));
-    const onFetchPrices = () => dispatch(actions.fetchPrices());
+    const onFetchPrices = useCallback(() => dispatch(actions.fetchPrices()), []);
     const initPurchase = () => dispatch(actions.purchaseInit());
     const setRedirectPath = path => dispatch(actions.setAuthRedirectPath(path));
 
