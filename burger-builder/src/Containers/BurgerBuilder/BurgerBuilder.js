@@ -13,6 +13,13 @@ import * as actions from '../../Store/Actions';
 const BurgerBuilder = props => {
     const [purchasing, setPurchasing] = useState(false);
 
+    const ings = useSelector(state => {
+        return state.burgerBuilder.ingredients
+    });
+    const price = useSelector(state => state.burgerBuilder.totalPrice);
+    const error = useSelector(state => state.burgerBuilder.error);
+    const isAuthenticated = useSelector(state => state.auth.token !== null);
+
     const dispatch = useDispatch();
     const onAdded = name => dispatch(actions.addIngredient(name));
     const onRemoved = name => dispatch(actions.removeIngredient(name));
@@ -21,7 +28,6 @@ const BurgerBuilder = props => {
     const setRedirectPath = path => dispatch(actions.setAuthRedirectPath(path));
 
     const canContinue = () => {
-        const { ings } = props;
         const sum = Object.keys(ings)
             .map(key => {
                 return ings[key];
@@ -35,7 +41,7 @@ const BurgerBuilder = props => {
     }
 
     const onOrderClicked = () => {
-        if (props.isAuthenticated) {
+        if (isAuthenticated) {
             setPurchasing(true);
         }
         else {
@@ -57,7 +63,7 @@ const BurgerBuilder = props => {
 
     // { lettuce: true, patty: true, bacon: false ... }
     const disabledInfo = {
-        ...props.ings
+        ...ings
     };
 
     for (let ingredient in disabledInfo) {
@@ -65,26 +71,26 @@ const BurgerBuilder = props => {
     }
 
     let orderSummary = null;
-    let burger = props.error ? <p>Prices can't be loaded</p> : <Spinner />
-    if (props.ings) {
+    let burger = error ? <p>Prices can't be loaded</p> : <Spinner />
+    if (ings) {
         burger = (
             <Auxiliary>
-                <Burger ingredients={props.ings} />
+                <Burger ingredients={ings} />
                 <BuildControls
                     ingredientAdded={onAdded}
                     ingredientRemoved={onRemoved}
                     disabled={disabledInfo}
-                    price={props.price}
+                    price={price}
                     purchasable={canContinue()}
                     ordered={onOrderClicked}
-                    isAuthenticated={props.isAuthenticated} />
+                    isAuthenticated={isAuthenticated} />
             </Auxiliary>);
 
         orderSummary = <OrderSummary
-            ingredients={props.ings}
+            ingredients={ings}
             cancelled={onPurchaseCancelled}
             continue={onPurchaseContinue}
-            price={props.price} />;
+            price={price} />;
     }
 
     return (
@@ -97,14 +103,14 @@ const BurgerBuilder = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        ings: state.burgerBuilder.ingredients,
-        price: state.burgerBuilder.totalPrice,
-        error: state.burgerBuilder.error,
-        isAuthenticated: state.auth.token !== null
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         ings: state.burgerBuilder.ingredients,
+//         price: state.burgerBuilder.totalPrice,
+//         error: state.burgerBuilder.error,
+//         isAuthenticated: state.auth.token !== null
+//     }
+// }
 
 // const mapActionsToDispatch = dispatch => {
 //     return {
