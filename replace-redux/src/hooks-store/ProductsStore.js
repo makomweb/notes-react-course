@@ -18,6 +18,7 @@ const configureStore = () => {
         }
     }
 
+    // [0], [1]
     initStore(actions.TOGGLE_FAV, {
         products: [
             {

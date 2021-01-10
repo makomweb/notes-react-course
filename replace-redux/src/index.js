@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductsProvider from './context/ProductContext';
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
+import configureProductStore from './hooks-store/ProductsStore';
+
+configureProductStore();
 
 ReactDOM.render(
-  <ProductsProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ProductsProvider>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
