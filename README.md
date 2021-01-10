@@ -33,5 +33,6 @@
 25. Redux Saga
 26. [React Hooks](./chapter-26.md)
 27. Practice React Hooks
+28. [Replace Redux with React Hooks](./chapter-28.md)
 
 
