@@ -1,25 +1,24 @@
 import { initStore } from '../hooks-store/Store';
 
-const configureStore = () => {
-    const actions = {
-        TOGGLE_FAV: (currState, productId) => {
-            const products = currState.products;
-            const prodIndex = products.findIndex(
-                p => p.id === productId
-            );
-            const newFavStatus = !products[prodIndex].isFavorite;
-            const updatedProducts = [...products];
-            updatedProducts[prodIndex] = {
-                ...products[prodIndex],
-                isFavorite: newFavStatus
-            };
+const toggleFav = (currState, productId) => {
+    const products = currState.products;
+    const prodIndex = products.findIndex(
+        p => p.id === productId
+    );
+    const newFavStatus = !products[prodIndex].isFavorite;
+    const updatedProducts = [...products];
+    updatedProducts[prodIndex] = {
+        ...products[prodIndex],
+        isFavorite: newFavStatus
+    };
 
-            return { products: updatedProducts }
-        }
-    }
+    return { products: updatedProducts }
+}
+
+const configureStore = () => {
 
     // [0], [1]
-    initStore(actions.TOGGLE_FAV, {
+    initStore({ 'TOGGLE_FAV': toggleFav }, {
         products: [
             {
                 id: 'p1',
