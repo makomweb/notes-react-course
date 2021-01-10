@@ -7,8 +7,8 @@ let actions = {};
 export const useStore = () => {
     const setState = useState(globalState)[1];
 
-    const dispatch = actionIdentifer => {
-        const newState = actions[actionIdentifer](globalState);
+    const dispatch = (actionIdentifer, payload) => {
+        const newState = actions[actionIdentifer](globalState, payload);
 
         globalState = { ...globalState, newState };
 
