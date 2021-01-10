@@ -28,8 +28,8 @@ export const useStore = () => {
 }
 
 export const initStore = (userActions, intialState) => {
-    if (globalState) {
-        globalState = { ...globalState, intialState }
+    if (intialState) {
+        globalState = { ...globalState, ...intialState }
     }
 
     actions = { ...actions, ...userActions }
