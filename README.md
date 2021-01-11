@@ -34,5 +34,6 @@
 26. [React Hooks](./chapter-26.md)
 27. Practice React Hooks
 28. [Replace Redux with React Hooks](./chapter-28.md)
+29. [Building the Burger CSS](./chapter-29.md)
 
 
