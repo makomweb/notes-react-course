@@ -24,3 +24,5 @@ export const useStore = () => {
 
 The objects could also be part of the hook directly.
 Then every using component would have it's own set of objects and state would not be shared anymore.
+
+Replacing Redux with React and React hooks is an alternative to manage state in an app.
