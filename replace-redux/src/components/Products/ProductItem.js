@@ -5,6 +5,7 @@ import { useStore } from '../../hooks-store/Store';
 import './ProductItem.css';
 
 const ProductItem = props => {
+  console.log('rendering ProductItem');
   const dispatch = useStore()[1];
   const toggleFavHandler = () => {
     dispatch('TOGGLE_FAV', props.id);
