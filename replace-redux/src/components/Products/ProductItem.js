@@ -6,9 +6,7 @@ import './ProductItem.css';
 
 const ProductItem = props => {
   const dispatch = useStore()[1];
-
   const toggleFavHandler = () => {
-    // toggleFav(props.id);
     dispatch('TOGGLE_FAV', props.id);
   };
 

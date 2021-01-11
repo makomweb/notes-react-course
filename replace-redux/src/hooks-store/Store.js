@@ -6,20 +6,10 @@ let actions = {};
 
 export const useStore = () => {
   const setState = useState(globalState)[1];
-
   const dispatch = (actionIdentifer, payload) => {
-    const a = actions[actionIdentifer];
-
-    console.log('dispatching action ');
-    console.log('id: ', actionIdentifer);
-    console.log('actions: ', actions);
-    console.log('global state: ', globalState);
-    console.log('action: ', a);
-
-    const newState = a(globalState, payload);
-
+    const action = actions[actionIdentifer];
+    const newState = action(globalState, payload);
     globalState = { ...globalState, ...newState };
-
     for (const listener of listeners) {
       listener(globalState);
     }
@@ -41,7 +31,4 @@ export const initStore = (userActions, intialState) => {
     globalState = { ...globalState, ...intialState };
   }
   actions = { ...actions, ...userActions };
-
-  console.log('global state is: ', globalState);
-  console.log('actions are: ', actions);
 }
