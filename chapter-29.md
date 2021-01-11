@@ -69,6 +69,31 @@
   box-shadow: inset -1px -3px #c9c9c9;
 }
 
+.seeds2 {
+  position: absolute;
+  width: 10%;
+  height: 15%;
+  background-color: white;
+  left: 64%;
+  top: 50%;
+  border-radius: 40%;
+  transform: rotate(10deg);
+  box-shadow: inset -3px -0 #c9c9c9;
+}
+
+.seeds2:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  content: "";
+  left: 150%;
+  top: -130%;
+  border-radius: 40%;
+  transform: rotate(90deg);
+  box-shadow: inset 1px 3px #c9c9c9;
+}
+
 .salad {
   width: 90%;
   height: 7%;
