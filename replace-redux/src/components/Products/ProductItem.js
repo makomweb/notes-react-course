@@ -6,7 +6,7 @@ import './ProductItem.css';
 
 const ProductItem = React.memo(props => {
   console.log('rendering ProductItem');
-  const dispatch = useStore()[1];
+  const dispatch = useStore(false)[1];
   const toggleFavHandler = () => {
     dispatch('TOGGLE_FAV', props.id);
   };
